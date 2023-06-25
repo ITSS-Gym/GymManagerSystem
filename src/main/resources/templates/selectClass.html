@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="adminCommon::common-header"></head>
+<body class="sb-nav-fixed">
+<nav th:replace="adminCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+    <div th:replace="adminCommon::common-sidenav"></div>
+
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Course Management</h1>
+
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item"><a th:href="@{/toAdminMain}">HomePage</a></li>
+                    <li class="breadcrumb-item active">Course Management</li>
+                </ol>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Course Information List
+                    </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Time</th>
+                                <th>Duration</th>
+                                <th>Coach</th>
+                                <th>Price</th>
+                                <th>Type</th>
+                                <th>Operation</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr th:each="class:${classList}">
+                                <td th:text="${class.classId}">ID</td>
+                                <td th:text="${class.className}">Name</td>
+                                <td th:text="${class.classBegin}">Time</td>
+                                <td th:text="${class.classTime}">Duration</td>
+                                <td th:text="${class.coach}">Coach</td>
+                                <td th:text="${class.price}">Price</td>
+                                <td th:text="${class.classType}">Type</td>
+                                <td>
+                                    <a th:href="@{/class/selClassOrder(classId=${class.classId})}"
+                                       style="text-decoration: none">
+                                        <input type="button" class="btn btn-sm btn-outline-secondary" value="Register">
+                                    </a>
+                                    <a th:href="@{/class/delClass(classId=${class.classId})}"
+                                       style="text-decoration: none">
+                                        <input type="button" class="btn btn-sm btn-outline-danger"
+                                               onclick="return del()" value="Delete">
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:20px;margin-bottom:20px">
+                    <a th:href="@{/class/toAddClass}">
+                        <input type="button" class="btn btn-outline-success" value="Add Course">
+                    </a>
+                </div>
+            </div>
+        </main>
+        <footer th:replace="adminCommon::common-footer"></footer>
+    </div>
+</div>
+
+<div th:include="adminCommon::common-scripts"></div>
+<script>
+    function del() {
+        let msg = "You sure you want to delete it？";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
