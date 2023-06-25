@@ -5,30 +5,25 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/11
- */
-
 @Mapper
 public interface ClassOrderMapper {
 
-    //查询所有报名表信息
+    //Query all registration form information
     List<ClassOrder> findAll();
 
-    //添加报名信息
+    //Add registration information
     Boolean insertClassOrder(ClassOrder classOrder);
 
-    //根据会员账号查询个人报名课表
+    //Query the personal registration schedule according to the member account
     List<ClassOrder> selectClassOrderByMemberAccount(Integer memberAccount);
 
-    //删除已预约的课程
+    //Delete a reserved class
     Boolean deleteByClassOrderId(Integer classOrderId);
 
-    //查询会员是否报名该课程
+    //Check if the member is enrolled in the course
     ClassOrder selectMemberByClassIdAndMemberAccount(Integer classId, Integer memberAccount);
 
-    //根据课程 id 查询所有报名的会员
+    //Query all registered members according to the course id
     List<ClassOrder> selectMemberOrderList(Integer classId);
 
     Boolean updateStatusByOrderId(Integer classOrderId);

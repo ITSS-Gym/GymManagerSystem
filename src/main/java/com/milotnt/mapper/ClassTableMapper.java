@@ -5,27 +5,22 @@ import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/11
- */
-
 @Mapper
 public interface ClassTableMapper {
 
-    //查询所有课程
+    //Find all courses
     List<ClassTable> findAll();
 
-    //根据 id 删除课程
+    //delete class by id
     Boolean deleteClassByClassId(Integer classId);
 
-    //添加课程
+    //add course
     Boolean insertClass(ClassTable classTable);
 
-    //根据 id 查询课表
+    //Query the class schedule by id
     ClassTable selectByClassId(Integer classId);
 
-    //根据 id 删除已预约的课程
+    //Delete reserved courses according to id
     Boolean deleteOrderByClassId(Integer classId);
 
 }

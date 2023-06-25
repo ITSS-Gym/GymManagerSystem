@@ -5,33 +5,28 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/10
- */
-
 @Mapper
 public interface MemberMapper {
 
-    //查询会员信息
+    //Query member information
     List<Member> findAll();
 
-    //新增会员信息
+    //Add member information
     Boolean insertMember(Member member);
 
-    //根据会员账号修改会员信息
+    //Modify member information according to member account
     Boolean updateMemberByMemberAccount(Member member);
 
-    //查询会员账号密码
+    //Query member account password
     Member selectByAccountAndPassword(Member member);
 
-    //根据会员账号删除会员信息
+    //Delete member information based on member account
     Boolean deleteByMemberAccount(Integer memberAccount);
 
-    //查询会员数
+    //Query the number of members
     Integer selectTotalCount();
 
-    //根据会员账号查询会员
+    //Query members according to member account number
     List<Member> selectByMemberAccount(Integer memberAccount);
 
 }

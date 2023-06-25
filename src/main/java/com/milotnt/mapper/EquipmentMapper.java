@@ -5,30 +5,25 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/11
- */
-
 @Mapper
 public interface EquipmentMapper {
 
-    //查询所有器械
+    //Query all devices
     List<Equipment> findAll();
 
-    //根据 id 删除器械
+    //delete device by id
     Boolean deleteByEquipmentId(Integer equipmentId);
 
-    //添加器材
+    //add equipment
     Boolean insertEquipment(Equipment equipment);
 
-    //根据 id 修改器械信息
+    //Modify device information according to id
     Boolean updateEquipmentByEquipmentId(Equipment equipment);
 
-    //根据 id 查询器械
+    //Query devices by id
     List<Equipment> selectByEquipmentId(Integer equipmentId);
 
-    //查询器械总数
+    //Query the total number of devices
     Integer selectTotalCount();
 
 }

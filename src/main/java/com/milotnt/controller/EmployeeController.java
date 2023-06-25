@@ -12,11 +12,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/18
- */
-
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
@@ -24,7 +19,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    //查询员工
+    //Query employees
     @RequestMapping("/selEmployee")
     public String selectEmployee(Model model) {
         List<Employee> employeeList = employeeService.findAll();
@@ -32,16 +27,16 @@ public class EmployeeController {
         return "selectEmployee";
     }
 
-    //跳转新增员工页面
+    //Jump to the new employee page
     @RequestMapping("/toAddEmployee")
     public String toAddEmployee() {
         return "addEmployee";
     }
 
-    //新增员工
+    //new employee
     @RequestMapping("/addEmployee")
     public String addEmployee(Employee employee) {
-        //工号随机生成
+        //The job number is randomly generated
         Random random = new Random();
         String account1 = "1010";
         for (int i = 0; i < 5; i++) {
@@ -49,7 +44,7 @@ public class EmployeeController {
         }
         Integer account = Integer.parseInt(account1);
 
-        //获取当前日期
+        //get current date
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String nowDay = simpleDateFormat.format(date);
@@ -63,14 +58,14 @@ public class EmployeeController {
 
     }
 
-    //删除员工
+    //delete employee
     @RequestMapping("/delEmployee")
     public String deleteEmployee(Integer employeeAccount) {
         employeeService.deleteByEmployeeAccount(employeeAccount);
         return "redirect:selEmployee";
     }
 
-    //跳转员工修改页面
+    //Jump to the employee modification page
     @RequestMapping("/toUpdateEmployee")
     public String toUpdateEmployee(Integer employeeAccount, Model model) {
         List<Employee> employeeList = employeeService.selectByEmployeeAccount(employeeAccount);
@@ -78,7 +73,7 @@ public class EmployeeController {
         return "updateEmployee";
     }
 
-    //修改员工信息
+    //Modify employee information
     @RequestMapping("/updateEmployee")
     public String updateEmployee(Employee employee) {
         employeeService.updateMemberByEmployeeAccount(employee);
