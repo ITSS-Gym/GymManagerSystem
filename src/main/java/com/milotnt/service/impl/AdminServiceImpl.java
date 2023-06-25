@@ -6,11 +6,6 @@ import com.milotnt.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/11
- */
-
 @Service
 public class AdminServiceImpl implements AdminService {
 

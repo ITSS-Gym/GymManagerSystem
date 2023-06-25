@@ -8,22 +8,22 @@ import java.util.List;
 @Mapper
 public interface EquipmentMapper {
 
-    //Query all devices
+    // Query all devices
     List<Equipment> findAll();
 
-    //delete device by id
+    // delete device by id
     Boolean deleteByEquipmentId(Integer equipmentId);
 
-    //add equipment
+    // add equipment
     Boolean insertEquipment(Equipment equipment);
 
-    //Modify device information according to id
+    // Modify device information according to id
     Boolean updateEquipmentByEquipmentId(Equipment equipment);
 
-    //Query devices by id
+    // Query devices by id
     List<Equipment> selectByEquipmentId(Integer equipmentId);
 
-    //Query the total number of devices
+    // Query the total number of devices
     Integer selectTotalCount();
 
 }
