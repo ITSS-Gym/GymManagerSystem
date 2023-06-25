@@ -34,4 +34,16 @@
         WHERE feedback_id = #{feedbackId}
     </select>
 
+    <select id="selectByMemberAccount" parameterType="java.lang.Integer" resultType="feedback">
+        SELECT *
+        FROM feedback
+        WHERE member_account = #{memberAccount}
+    </select>
+
+    <select id="selectByEmployeeAccount" parameterType="java.lang.Integer" resultType="feedback">
+        SELECT *
+        FROM feedback
+        WHERE employee_account = #{employeeAccount}
+    </select>
+
 </mapper>

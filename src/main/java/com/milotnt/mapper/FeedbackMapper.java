@@ -4,6 +4,7 @@ import com.milotnt.pojo.Feedback;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+@Mapper
 public interface FeedbackMapper {
 
     List<Feedback> findAll();
@@ -15,4 +16,8 @@ public interface FeedbackMapper {
     Boolean updateFeedbackByFeedbackId(Feedback feedback);
 
     List<Feedback> selectByFeedbackId(Integer feedbackId);
+
+    List<Feedback> selectByMemberAccount(Integer memberAccount);
+
+    List<Feedback> selectByEmployeeAccount(Integer employeeAccount);
 }

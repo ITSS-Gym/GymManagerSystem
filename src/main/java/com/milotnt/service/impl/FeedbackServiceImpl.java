@@ -1,8 +1,6 @@
 package com.milotnt.service.impl;
 
-import com.milotnt.mapper.EquipmentMapper;
 import com.milotnt.mapper.FeedbackMapper;
-import com.milotnt.pojo.Equipment;
 import com.milotnt.pojo.Feedback;
 import com.milotnt.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +37,15 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public List<Feedback> selectByFeedbackId(Integer feedbackId) {
         return feedbackMapper.selectByFeedbackId(feedbackId);
+    }
+
+    @Override
+    public List<Feedback> selectByMemberAccount(Integer memberAccount) {
+        return feedbackMapper.selectByMemberAccount(memberAccount);
+    }
+
+    @Override
+    public List<Feedback> selectByEmployeeAccount(Integer employeeAccount) {
+        return feedbackMapper.selectByEmployeeAccount(employeeAccount);
     }
 }

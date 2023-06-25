@@ -20,4 +20,8 @@ public interface FeedbackService {
 
     //根据 id 查询器械
     List<Feedback> selectByFeedbackId(Integer feedbackId);
+
+    List<Feedback> selectByMemberAccount(Integer memberAccount);
+
+    List<Feedback> selectByEmployeeAccount(Integer employeeAccount);
 }
