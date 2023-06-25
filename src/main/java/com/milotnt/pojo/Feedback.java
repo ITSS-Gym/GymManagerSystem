@@ -1,7 +1,5 @@
 package com.milotnt.pojo;
 
-import org.springframework.data.relational.core.sql.In;
-
 public class Feedback {
 
     private Integer feedbackId;

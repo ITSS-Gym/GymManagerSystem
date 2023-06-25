@@ -175,14 +175,15 @@ CREATE TABLE `feedback`  (
   `member_account` int NULL DEFAULT NULL COMMENT 'account of member with feedback',
   `employee_account` int NULL DEFAULT NULL COMMENT 'account of employee got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
+  `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`feedback_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of equipment
 -- ----------------------------
-INSERT INTO `feedback` VALUES (1, 202100788, 101038721, 'Good');
-INSERT INTO `feedback` VALUES (2, 202183406, 101038721, 'Awesome');
-INSERT INTO `feedback` VALUES (3, 202183406, 101058973, 'Usually late');
+INSERT INTO `feedback` (`feedback_id`, `member_account`, `employee_account`, `content`) VALUES (1, 202100788, 101038721, 'Good');
+INSERT INTO `feedback` (`feedback_id`, `member_account`, `employee_account`, `content`) VALUES (2, 202183406, 101038721, 'Awesome');
+INSERT INTO `feedback` (`feedback_id`, `member_account`, `employee_account`, `content`) VALUES (3, 202183406, 101058973, 'Usually late');
 
 SET FOREIGN_KEY_CHECKS = 1;

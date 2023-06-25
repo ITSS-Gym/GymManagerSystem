@@ -34,16 +34,18 @@
         WHERE feedback_id = #{feedbackId}
     </select>
 
-    <select id="selectByMemberAccount" parameterType="java.lang.Integer" resultType="feedback">
-        SELECT *
-        FROM feedback
-        WHERE member_account = #{memberAccount}
+    <select id="selectByMemberAccount" parameterType="java.lang.Integer" resultType="com.milotnt.pojo.FeedbackByAccount">
+        SELECT feedback.feedback_id, feedback.time_created, feedback.employee_account, employee.employee_name, feedback.content
+        FROM feedback INNER JOIN employee
+        ON feedback.employee_account = employee.employee_account
+        WHERE feedback.member_account = #{memberAccount}
     </select>
 
-    <select id="selectByEmployeeAccount" parameterType="java.lang.Integer" resultType="feedback">
-        SELECT *
-        FROM feedback
-        WHERE employee_account = #{employeeAccount}
+    <select id="selectByEmployeeAccount" parameterType="java.lang.Integer" resultType="com.milotnt.pojo.FeedbackByAccount">
+        SELECT feedback.feedback_id, feedback.time_created, feedback.member_account, member.member_name, feedback.content
+        FROM feedback INNER JOIN member
+        ON feedback.member_account = member.member_account
+        WHERE feedback.employee_account = #{employeeAccount}
     </select>
 
 </mapper>

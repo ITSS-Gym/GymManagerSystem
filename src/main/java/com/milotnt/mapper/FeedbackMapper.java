@@ -1,6 +1,7 @@
 package com.milotnt.mapper;
 
 import com.milotnt.pojo.Feedback;
+import com.milotnt.pojo.FeedbackByAccount;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface FeedbackMapper {
 
     List<Feedback> selectByFeedbackId(Integer feedbackId);
 
-    List<Feedback> selectByMemberAccount(Integer memberAccount);
+    List<FeedbackByAccount> selectByMemberAccount(Integer memberAccount);
 
-    List<Feedback> selectByEmployeeAccount(Integer employeeAccount);
+    List<FeedbackByAccount> selectByEmployeeAccount(Integer employeeAccount);
 }

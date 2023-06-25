@@ -2,6 +2,7 @@ package com.milotnt.service.impl;
 
 import com.milotnt.mapper.FeedbackMapper;
 import com.milotnt.pojo.Feedback;
+import com.milotnt.pojo.FeedbackByAccount;
 import com.milotnt.service.FeedbackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,12 +41,12 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public List<Feedback> selectByMemberAccount(Integer memberAccount) {
+    public List<FeedbackByAccount> selectByMemberAccount(Integer memberAccount) {
         return feedbackMapper.selectByMemberAccount(memberAccount);
     }
 
     @Override
-    public List<Feedback> selectByEmployeeAccount(Integer employeeAccount) {
+    public List<FeedbackByAccount> selectByEmployeeAccount(Integer employeeAccount) {
         return feedbackMapper.selectByEmployeeAccount(employeeAccount);
     }
 }

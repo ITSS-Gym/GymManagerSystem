@@ -1,11 +1,8 @@
 package com.milotnt.controller;
 
-import com.milotnt.pojo.ClassOrder;
-import com.milotnt.pojo.ClassTable;
-import com.milotnt.pojo.Member;
-import com.milotnt.service.ClassOrderService;
-import com.milotnt.service.ClassTableService;
-import com.milotnt.service.MemberService;
+import com.milotnt.pojo.*;
+import com.milotnt.service.*;
+import com.milotnt.pojo.FeedbackByAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +24,12 @@ public class UserController {
 
     @Autowired
     private ClassOrderService classOrderService;
+
+    @Autowired
+    private FeedbackService feedbackService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
 
     // Jump to personal information page
@@ -117,4 +120,49 @@ public class UserController {
         return "redirect:toUserClass";
     }
 
+    // Jump to User Feedback Page
+    @RequestMapping("/toUserFeedback")
+    public String toUserFeedback(Model model, HttpSession session) {
+        Member member = (Member) session.getAttribute("user");
+        model.addAttribute("member", member);
+        Integer memberAccount = member.getMemberAccount();
+        List<FeedbackByAccount> feedbackByAccountList = feedbackService.selectByMemberAccount(memberAccount);
+        model.addAttribute("feedbackByAccountList", feedbackByAccountList);
+        return "userFeedback";
+    }
+
+    @RequestMapping("toAddFeedback")
+    public String toAddFeedback(Model model, HttpSession session) {
+        Member member = (Member) session.getAttribute("user");
+        model.addAttribute("member", member);
+        List<Employee> employeeList = employeeService.findAll();
+        model.addAttribute("employeeList", employeeList);
+        return "addFeedback";
+    }
+
+    @RequestMapping("addFeedback")
+    public String addFeedback(Feedback feedback) {
+        feedbackService.insertFeedback(feedback);
+        return "redirect:userFeedback";
+    }
+
+    @RequestMapping("/toUpdateFeedback")
+    public String toUpdateUserFeedback(Integer feedbackId, Model model) {
+        List<Feedback> feedbackList = feedbackService.selectByFeedbackId(feedbackId);
+        model.addAttribute("feedbackList", feedbackList);
+        return "updateUserFeedback";
+    }
+
+    // Modify Personal Information
+    @RequestMapping("/updateFeedback")
+    public String updateUserFeedback(Feedback feedback) {
+        feedbackService.updateFeedbackByFeedbackId(feedback);
+        return "redirect:userFeedback";
+    }
+
+    @RequestMapping("delUserFeedback")
+    public String deleteUserFeedback(Integer feedbackId) {
+        feedbackService.deleteByFeedbackId(feedbackId);
+        return "redirect:toUserFeedback";
+    }
 }

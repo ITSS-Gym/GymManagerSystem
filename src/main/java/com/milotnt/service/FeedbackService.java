@@ -2,6 +2,7 @@ package com.milotnt.service;
 
 import com.milotnt.pojo.Equipment;
 import com.milotnt.pojo.Feedback;
+import com.milotnt.pojo.FeedbackByAccount;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface FeedbackService {
     // Query devices by id
     List<Feedback> selectByFeedbackId(Integer feedbackId);
 
-    List<Feedback> selectByMemberAccount(Integer memberAccount);
+    List<FeedbackByAccount> selectByMemberAccount(Integer memberAccount);
 
-    List<Feedback> selectByEmployeeAccount(Integer employeeAccount);
+    List<FeedbackByAccount> selectByEmployeeAccount(Integer employeeAccount);
 }
