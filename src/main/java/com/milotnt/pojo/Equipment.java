@@ -1,9 +1,5 @@
 package com.milotnt.pojo;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/10
- */
 public class Equipment {
 
     private Integer equipmentId;

@@ -15,11 +15,6 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/21
- */
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -34,7 +29,7 @@ public class UserController {
     private ClassOrderService classOrderService;
 
 
-    //跳转个人信息页面
+    // Jump to personal information page
     @RequestMapping("/toUserInfo")
     public String toUserInformation(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
@@ -42,7 +37,7 @@ public class UserController {
         return "userInformation";
     }
 
-    //跳转修改个人信息页面
+    // Jump to modify personal information page
     @RequestMapping("/toUpdateInfo")
     public String toUpdateUserInformation(HttpSession session, Model model) {
         Member member = (Member) session.getAttribute("user");
@@ -50,7 +45,7 @@ public class UserController {
         return "updateUserInformation";
     }
 
-    //修改个人信息
+    // Modify Personal Information
     @RequestMapping("/updateInfo")
     public String updateUserInformation(HttpSession session, Member member) {
         Member member1 = (Member) session.getAttribute("user");
@@ -64,7 +59,7 @@ public class UserController {
         return "userInformation";
     }
 
-    //跳转我的课程页面
+    // Jump to my course page
     @RequestMapping("/toUserClass")
     public String toUserClass(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
@@ -75,14 +70,14 @@ public class UserController {
         return "userClass";
     }
 
-    //退课
+    // Quit class
     @RequestMapping("delUserClass")
     public String deleteUserClass(Integer classOrderId) {
         classOrderService.deleteByClassOrderId(classOrderId);
         return "redirect:toUserClass";
     }
 
-    //跳转报名选课页面
+    // Jump to the registration page
     @RequestMapping("/toApplyClass")
     public String toUserApplyClass(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
@@ -98,7 +93,7 @@ public class UserController {
         return "userApplyClass";
     }
 
-    //报名选课
+    // Sign up for courses
     @RequestMapping("/applyClass")
     public String userApplyClass(Integer classId, Model model, HttpSession session) {
         ClassTable classTable = classTableService.selectByClassId(classId);

@@ -4,31 +4,25 @@ import com.milotnt.pojo.Employee;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/11
- */
-
 @Mapper
 public interface EmployeeMapper {
 
-    //查询所有员工
+    // Query all employees
     List<Employee> findAll();
 
-    //根据员工账号删除员工
+    // Delete employees based on employee account
     Boolean deleteByEmployeeAccount(Integer employeeAccount);
 
-    //添加新员工
+    // add new employee
     Boolean insertEmployee(Employee employee);
 
-    //根据员工账号修改会员信息
+    // Modify member information according to employee account
     Boolean updateMemberByEmployeeAccount(Employee employee);
 
-    //根据员工账号查询员工
+    // Query employees based on employee account
     List<Employee> selectByEmployeeAccount(Integer employeeAccount);
 
-    //查询员工数
+    // Query the number of employees
     Integer selectTotalCount();
 
 }

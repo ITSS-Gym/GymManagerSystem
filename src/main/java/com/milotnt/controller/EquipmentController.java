@@ -10,11 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/15
- */
-
 @Controller
 @RequestMapping("/equipment")
 public class EquipmentController {
@@ -22,7 +17,7 @@ public class EquipmentController {
     @Autowired
     private EquipmentService equipmentService;
 
-    //查询器材
+    // Query equipment
     @RequestMapping("/selEquipment")
     public String selectEquipment(Model model, HttpSession session) {
         List<Equipment> equipmentList = equipmentService.findAll();
@@ -31,14 +26,14 @@ public class EquipmentController {
         return "selectEquipment";
     }
 
-    //删除器材
+    // Delete device
     @RequestMapping("/delEquipment")
     public String deleteEquipment(Integer equipmentId) {
         equipmentService.deleteByEquipmentId(equipmentId);
         return "redirect:selEquipment";
     }
 
-    //跳转修改器材页面
+    // Jump to modify equipment page
     @RequestMapping("/toUpdateEquipment")
     public String toUpdateEquipment(Integer equipmentId, Model model) {
         List<Equipment> equipmentList = equipmentService.selectByEquipmentId(equipmentId);
@@ -46,20 +41,20 @@ public class EquipmentController {
         return "updateEquipment";
     }
 
-    //修改器材
+    // Modify equipment
     @RequestMapping("/updateEquipment")
     public String updateEquipment(Equipment equipment) {
         equipmentService.updateEquipmentByEquipmentId(equipment);
         return "redirect:selEquipment";
     }
 
-    //跳转新增器材页面
+    // Jump to the new equipment page
     @RequestMapping("/toAddEquipment")
     public String toAddEquipment() {
         return "addEquipment";
     }
 
-    //新增器材
+    // Add new equipment
     @RequestMapping("/addEquipment")
     public String addEquipment(Equipment equipment) {
         equipmentService.insertEquipment(equipment);

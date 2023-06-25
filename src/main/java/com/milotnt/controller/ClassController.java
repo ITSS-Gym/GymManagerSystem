@@ -12,10 +12,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/19
- */
 
 @Controller
 @RequestMapping("/class")
@@ -27,7 +23,7 @@ public class ClassController {
     @Autowired
     private ClassOrderService classOrderService;
 
-    //查询课程
+    // Inquire about courses
     @RequestMapping("/selClass")
     public String selectClass(Model model) {
         List<ClassTable> classList = classTableService.findAll();
@@ -35,20 +31,20 @@ public class ClassController {
         return "selectClass";
     }
 
-    //跳转新增课程页面
+    // Jump to the new course page
     @RequestMapping("/toAddClass")
     public String toAddClass() {
         return "addClass";
     }
 
-    //新增课程
+    // New course
     @RequestMapping("/addClass")
     public String addClass(ClassTable classTable) {
         classTableService.insertClass(classTable);
         return "redirect:selClass";
     }
 
-    //删除课程
+    // Delete course
     @RequestMapping("/delClass")
     public String deleteClass(Integer classId) {
         classTableService.deleteClassByClassId(classId);
@@ -56,7 +52,7 @@ public class ClassController {
         return "redirect:selClass";
     }
 
-    //查询课程报名信息
+    // Query course registration information
     @RequestMapping("/selClassOrder")
     public String selectClassOrder(Integer classId, Model model) {
         List<ClassOrder> classOrderList = classOrderService.selectMemberOrderList(classId);
