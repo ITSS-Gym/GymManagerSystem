@@ -17,7 +17,7 @@ public class EquipmentController {
     @Autowired
     private EquipmentService equipmentService;
 
-    //Query equipment
+    // Query equipment
     @RequestMapping("/selEquipment")
     public String selectEquipment(Model model, HttpSession session) {
         List<Equipment> equipmentList = equipmentService.findAll();
@@ -26,14 +26,14 @@ public class EquipmentController {
         return "selectEquipment";
     }
 
-    //delete device
+    // Delete device
     @RequestMapping("/delEquipment")
     public String deleteEquipment(Integer equipmentId) {
         equipmentService.deleteByEquipmentId(equipmentId);
         return "redirect:selEquipment";
     }
 
-    //Jump to modify equipment page
+    // Jump to modify equipment page
     @RequestMapping("/toUpdateEquipment")
     public String toUpdateEquipment(Integer equipmentId, Model model) {
         List<Equipment> equipmentList = equipmentService.selectByEquipmentId(equipmentId);
@@ -41,20 +41,20 @@ public class EquipmentController {
         return "updateEquipment";
     }
 
-    //modify equipment
+    // Modify equipment
     @RequestMapping("/updateEquipment")
     public String updateEquipment(Equipment equipment) {
         equipmentService.updateEquipmentByEquipmentId(equipment);
         return "redirect:selEquipment";
     }
 
-    //Jump to the new equipment page
+    // Jump to the new equipment page
     @RequestMapping("/toAddEquipment")
     public String toAddEquipment() {
         return "addEquipment";
     }
 
-    //Add new equipment
+    // Add new equipment
     @RequestMapping("/addEquipment")
     public String addEquipment(Equipment equipment) {
         equipmentService.insertEquipment(equipment);

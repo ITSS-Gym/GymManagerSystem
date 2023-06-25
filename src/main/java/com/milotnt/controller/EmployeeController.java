@@ -19,7 +19,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    //Query employees
+    // Query employees
     @RequestMapping("/selEmployee")
     public String selectEmployee(Model model) {
         List<Employee> employeeList = employeeService.findAll();
@@ -27,13 +27,13 @@ public class EmployeeController {
         return "selectEmployee";
     }
 
-    //Jump to the new employee page
+    // Jump to the new employee page
     @RequestMapping("/toAddEmployee")
     public String toAddEmployee() {
         return "addEmployee";
     }
 
-    //new employee
+    // New employee
     @RequestMapping("/addEmployee")
     public String addEmployee(Employee employee) {
         //The job number is randomly generated

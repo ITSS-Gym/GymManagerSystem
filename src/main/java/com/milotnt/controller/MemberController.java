@@ -19,7 +19,7 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
-    //Query members
+    // Query members
     @RequestMapping("/selMember")
     public String selectMember(Model model) {
         List<Member> memberList = memberService.findAll();
@@ -27,13 +27,13 @@ public class MemberController {
         return "selectMember";
     }
 
-    //Jump to the new member page
+    // Jump to the new member page
     @RequestMapping("/toAddMember")
     public String toAddMember() {
         return "addMember";
     }
 
-    //Add new member
+    // Add new member
     @RequestMapping("/addMember")
     public String addMember(Member member) {
         //Member account & card number randomly generated
@@ -44,10 +44,10 @@ public class MemberController {
         }
         Integer account = Integer.parseInt(account1);
 
-        //initial password
+        // initial password
         String password = "123456";
 
-        //get current date
+        // get current date
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String nowDay = simpleDateFormat.format(date);
@@ -65,14 +65,14 @@ public class MemberController {
 
     }
 
-    //delete member
+    // delete member
     @RequestMapping("/delMember")
     public String deleteMember(Integer memberAccount) {
         memberService.deleteByMemberAccount(memberAccount);
         return "redirect:selMember";
     }
 
-    //Jump to member modification page
+    // Jump to member modification page
     @RequestMapping("/toUpdateMember")
     public String toUpdateMember(Integer memberAccount, Model model) {
         List<Member> memberList = memberService.selectByMemberAccount(memberAccount);
@@ -80,7 +80,7 @@ public class MemberController {
         return "updateMember";
     }
 
-    //Modify member information
+    // Modify member information
     @RequestMapping("/updateMember")
     public String updateMember(Member member) {
         memberService.updateMemberByMemberAccount(member);
@@ -88,13 +88,13 @@ public class MemberController {
     }
 
 
-    //Modify member information
+    // Modify member information
     @RequestMapping("/toSelByCard")
     public String toSelectByCardId() {
         return "selectByMemberAccount";
     }
 
-    //Query by membership card number
+    // Query by membership card number
     @RequestMapping("/selByCard")
     public String selectByCardId(Model model, Integer memberAccount) {
         List<Member> memberList = memberService.selectByMemberAccount(memberAccount);

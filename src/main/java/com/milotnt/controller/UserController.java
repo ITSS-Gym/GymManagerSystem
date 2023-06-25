@@ -29,7 +29,7 @@ public class UserController {
     private ClassOrderService classOrderService;
 
 
-    //Jump to personal information page
+    // Jump to personal information page
     @RequestMapping("/toUserInfo")
     public String toUserInformation(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
@@ -37,7 +37,7 @@ public class UserController {
         return "userInformation";
     }
 
-    //Jump to modify personal information page
+    // Jump to modify personal information page
     @RequestMapping("/toUpdateInfo")
     public String toUpdateUserInformation(HttpSession session, Model model) {
         Member member = (Member) session.getAttribute("user");
@@ -45,7 +45,7 @@ public class UserController {
         return "updateUserInformation";
     }
 
-    //Modify Personal Information
+    // Modify Personal Information
     @RequestMapping("/updateInfo")
     public String updateUserInformation(HttpSession session, Member member) {
         Member member1 = (Member) session.getAttribute("user");
@@ -59,7 +59,7 @@ public class UserController {
         return "userInformation";
     }
 
-    //Jump to my course page
+    // Jump to my course page
     @RequestMapping("/toUserClass")
     public String toUserClass(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
@@ -70,14 +70,14 @@ public class UserController {
         return "userClass";
     }
 
-    //quit class
+    // Quit class
     @RequestMapping("delUserClass")
     public String deleteUserClass(Integer classOrderId) {
         classOrderService.deleteByClassOrderId(classOrderId);
         return "redirect:toUserClass";
     }
 
-    //Jump to the registration page
+    // Jump to the registration page
     @RequestMapping("/toApplyClass")
     public String toUserApplyClass(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
@@ -93,7 +93,7 @@ public class UserController {
         return "userApplyClass";
     }
 
-    //Sign up for courses
+    // Sign up for courses
     @RequestMapping("/applyClass")
     public String userApplyClass(Integer classId, Model model, HttpSession session) {
         ClassTable classTable = classTableService.selectByClassId(classId);

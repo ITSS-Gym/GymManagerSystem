@@ -9,15 +9,15 @@ public interface FeedbackService {
 
     List<Feedback> findAll();
 
-    //根据 id 删除器械
+    // Delete device by id
     Boolean deleteByFeedbackId(Integer feedbackId);
 
-    //添加器材
+    // Add equipment
     Boolean insertFeedback(Feedback feedback);
 
-    //根据 id 修改器械信息
+    // Modify device information according to id
     Boolean updateFeedbackByFeedbackId(Feedback feedback);
 
-    //根据 id 查询器械
+    // Query devices by id
     List<Feedback> selectByFeedbackId(Integer feedbackId);
 }

@@ -2,10 +2,6 @@ package com.milotnt.pojo;
 
 import org.springframework.data.relational.core.sql.In;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/10
- */
 public class ClassTable {
 
     private Integer classId;

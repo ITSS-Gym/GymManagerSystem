@@ -23,7 +23,7 @@ public class ClassController {
     @Autowired
     private ClassOrderService classOrderService;
 
-    //Inquire about courses
+    // Inquire about courses
     @RequestMapping("/selClass")
     public String selectClass(Model model) {
         List<ClassTable> classList = classTableService.findAll();
@@ -31,20 +31,20 @@ public class ClassController {
         return "selectClass";
     }
 
-    //Jump to the new course page
+    // Jump to the new course page
     @RequestMapping("/toAddClass")
     public String toAddClass() {
         return "addClass";
     }
 
-    //New course
+    // New course
     @RequestMapping("/addClass")
     public String addClass(ClassTable classTable) {
         classTableService.insertClass(classTable);
         return "redirect:selClass";
     }
 
-    //delete course
+    // Delete course
     @RequestMapping("/delClass")
     public String deleteClass(Integer classId) {
         classTableService.deleteClassByClassId(classId);
@@ -52,7 +52,7 @@ public class ClassController {
         return "redirect:selClass";
     }
 
-    //Query course registration information
+    // Query course registration information
     @RequestMapping("/selClassOrder")
     public String selectClassOrder(Integer classId, Model model) {
         List<ClassOrder> classOrderList = classOrderService.selectMemberOrderList(classId);
