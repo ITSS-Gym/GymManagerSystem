@@ -1,6 +1,5 @@
 package com.milotnt.mapper;
 
-import com.milotnt.pojo.Equipment;
 import com.milotnt.pojo.Feedback;
 import org.apache.ibatis.annotations.*;
 
@@ -15,5 +14,5 @@ public interface FeedbackMapper {
 
     Boolean updateFeedbackByFeedbackId(Feedback feedback);
 
-    List<Equipment> selectByFeedbackId(Integer feedbackId);
+    List<Feedback> selectByFeedbackId(Integer feedbackId);
 }
