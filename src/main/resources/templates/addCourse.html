@@ -67,19 +67,19 @@
 <div th:include="adminCommon::common-scripts"></div>
 <script type="text/javascript">
     function beforeSubmit(addForm) {
-        if (addForm.classId.value == "") {
+        if (addForm.courseId.value == "") {
             alert("Please enter the course ID!")
             return false;
         }
-        if (addForm.className.value == "") {
+        if (addForm.courseName.value == "") {
             alert("Please enter a course name！")
             return false;
         }
-        if (addForm.classBegin.value == "") {
+        if (addForm.courseBegin.value == "") {
             alert("Please enter course time！")
             return false;
         }
-        if (addForm.classTime.value == "") {
+        if (addForm.courseTime.value == "") {
             alert("Please enter the duration of the course！")
             return false;
         }

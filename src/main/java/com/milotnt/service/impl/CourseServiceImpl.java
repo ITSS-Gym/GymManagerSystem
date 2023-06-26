@@ -21,8 +21,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Boolean deleteCourseByCourseId(Integer classId) {
-        return courseMapper.deleteCourseByCourseId(classId);
+    public Boolean deleteCourseByCourseId(Integer courseId) {
+        return courseMapper.deleteCourseByCourseId(courseId);
     }
 
     @Override
@@ -34,12 +34,12 @@ public class CourseServiceImpl implements CourseService {
     public Boolean updateCourseByCourseId(Course course) { return  courseMapper.updateCourseByCourseId(course); }
 
     @Override
-    public Course selectByCourseId(Integer classId) {
-        return courseMapper.selectByCourseId(classId);
+    public Course selectByCourseId(Integer courseId) {
+        return courseMapper.selectByCourseId(courseId);
     }
 
     @Override
-    public Boolean deleteOrderByCourseId(Integer classId) {
-        return courseMapper.deleteOrderByCourseId(classId);
+    public Boolean deleteOrderByCourseId(Integer courseId) {
+        return courseMapper.deleteOrderByCourseId(courseId);
     }
 }

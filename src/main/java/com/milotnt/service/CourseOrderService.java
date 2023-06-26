@@ -20,17 +20,17 @@ public interface CourseOrderService {
     // Query the personal registration schedule according to the member account
     List<CourseOrder> selectCourseOrderByMemberAccount(Integer memberAccount);
 
-    // Delete a reserved class
-    Boolean deleteByCourseOrderId(Integer classOrderId);
+    // Delete a reserved course
+    Boolean deleteByCourseOrderId(Integer courseOrderId);
 
     // Check if the member is enrolled in the course
-    CourseOrder selectMemberByCourseIdAndMemberAccount(Integer classId, Integer memberAccount);
+    CourseOrder selectMemberByCourseIdAndMemberAccount(Integer courseId, Integer memberAccount);
 
     // Query all registered members according to the course id
-    List<CourseOrder> selectMemberOrderList(Integer classId);
+    List<CourseOrder> selectMemberOrderList(Integer courseId);
 
-    Boolean updateStatusByOrderId(Integer classOrderId);
+    Boolean updateStatusByOrderId(Integer courseOrderId);
 
-    Boolean deleteOrderByOrderId(Integer classOrderId);
+    Boolean deleteOrderByOrderId(Integer courseOrderId);
 
 }

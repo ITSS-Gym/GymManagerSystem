@@ -62,53 +62,53 @@ public class UserController {
     }
 
     // Jump to my course page
-    @RequestMapping("/toUserClass")
-    public String toUserClass(Model model, HttpSession session) {
+    @RequestMapping("/toUserCourse")
+    public String toUserCourse(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         Integer memberAccount = member.getMemberAccount();
         List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
-        model.addAttribute("classOrderList", courseOrderList);
-        return "userClass";
+        model.addAttribute("courseOrderList", courseOrderList);
+        return "userCourse";
     }
 
-    // Quit class
-    @RequestMapping("delUserClass")
-    public String deleteUserClass(Integer classOrderId) {
-        courseOrderService.deleteByCourseOrderId(classOrderId);
-        return "redirect:toUserClass";
+    // Quit course
+    @RequestMapping("delUserCourse")
+    public String deleteUserCourse(Integer courseOrderId) {
+        courseOrderService.deleteByCourseOrderId(courseOrderId);
+        return "redirect:toUserCourse";
     }
 
     // Jump to the registration page
-    @RequestMapping("/toApplyClass")
-    public String toUserApplyClass(Model model, HttpSession session) {
+    @RequestMapping("/toApplyCourse")
+    public String toUserApplyCourse(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
-        List<Course> classList = courseService.findAll();
+        List<Course> courseList = courseService.findAll();
         model.addAttribute("member", member);
-        model.addAttribute("classList", classList);
+        model.addAttribute("courseList", courseList);
 
         Integer memberAccount = member.getMemberAccount();
         List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
-        List<Integer> classOrderIdList = courseOrderList.stream().map(CourseOrder::getCourseId).collect(Collectors.toList());
-        model.addAttribute("classOrderIdList", classOrderIdList);
+        List<Integer> courseOrderIdList = courseOrderList.stream().map(CourseOrder::getCourseId).collect(Collectors.toList());
+        model.addAttribute("courseOrderIdList", courseOrderIdList);
 
-        return "userApplyClass";
+        return "userApplyCourse";
     }
 
     // Sign up for courses
-    @RequestMapping("/applyClass")
-    public String userApplyClass(Integer classId, Model model, HttpSession session) {
-        Course course = courseService.selectByCourseId(classId);
+    @RequestMapping("/applyCourse")
+    public String userApplyCourse(Integer courseId, Model model, HttpSession session) {
+        Course course = courseService.selectByCourseId(courseId);
         Member member = (Member) session.getAttribute("user");
 
         Integer courseId1 = course.getCourseId();
         String courseName = course.getCourseName();
         String coach = course.getCoach();
-        String classBegin = course.getCourseBegin();
+        String courseBegin = course.getCourseBegin();
         String memberName = member.getMemberName();
         Integer memberAccount = member.getMemberAccount();
 
-        CourseOrder courseOrder = new CourseOrder(courseId1, courseName, coach, memberName, memberAccount, classBegin);
+        CourseOrder courseOrder = new CourseOrder(courseId1, courseName, coach, memberName, memberAccount, courseBegin);
         Integer memberAccount1 = member.getMemberAccount();
         CourseOrder courseOrder1 = courseOrderService.selectMemberByCourseIdAndMemberAccount(courseId1, memberAccount1);
 
@@ -116,7 +116,7 @@ public class UserController {
             courseOrderService.insertCourseOrder(courseOrder);
         }
 
-        return "redirect:toUserClass";
+        return "redirect:toUserCourse";
     }
 
     // Jump to User Feedback Page
