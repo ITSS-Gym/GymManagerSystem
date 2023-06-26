@@ -2,22 +2,22 @@ package com.milotnt.pojo;
 
 import java.sql.Timestamp;
 
-public class FeedbackByAccount {
+public class FeedbackEmployeeWithName {
 
     private Integer feedbackId;
 
     private Timestamp timeCreated;
 
-    private Integer account;
+    private Integer employeeAccount;
 
     private String name;
 
     private String content;
 
-    public FeedbackByAccount(Integer feedbackId, Timestamp timeCreated, Integer account, String name, String content) {
+    public FeedbackEmployeeWithName(Integer feedbackId, Timestamp timeCreated, Integer employeeAccount, String name, String content) {
         this.feedbackId = feedbackId;
         this.timeCreated = timeCreated;
-        this.account = account;
+        this.employeeAccount = employeeAccount;
         this.name = name;
         this.content = content;
     }
@@ -38,12 +38,12 @@ public class FeedbackByAccount {
         this.timeCreated = timeCreated;
     }
 
-    public Integer getAccount() {
-        return account;
+    public Integer getEmployeeAccount() {
+        return employeeAccount;
     }
 
-    public void setAccount(Integer account) {
-        this.account = account;
+    public void setEmployeeAccount(Integer employeeAccount) {
+        this.employeeAccount = employeeAccount;
     }
 
     public String getName() {
@@ -64,10 +64,10 @@ public class FeedbackByAccount {
 
     @Override
     public String toString() {
-        return "FeedbackByAccount{" +
+        return "FeedbackEmployeeWithName{" +
                 "feedbackId=" + feedbackId +
                 ", timeCreated='" + timeCreated + '\'' +
-                ", account='" + account + '\'' +
+                ", employeeAccount='" + employeeAccount + '\'' +
                 ", name='" + name + '\'' +
                 ", content='" + content + '\'' +
                 '}';

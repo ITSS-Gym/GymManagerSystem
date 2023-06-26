@@ -20,7 +20,7 @@
                 <div class="card mb-4">
 
                     <!--当classOrderList为空（该课程无人报名）时显示-->
-                    <div th:if="${#lists.isEmpty(classOrderList)}">
+                    <div th:if="${#lists.isEmpty(courseOrderList)}">
                         <table class="table table-hover">
                             <tr>
                                 <td align="center">暂无报名信息！</td>
@@ -29,20 +29,20 @@
                     </div>
 
                     <!--当classOrderList不为空（该课程已有人报名）时显示-->
-                    <div th:if="${not #lists.isEmpty(classOrderList)}">
+                    <div th:if="${not #lists.isEmpty(courseOrderList)}">
                         <table class="table table-hover">
                             <tr>
                                 <td text-align="center">课程编号：</td>
-                                <td th:text="${classOrderList[0].classId}">课程编号</td>
+                                <td th:text="${courseOrderList[0].classId}">课程编号</td>
                             </tr>
 
                             <tr>
                                 <td text-align="center">课程名称：</td>
-                                <td th:text="${classOrderList[0].className}">课程名称</td>
+                                <td th:text="${courseOrderList[0].className}">课程名称</td>
                             </tr>
                             <tr>
                                 <td text-align="center">开课时间：</td>
-                                <td th:text="${classOrderList[0].classBegin}">开课时间</td>
+                                <td th:text="${courseOrderList[0].classBegin}">开课时间</td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
@@ -50,7 +50,7 @@
                             <tr>
                                 <td colspan="2"><strong>报名会员：</strong></td>
                             </tr>
-                            <tr th:each="order:${classOrderList}">
+                            <tr th:each="order:${courseOrderList}">
                                 <td th:text="${order.memberAccount}">无</td>
                                 <td th:text="${order.memberName}">无</td>
                             </tr>

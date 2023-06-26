@@ -19,8 +19,8 @@
 
                 <div class="card mb-4">
 
-                    <!--Show when classOrderList is empty (no one is enrolled in the course)-->
-                    <div th:if="${#lists.isEmpty(classOrderList)}">
+                    <!--Show when courseOrderList is empty (no one is enrolled in the course)-->
+                    <div th:if="${#lists.isEmpty(courseOrderList)}">
                         <table class="table table-hover">
                             <tr>
                                 <td align="center">No registration information yet!</td>
@@ -28,21 +28,21 @@
                         </table>
                     </div>
 
-                    <!--Show when classOrderList is not empty (the course is already enrolled)-->
-                    <div th:if="${not #lists.isEmpty(classOrderList)}">
+                    <!--Show when courseOrderList is not empty (the course is already enrolled)-->
+                    <div th:if="${not #lists.isEmpty(courseOrderList)}">
                         <table class="table table-hover">
                             <tr>
                                 <td text-align="center">Course Number：</td>
-                                <td th:text="${classOrderList[0].classId}">Course Number</td>
+                                <td th:text="${courseOrderList[0].courseId}">Course Number</td>
                             </tr>
 
                             <tr>
                                 <td text-align="center">Course Name:</td>
-                                <td th:text="${classOrderList[0].className}">Course Name</td>
+                                <td th:text="${courseOrderList[0].courseName}">Course Name</td>
                             </tr>
                             <tr>
                                 <td text-align="center">Course Start Time:</td>
-                                <td th:text="${classOrderList[0].classBegin}">Course start time</td>
+                                <td th:text="${courseOrderList[0].courseBegin}">Course start time</td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
@@ -52,12 +52,12 @@
                             <tr>
                                 <td colspan="2"><strong>Enrolled Members:</strong></td>
                             </tr>
-                            <div th:each="order:${classOrderList}">
+                            <div th:each="order:${courseOrderList}">
                                 <tr th:if="${('accepted')}">
                                     <td th:text="${order.memberAccount}">无</td>
                                     <td th:text="${order.memberName}">无</td>
                                     <td>
-                                        <a th:href="@{/class/delClassOrder(classId=${order.classId}, classOrderId=${order.classOrderId})}"
+                                        <a th:href="@{/class/delClassOrder(courseId=${order.courseId}, courseOrderId=${order.courseOrderId})}"
                                            style="text-decoration: none">
                                             <input type="button" class="btn btn-sm btn-outline-danger" value="Delete">
                                         </a>
@@ -72,16 +72,16 @@
                             <tr>
                                 <td colspan="2"><strong>Waiting Members:</strong></td>
                             </tr>
-                            <div th:each="order:${classOrderList}">
+                            <div th:each="order:${courseOrderList}">
                                 <tr th:if="${order.status.equals('waiting')}">
                                     <td th:text="${order.memberAccount}">无</td>
                                     <td th:text="${order.memberName}">无</td>
                                     <td>
-                                        <a th:href="@{/class/updateAcceptClassOrder(classId=${order.classId}, classOrderId=${order.classOrderId})}"
+                                        <a th:href="@{/class/updateAcceptClassOrder(courseId=${order.courseId}, courseOrderId=${order.courseOrderId})}"
                                            style="text-decoration: none">
                                             <input type="button" class="btn btn-sm btn-outline-primary" value="Accept">
                                         </a>
-                                        <a th:href="@{/class/delClassOrder(classId=${order.classId}, classOrderId=${order.classOrderId})}"
+                                        <a th:href="@{/class/delClassOrder(courseId=${order.courseId}, courseOrderId=${order.courseOrderId})}"
                                            style="text-decoration: none">
                                             <input type="button" class="btn btn-sm btn-outline-danger" value="Delete">
                                         </a>

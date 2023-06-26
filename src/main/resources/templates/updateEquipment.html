@@ -23,32 +23,32 @@
                         <div th:each="equ:${equipmentList}">
                             <table class="table table-hover">
                                 <tr>
-                                    <td text-align="center">Equipment ID：</td>
+                                    <td text-align="center">Equipment ID:</td>
                                     <td><input type="text" class="form-control" readonly="readonly"
                                                th:value="${equ.equipmentId}" name="equipmentId">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td text-align="center">Name：</td>
+                                    <td text-align="center">Name:</td>
                                     <td><input type="text" class="form-control" th:value="${equ.equipmentName}"
                                                name="equipmentName"></td>
                                 </tr>
                                 <tr>
-                                    <td text-align="center">Location：</td>
-                                    <td><input type="text" class="form-control" th:value="${equ.equipmentLocation}"
-                                               name="equipmentLocation">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td text-align="center">Status：</td>
+                                    <td text-align="center">Status:</td>
                                     <td><input type="text" class="form-control" th:value="${equ.equipmentStatus}"
                                                name="equipmentStatus">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td text-align="center">Message：</td>
+                                    <td text-align="center">Message:</td>
                                     <td><input type="text" class="form-control" th:value="${equ.equipmentMessage}"
                                                name="equipmentMessage">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td text-align="center">Room ID:</td>
+                                    <td><input type="text" class="form-control" th:value="${equ.equipmentLocation}"
+                                               name="equipmentLocation">
                                     </td>
                                 </tr>
                             </table>

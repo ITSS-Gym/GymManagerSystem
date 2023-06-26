@@ -21,64 +21,80 @@ INSERT INTO `admin` VALUES (1003, '123456');
 -- ----------------------------
 -- Table structure for classtable
 -- ----------------------------
-DROP TABLE IF EXISTS `class_table`;
-CREATE TABLE `class_table`  (
-  `class_id` int NOT NULL DEFAULT 0 COMMENT 'Course id',
-  `class_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Name',
-  `class_begin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Class start time',
-  `class_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Duration',
-  `coach` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Coaches',
-  `price` int NULL DEFAULT NULL COMMENT 'vnd',
-  `class_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'based on time/sport',
-  PRIMARY KEY (`class_id`) USING BTREE
+DROP TABLE IF EXISTS `room`;
+CREATE TABLE `room`  (
+  `room_id` int NOT NULL AUTO_INCREMENT COMMENT 'Room id',
+  `room_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Room Name',
+  PRIMARY KEY (`room_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of classtable
 -- ----------------------------
-INSERT INTO `class_table` VALUES (0001, 'yoga_3m', '2021-01-01 15:00', '60m', 'Coach', 600000, "yoga 3 months");
-INSERT INTO `class_table` VALUES (0002, 'gym_1m', '2021-01-02 10:20', '90m', 'Yoga Instructor', 200000, "gym 1 month");
-INSERT INTO `class_table` VALUES (0003, 'gym_3m', '2021-03-06 18:00', '90m', 'Coach', 550000, "gym 3 months");
-INSERT INTO `class_table` VALUES (0004, 'gym_1m_PT', '2021-02-02 10:00', '45m', 'Coach', 3000000, "gym 1 month with PT");
-INSERT INTO `class_table` VALUES (0005, 'yoga_1m', '2021-02-03 15:00', '60m', 'Instructor', 200000, "yoga 1 month");
-INSERT INTO `class_table` VALUES (0006, 'cardio_1m', '2021-02-03 15:00', '60m', 'Coach', 150000, "cardio 1 month");
-INSERT INTO `class_table` VALUES (0007, 'gym_1d', '2021-03-01 17:30', '60m', 'Instructor', 10000, "gym 1 day");
-INSERT INTO `class_table` VALUES (0008, 'yoga_1d', '2021-02-22 09:00', '90m', 'Instructor', 12000,"yoga 1 day");
-INSERT INTO `class_table` VALUES (0009, 'cardio_1d', '2021-02-04 15:00', '60m', 'Instructor', 8000, "cardio 1 day");
-INSERT INTO `class_table` VALUES (0010, 'gym_1y_PT', '2021-03-08 15:00', '45m', 'Coach', 20000000, "gym 1 year with PT");
-INSERT INTO `class_table` VALUES (0011, 'gym_1y', '2021-02-22 18:00', '60m', 'Instructor', 1500000, "gym 1 year");
+INSERT INTO `room` (`room_name`) VALUES ("gym");
+INSERT INTO `room` (`room_name`) VALUES ("yoga");
+
+-- ----------------------------
+-- Table structure for course
+-- ----------------------------
+DROP TABLE IF EXISTS `course`;
+CREATE TABLE `course`  (
+  `course_id` int NOT NULL AUTO_INCREMENT COMMENT 'Course id',
+  `course_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Name',
+  `course_begin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course start time',
+  `course_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Duration',
+  `coach` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Coaches',
+  `price` int NULL DEFAULT NULL COMMENT 'vnd',
+  `course_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'based on time/sport',
+  PRIMARY KEY (`course_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of course
+-- ----------------------------
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('yoga_3m', '2021-01-01 15:00', '60m', 'Coach', 600000, "yoga 3 months");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1m', '2021-01-02 10:20', '90m', 'Yoga Instructor', 200000, "gym 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_3m', '2021-03-06 18:00', '90m', 'Coach', 550000, "gym 3 months");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1m_PT', '2021-02-02 10:00', '45m', 'Coach', 3000000, "gym 1 month with PT");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('yoga_1m', '2021-02-03 15:00', '60m', 'Instructor', 200000, "yoga 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('cardio_1m', '2021-02-03 15:00', '60m', 'Coach', 150000, "cardio 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1d', '2021-03-01 17:30', '60m', 'Instructor', 10000, "gym 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('yoga_1d', '2021-02-22 09:00', '90m', 'Instructor', 12000,"yoga 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('cardio_1d', '2021-02-04 15:00', '60m', 'Instructor', 8000, "cardio 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1y_PT', '2021-03-08 15:00', '45m', 'Coach', 20000000, "gym 1 year with PT");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1y', '2021-02-22 18:00', '60m', 'Instructor', 1500000, "gym 1 year");
 
 
 -- ----------------------------
--- Table structure for class order
+-- Table structure for course order
 -- ----------------------------
-DROP TABLE IF EXISTS `class_order`;
-CREATE TABLE `class_order`  (
-  `class_order_id` int NOT NULL AUTO_INCREMENT COMMENT 'Registration Form id',
-  `class_id` int NULL DEFAULT NULL COMMENT 'Course id',
-  `class_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Name',
+DROP TABLE IF EXISTS `course_order`;
+CREATE TABLE `course_order`  (
+  `course_order_id` int NOT NULL AUTO_INCREMENT COMMENT 'Registration Form id',
+  `course_id` int NULL DEFAULT NULL COMMENT 'Course id',
+  `course_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Name',
   `coach` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Coach',
   `member_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Member Name',
   `member_account` int NULL DEFAULT NULL COMMENT 'Member Account',
-  `class_begin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Start time',
+  `course_begin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Start time',
   `status` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'accepted/waiting',
-  PRIMARY KEY (`class_order_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+  PRIMARY KEY (`course_order_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of class order
 -- ----------------------------
-INSERT INTO `class_order` VALUES (1, 0002, 'Yoga', 'Yoga Instructor', 'Huy', 202100788, '2021-01-02 10:20', "accepted");
-INSERT INTO `class_order` VALUES (2, 0002, 'Yoga', 'Yoga Instructor', 'Đinh', 202132539, '2021年1月2日 10:20', "accepted");
-INSERT INTO `class_order` VALUES (3, 0004, 'Exercise Rehabilitation', 'Rehabilitation Coach', 'Trọng', 202156754, '2021年2月2日 10:00', "accepted");
-INSERT INTO `class_order` VALUES (4, 0001, 'Muscle', 'Muscle Coach', 'Hoang', 202156754, '2021年1月1日 15:00', "accepted");
-INSERT INTO `class_order` VALUES (5, 0001, 'Muscle', 'Muscle Coach', 'Quốc', 202183406, '2021年1月1日 15:00', "accepted");
-INSERT INTO `class_order` VALUES (6, 0002, 'Yoga', 'Yoga Instructor', 'Nguyễn', 202183406, '2021年1月2日 10:20', "accepted");
-INSERT INTO `class_order` VALUES (7, 0001, 'Muscle', 'Muscle Coach', 'Hiếu', 202100788, '2021年1月1日 15:00', "accepted");
-INSERT INTO `class_order` VALUES (8, 0001, 'Muscle', 'Muscle Coach', 'Dương', 202186416, '2021年1月1日 15:00', "accepted");
-INSERT INTO `class_order` VALUES (9, 0003, 'Fat loss', 'Fat Loss Coach', 'Kim', 202186416, '2021年3月6日 18:00', "accepted");
-INSERT INTO `class_order` VALUES (10, 0003, 'Fat loss', 'Fat Loss Coach', 'Đào', 202123664, '2021年3月6日 18:00', "accepted");
-INSERT INTO `class_order` VALUES (11, 0003, 'Fat loss', 'Fat Loss Coach', 'Bình', 202153468, '2021年3月6日 18:00', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (1, 'Yoga', 'Yoga Instructor', 'Huy', 202100788, '2021-01-02 10:20', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (2, 'Yoga', 'Yoga Instructor', 'Đinh', 202132539, '2021年1月2日 10:20', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (3, 'Exercise Rehabilitation', 'Rehabilitation Coach', 'Trọng', 202156754, '2021年2月2日 10:00', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (4, 'Muscle', 'Muscle Coach', 'Hoang', 202156754, '2021年1月1日 15:00', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (5, 'Muscle', 'Muscle Coach', 'Quốc', 202183406, '2021年1月1日 15:00', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (6, 'Yoga', 'Yoga Instructor', 'Nguyễn', 202183406, '2021年1月2日 10:20', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (7, 'Muscle', 'Muscle Coach', 'Hiếu', 202100788, '2021年1月1日 15:00', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (8, 'Muscle', 'Muscle Coach', 'Dương', 202186416, '2021年1月1日 15:00', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (9, 'Fat loss', 'Fat Loss Coach', 'Kim', 202186416, '2021年3月6日 18:00', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (10, 'Fat loss', 'Fat Loss Coach', 'Đào', 202123664, '2021年3月6日 18:00', "accepted");
+INSERT INTO `course_order` (`course_id`, `course_name`, `coach`, `member_name`, `member_account`, `course_begin`, `status`) VALUES (11, 'Fat loss', 'Fat Loss Coach', 'Bình', 202153468, '2021年3月6日 18:00', "waiting");
 
 
 
@@ -151,41 +167,100 @@ DROP TABLE IF EXISTS `equipment`;
 CREATE TABLE `equipment`  (
   `equipment_id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
   `equipment_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'equipment name',
-  `equipment_location` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'equipment location',
   `equipment_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'equipment status',
   `equipment_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'equipment message',
+  `room_id` int NOT NULL COMMENT 'room id',
   PRIMARY KEY (`equipment_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of equipment
 -- ----------------------------
-INSERT INTO equipment VALUES (1, 'Dumbbel 1', 'Room 1', 'Normal', '');
-INSERT INTO equipment VALUES (2, 'Barbell 1', 'Room 2', 'Damage', 'To be repaired');
-INSERT INTO equipment VALUES (3, 'Treadmill 1', 'Room 2', 'In maintenance', 'Contact the manufacturer for maintenance');
-INSERT INTO equipment VALUES (4, 'Treadmill 2', 'Room 2', 'Normal', '');
-INSERT INTO equipment VALUES (5, 'Treadmill 3', 'Room 2', 'Normal', '');
-INSERT INTO equipment VALUES (6, 'Barbell 1', 'Room 1', 'Normal', '');
-INSERT INTO equipment VALUES (7, 'Barbell 2', 'Room 1', 'Normal', '');
+INSERT INTO equipment (`equipment_name`, `equipment_status`, `equipment_message`, `room_id`) VALUES ('Dumbbell 1', 'Normal', '', 1);
+INSERT INTO equipment (`equipment_name`, `equipment_status`, `equipment_message`, `room_id`) VALUES ('Barbell 1', 'Damage', 'To be repaired', 1);
+INSERT INTO equipment (`equipment_name`, `equipment_status`, `equipment_message`, `room_id`) VALUES ('Treadmill 1', 'In maintenance', 'Contact the manufacturer for maintenance', 2);
+INSERT INTO equipment (`equipment_name`, `equipment_status`, `equipment_message`, `room_id`) VALUES ('Treadmill 2',  'Normal', '', 1);
+INSERT INTO equipment (`equipment_name`, `equipment_status`, `equipment_message`, `room_id`) VALUES ('Treadmill 3', 'Normal', '', 1);
+INSERT INTO equipment (`equipment_name`, `equipment_status`, `equipment_message`, `room_id`) VALUES ('Barbell 1', 'Normal', '', 2);
+INSERT INTO equipment (`equipment_name`, `equipment_status`, `equipment_message`, `room_id`) VALUES ('Barbell 2', 'Normal', '', 2);
 
 -- ----------------------------
--- Table structure for equipment
+-- Table structure for feedback_employee
 -- ----------------------------
-DROP TABLE IF EXISTS `feedback`;
-CREATE TABLE `feedback`  (
+DROP TABLE IF EXISTS `feedback_employee`;
+CREATE TABLE `feedback_employee`  (
   `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT 'feedback id',
   `member_account` int NULL DEFAULT NULL COMMENT 'account of member with feedback',
   `employee_account` int NULL DEFAULT NULL COMMENT 'account of employee got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`feedback_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
--- Records of equipment
+-- Records of feedback_employee
 -- ----------------------------
-INSERT INTO `feedback` (`feedback_id`, `member_account`, `employee_account`, `content`) VALUES (1, 202100788, 101038721, 'Good');
-INSERT INTO `feedback` (`feedback_id`, `member_account`, `employee_account`, `content`) VALUES (2, 202183406, 101038721, 'Awesome');
-INSERT INTO `feedback` (`feedback_id`, `member_account`, `employee_account`, `content`) VALUES (3, 202183406, 101058973, 'Usually late');
+INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES (202100788, 101038721, 'Good');
+INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES (202183406, 101038721, 'Awesome');
+INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES (202183406, 101058973, 'Usually late');
+
+-- ----------------------------
+-- Table structure for feedback_equipment
+-- ----------------------------
+DROP TABLE IF EXISTS `feedback_equipment`;
+CREATE TABLE `feedback_equipment`  (
+  `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT 'feedback id',
+  `member_account` int NULL DEFAULT NULL COMMENT 'account of member with feedback',
+  `equipment_id` int NULL DEFAULT NULL COMMENT 'id of equipment got feedback',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
+  `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`feedback_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of feedback_equipment
+-- ----------------------------
+INSERT INTO `feedback_equipment` (`member_account`, `equipment_id`, `content`) VALUES (202100788, 1, 'Good');
+INSERT INTO `feedback_equipment` (`member_account`, `equipment_id`, `content`) VALUES (202183406, 1, 'Awesome');
+INSERT INTO `feedback_equipment` (`member_account`, `equipment_id`, `content`) VALUES (202183406, 2, 'Dirty');
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- ----------------------------
+-- Table structure for feedback_course
+-- ----------------------------
+DROP TABLE IF EXISTS `feedback_course`;
+CREATE TABLE `feedback_course`  (
+  `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT 'feedback id',
+  `member_account` int NULL DEFAULT NULL COMMENT 'account of member with feedback',
+  `course_id` int NULL DEFAULT NULL COMMENT 'id of equipment got feedback',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
+  `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`feedback_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of feedback_course
+-- ----------------------------
+INSERT INTO `feedback_course` (`member_account`, `course_id`, `content`) VALUES (202100788, 1, 'Good');
+INSERT INTO `feedback_course` (`member_account`, `course_id`, `content`) VALUES (202183406, 1, 'Okay');
+INSERT INTO `feedback_course` (`member_account`, `course_id`, `content`) VALUES (202183406, 2, 'Hate that');
+
+DROP TABLE IF EXISTS `feedback_room`;
+CREATE TABLE `feedback_room`  (
+  `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT 'feedback id',
+  `member_account` int NULL DEFAULT NULL COMMENT 'account of member with feedback',
+  `room_id` int NULL DEFAULT NULL COMMENT 'id of equipment got feedback',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
+  `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`feedback_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of feedback_room
+-- ----------------------------
+INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES (202100788, 1, 'Clean');
+INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES (202183406, 1, 'Okay');
+INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES (202183406, 2, 'A lot of equipment');
 
 SET FOREIGN_KEY_CHECKS = 1;

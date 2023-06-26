@@ -2,7 +2,6 @@ package com.milotnt.controller;
 
 import com.milotnt.pojo.*;
 import com.milotnt.service.*;
-import com.milotnt.pojo.FeedbackByAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,16 +16,16 @@ import java.util.stream.Collectors;
 public class UserController {
 
     @Autowired
-    private ClassTableService classTableService;
+    private CourseService courseService;
 
     @Autowired
     private MemberService memberService;
 
     @Autowired
-    private ClassOrderService classOrderService;
+    private CourseOrderService courseOrderService;
 
     @Autowired
-    private FeedbackService feedbackService;
+    private FeedbackEmployeeService feedbackEmployeeService;
 
     @Autowired
     private EmployeeService employeeService;
@@ -68,15 +67,15 @@ public class UserController {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         Integer memberAccount = member.getMemberAccount();
-        List<ClassOrder> classOrderList = classOrderService.selectClassOrderByMemberAccount(memberAccount);
-        model.addAttribute("classOrderList", classOrderList);
+        List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
+        model.addAttribute("classOrderList", courseOrderList);
         return "userClass";
     }
 
     // Quit class
     @RequestMapping("delUserClass")
     public String deleteUserClass(Integer classOrderId) {
-        classOrderService.deleteByClassOrderId(classOrderId);
+        courseOrderService.deleteByCourseOrderId(classOrderId);
         return "redirect:toUserClass";
     }
 
@@ -84,13 +83,13 @@ public class UserController {
     @RequestMapping("/toApplyClass")
     public String toUserApplyClass(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
-        List<ClassTable> classList = classTableService.findAll();
+        List<Course> classList = courseService.findAll();
         model.addAttribute("member", member);
         model.addAttribute("classList", classList);
 
         Integer memberAccount = member.getMemberAccount();
-        List<ClassOrder> classOrderList = classOrderService.selectClassOrderByMemberAccount(memberAccount);
-        List<Integer> classOrderIdList = classOrderList.stream().map(ClassOrder::getClassId).collect(Collectors.toList());
+        List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
+        List<Integer> classOrderIdList = courseOrderList.stream().map(CourseOrder::getClassId).collect(Collectors.toList());
         model.addAttribute("classOrderIdList", classOrderIdList);
 
         return "userApplyClass";
@@ -99,22 +98,22 @@ public class UserController {
     // Sign up for courses
     @RequestMapping("/applyClass")
     public String userApplyClass(Integer classId, Model model, HttpSession session) {
-        ClassTable classTable = classTableService.selectByClassId(classId);
+        Course course = courseService.selectByCourseId(classId);
         Member member = (Member) session.getAttribute("user");
 
-        Integer classId1 = classTable.getClassId();
-        String className = classTable.getClassName();
-        String coach = classTable.getCoach();
-        String classBegin = classTable.getClassBegin();
+        Integer classId1 = course.getCourseId();
+        String className = course.getCourseName();
+        String coach = course.getCoach();
+        String classBegin = course.getCourseBegin();
         String memberName = member.getMemberName();
         Integer memberAccount = member.getMemberAccount();
 
-        ClassOrder classOrder = new ClassOrder(classId1, className, coach, memberName, memberAccount, classBegin);
+        CourseOrder courseOrder = new CourseOrder(classId1, className, coach, memberName, memberAccount, classBegin);
         Integer memberAccount1 = member.getMemberAccount();
-        ClassOrder classOrder1 = classOrderService.selectMemberByClassIdAndMemberAccount(classId1, memberAccount1);
+        CourseOrder courseOrder1 = courseOrderService.selectMemberByCourseIdAndMemberAccount(classId1, memberAccount1);
 
-        if (classOrder1 == null) {
-            classOrderService.insertClassOrder(classOrder);
+        if (courseOrder1 == null) {
+            courseOrderService.insertCourseOrder(courseOrder);
         }
 
         return "redirect:toUserClass";
@@ -126,8 +125,8 @@ public class UserController {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         Integer memberAccount = member.getMemberAccount();
-        List<FeedbackByAccount> feedbackByAccountList = feedbackService.selectByMemberAccount(memberAccount);
-        model.addAttribute("feedbackByAccountList", feedbackByAccountList);
+        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByMemberAccount(memberAccount);
+        model.addAttribute("feedbackByAccountList", feedbackEmployeeList);
         return "userFeedback";
     }
 
@@ -141,28 +140,28 @@ public class UserController {
     }
 
     @RequestMapping("addFeedback")
-    public String addFeedback(Feedback feedback) {
-        feedbackService.insertFeedback(feedback);
+    public String addFeedback(FeedbackEmployee feedbackEmployee) {
+        feedbackEmployeeService.insertFeedbackEmployee(feedbackEmployee);
         return "redirect:userFeedback";
     }
 
     @RequestMapping("/toUpdateFeedback")
     public String toUpdateUserFeedback(Integer feedbackId, Model model) {
-        List<Feedback> feedbackList = feedbackService.selectByFeedbackId(feedbackId);
-        model.addAttribute("feedbackList", feedbackList);
+        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByFeedbackId(feedbackId);
+        model.addAttribute("feedbackList", feedbackEmployeeList);
         return "updateUserFeedback";
     }
 
     // Modify Personal Information
     @RequestMapping("/updateFeedback")
-    public String updateUserFeedback(Feedback feedback) {
-        feedbackService.updateFeedbackByFeedbackId(feedback);
+    public String updateUserFeedback(FeedbackEmployee feedbackEmployee) {
+        feedbackEmployeeService.updateByFeedbackId(feedbackEmployee);
         return "redirect:userFeedback";
     }
 
     @RequestMapping("delUserFeedback")
     public String deleteUserFeedback(Integer feedbackId) {
-        feedbackService.deleteByFeedbackId(feedbackId);
+        feedbackEmployeeService.deleteByFeedbackId(feedbackId);
         return "redirect:toUserFeedback";
     }
 }

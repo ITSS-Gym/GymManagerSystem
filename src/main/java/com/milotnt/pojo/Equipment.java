@@ -4,19 +4,17 @@ public class Equipment {
 
     private Integer equipmentId;
     private String equipmentName;
-    private String equipmentLocation;
     private String equipmentStatus;
     private String equipmentMessage;
 
-    public Equipment() {
-    }
+    private Integer roomId;
 
-    public Equipment(Integer equipmentId, String equipmentName, String equipmentLocation, String equipmentStatus, String equipmentMessage) {
+    public Equipment(Integer equipmentId, String equipmentName, String equipmentStatus, String equipmentMessage, Integer roomId) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
-        this.equipmentLocation = equipmentLocation;
         this.equipmentStatus = equipmentStatus;
         this.equipmentMessage = equipmentMessage;
+        this.roomId = roomId;
     }
 
     public Integer getEquipmentId() {
@@ -35,14 +33,6 @@ public class Equipment {
         this.equipmentName = equipmentName;
     }
 
-    public String getEquipmentLocation() {
-        return equipmentLocation;
-    }
-
-    public void setEquipmentLocation(String equipmentLocation) {
-        this.equipmentLocation = equipmentLocation;
-    }
-
     public String getEquipmentStatus() {
         return equipmentStatus;
     }
@@ -59,14 +49,22 @@ public class Equipment {
         this.equipmentMessage = equipmentMessage;
     }
 
+    public Integer getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
+
     @Override
     public String toString() {
         return "Equipment{" +
                 "equipmentId=" + equipmentId +
                 ", equipmentName='" + equipmentName + '\'' +
-                ", equipmentLocation='" + equipmentLocation + '\'' +
                 ", equipmentStatus='" + equipmentStatus + '\'' +
                 ", equipmentMessage='" + equipmentMessage + '\'' +
+                ", roomId=" + roomId +
                 '}';
     }
 }

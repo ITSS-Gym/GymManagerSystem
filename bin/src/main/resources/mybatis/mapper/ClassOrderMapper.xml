@@ -2,19 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.milotnt.mapper.ClassOrderMapper">
+<mapper namespace="com.milotnt.mapper.CourseOrderMapper">
 
-    <select id="findAll" resultType="classOrder">
+    <select id="findAll" resultType="courseOrder">
         SELECT *
         FROM class_order
     </select>
 
-    <insert id="insertClassOrder" parameterType="classOrder">
+    <insert id="insertClassOrder" parameterType="courseOrder">
         INSERT INTO class_order(class_order_id, class_id, class_name, coach, member_name, member_account, class_begin)
         VALUES (#{classOrderId}, #{classId}, #{className}, #{coach}, #{memberName}, #{memberAccount}, #{classBegin})
     </insert>
 
-    <select id="selectClassOrderByMemberAccount" parameterType="java.lang.Integer" resultType="classOrder">
+    <select id="selectClassOrderByMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
         SELECT *
         FROM class_order
         WHERE member_account = #{memberAccount}
@@ -26,14 +26,14 @@
         WHERE class_order_id = #{classOrderId}
     </delete>
 
-    <select id="selectMemberByClassIdAndMemberAccount" parameterType="java.lang.Integer" resultType="classOrder">
+    <select id="selectMemberByClassIdAndMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
         SELECT *
         FROM class_order
         WHERE class_id = #{classId}
           AND member_account = #{memberAccount}
     </select>
 
-    <select id="selectMemberOrderList" parameterType="java.lang.Integer" resultType="classOrder">
+    <select id="selectMemberOrderList" parameterType="java.lang.Integer" resultType="courseOrder">
         SELECT *
         FROM class_order
         WHERE class_id = #{classId}
