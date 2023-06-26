@@ -6,38 +6,37 @@
 
     <select id="findAll" resultType="courseOrder">
         SELECT *
-        FROM class_order
+        FROM course_order
     </select>
 
-    <insert id="insertClassOrder" parameterType="courseOrder">
-        INSERT INTO class_order(class_order_id, class_id, class_name, coach, member_name, member_account, class_begin)
-        VALUES (#{classOrderId}, #{classId}, #{className}, #{coach}, #{memberName}, #{memberAccount}, #{classBegin})
+    <insert id="insertCourseOrder" parameterType="courseOrder">
+        INSERT INTO course_order(course_order_id, course_id, course_name, coach, member_name, member_account, course_begin)
+        VALUES (#{courseOrderId}, #{courseId}, #{courseName}, #{coach}, #{memberName}, #{memberAccount}, #{courseBegin})
     </insert>
 
-    <select id="selectClassOrderByMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
+    <select id="selectCourseOrderByMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
         SELECT *
-        FROM class_order
+        FROM course_order
         WHERE member_account = #{memberAccount}
     </select>
 
-    <delete id="deleteByClassOrderId" parameterType="java.lang.Integer">
+    <delete id="deleteByCourseOrderId" parameterType="java.lang.Integer">
         DELETE
-        FROM class_order
-        WHERE class_order_id = #{classOrderId}
+        FROM course_order
+        WHERE course_order_id = #{courseOrderId}
     </delete>
 
-    <select id="selectMemberByClassIdAndMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
+    <select id="selectMemberByCourseIdAndMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
         SELECT *
-        FROM class_order
-        WHERE class_id = #{classId}
+        FROM course_order
+        WHERE course_id = #{courseId}
           AND member_account = #{memberAccount}
     </select>
 
     <select id="selectMemberOrderList" parameterType="java.lang.Integer" resultType="courseOrder">
         SELECT *
-        FROM class_order
-        WHERE class_id = #{classId}
+        FROM course_order
+        WHERE course_id = #{courseId}
     </select>
-
 
 </mapper>

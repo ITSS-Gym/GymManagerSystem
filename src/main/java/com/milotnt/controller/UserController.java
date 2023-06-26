@@ -89,7 +89,7 @@ public class UserController {
 
         Integer memberAccount = member.getMemberAccount();
         List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
-        List<Integer> classOrderIdList = courseOrderList.stream().map(CourseOrder::getClassId).collect(Collectors.toList());
+        List<Integer> classOrderIdList = courseOrderList.stream().map(CourseOrder::getCourseId).collect(Collectors.toList());
         model.addAttribute("classOrderIdList", classOrderIdList);
 
         return "userApplyClass";
@@ -101,16 +101,16 @@ public class UserController {
         Course course = courseService.selectByCourseId(classId);
         Member member = (Member) session.getAttribute("user");
 
-        Integer classId1 = course.getCourseId();
-        String className = course.getCourseName();
+        Integer courseId1 = course.getCourseId();
+        String courseName = course.getCourseName();
         String coach = course.getCoach();
         String classBegin = course.getCourseBegin();
         String memberName = member.getMemberName();
         Integer memberAccount = member.getMemberAccount();
 
-        CourseOrder courseOrder = new CourseOrder(classId1, className, coach, memberName, memberAccount, classBegin);
+        CourseOrder courseOrder = new CourseOrder(courseId1, courseName, coach, memberName, memberAccount, classBegin);
         Integer memberAccount1 = member.getMemberAccount();
-        CourseOrder courseOrder1 = courseOrderService.selectMemberByCourseIdAndMemberAccount(classId1, memberAccount1);
+        CourseOrder courseOrder1 = courseOrderService.selectMemberByCourseIdAndMemberAccount(courseId1, memberAccount1);
 
         if (courseOrder1 == null) {
             courseOrderService.insertCourseOrder(courseOrder);

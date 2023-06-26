@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/class")
+@RequestMapping("/course")
 public class CourseController {
 
     @Autowired
@@ -24,54 +24,54 @@ public class CourseController {
     private CourseOrderService courseOrderService;
 
     // Inquire about courses
-    @RequestMapping("/selClass")
-    public String selectClass(Model model) {
+    @RequestMapping("/selCourse")
+    public String selectCourse(Model model) {
         List<Course> courseList = courseService.findAll();
         model.addAttribute("courseList", courseList);
-        return "selectClass";
+        return "selectCourse";
     }
 
     // Jump to the new course page
-    @RequestMapping("/toAddClass")
-    public String toAddClass() {
-        return "addClass";
+    @RequestMapping("/toAddCourse")
+    public String toAddCourse() {
+        return "addCourse";
     }
 
     // New course
-    @RequestMapping("/addClass")
-    public String addClass(Course course) {
+    @RequestMapping("/addCourse")
+    public String addCourse(Course course) {
         courseService.insertCourse(course);
-        return "redirect:selClass";
+        return "redirect:selCourse";
     }
 
     // Delete course
-    @RequestMapping("/delClass")
+    @RequestMapping("/delCourse")
     public String deleteClass(Integer courseId) {
         courseService.deleteCourseByCourseId(courseId);
         courseService.deleteOrderByCourseId(courseId);
-        return "redirect:selClass";
+        return "redirect:selCourse";
     }
 
     // Query course registration information
-    @RequestMapping("/selClassOrder")
-    public String selectClassOrder(Integer courseId, Model model) {
+    @RequestMapping("/selCourseOrder")
+    public String selectCourseOrder(Integer courseId, Model model) {
         List<CourseOrder> courseOrderList = courseOrderService.selectMemberOrderList(courseId);
         model.addAttribute("courseOrderList", courseOrderList);
-        return "selectClassOrder";
+        return "selectCourseOrder";
     }
 
-    @RequestMapping("/updateAcceptClassOrder")
-    public String updateAcceptClassOrder(Integer courseId, Integer courseOrderId, RedirectAttributes redirectAttributes) {
+    @RequestMapping("/updateAcceptCourseOrder")
+    public String updateAcceptCourseOrder(Integer courseId, Integer courseOrderId, RedirectAttributes redirectAttributes) {
         courseOrderService.updateStatusByOrderId(courseOrderId);
         redirectAttributes.addAttribute("courseId", courseId);
-        return "redirect:selClassOrder";
+        return "redirect:selCourseOrder";
     }
 
-    @RequestMapping("/delClassOrder")
+    @RequestMapping("/delCourseOrder")
     public String delClassOrder(Integer courseId, Integer courseOrderId, RedirectAttributes redirectAttributes) {
         courseOrderService.deleteOrderByOrderId(courseOrderId);
         redirectAttributes.addAttribute("courseId", courseId);
-        return "redirect:selClassOrder";
+        return "redirect:selCourseOrder";
     }
 
 }
