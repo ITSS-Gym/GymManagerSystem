@@ -21,12 +21,12 @@ public interface CourseOrderMapper {
     Boolean deleteByCourseOrderId(Integer classOrderId);
 
     // Check if the member is enrolled in the course
-    CourseOrder selectMemberByCourseIdAndMemberAccount(Integer classId, Integer memberAccount);
+    CourseOrder selectMemberByCourseIdAndMemberAccount(Integer courseId, Integer memberAccount);
 
     // Query all registered members according to the course id
-    List<CourseOrder> selectMemberOrderList(Integer classId);
+    List<CourseOrder> selectMemberOrderList(Integer courseId);
 
-    Boolean updateStatusByOrderId(Integer classOrderId);
+    Boolean updateStatusByOrderId(Integer courseOrderId);
 
-    Boolean deleteOrderByOrderId(Integer classOrderId);
+    Boolean deleteOrderByOrderId(Integer courseOrderId);
 }

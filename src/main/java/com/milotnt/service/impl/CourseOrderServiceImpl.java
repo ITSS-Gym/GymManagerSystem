@@ -31,26 +31,26 @@ public class CourseOrderServiceImpl implements CourseOrderService {
     }
 
     @Override
-    public Boolean deleteByCourseOrderId(Integer classOrderId) {
-        return courseOrderMapper.deleteByCourseOrderId(classOrderId);
+    public Boolean deleteByCourseOrderId(Integer courseOrderId) {
+        return courseOrderMapper.deleteByCourseOrderId(courseOrderId);
     }
 
     @Override
-    public CourseOrder selectMemberByCourseIdAndMemberAccount(Integer classId, Integer memberAccount) {
-        return courseOrderMapper.selectMemberByCourseIdAndMemberAccount(classId, memberAccount);
+    public CourseOrder selectMemberByCourseIdAndMemberAccount(Integer courseId, Integer memberAccount) {
+        return courseOrderMapper.selectMemberByCourseIdAndMemberAccount(courseId, memberAccount);
     }
 
     @Override
-    public List<CourseOrder> selectMemberOrderList(Integer classId) {
-        return courseOrderMapper.selectMemberOrderList(classId);
+    public List<CourseOrder> selectMemberOrderList(Integer courseId) {
+        return courseOrderMapper.selectMemberOrderList(courseId);
     }
 
     @Override
-    public Boolean updateStatusByOrderId(Integer classOrderId) {
-        return courseOrderMapper.updateStatusByOrderId(classOrderId);
+    public Boolean updateStatusByOrderId(Integer courseOrderId) {
+        return courseOrderMapper.updateStatusByOrderId(courseOrderId);
     }
 
-    public Boolean deleteOrderByOrderId(Integer classOrderId) {
-        return courseOrderMapper.deleteOrderByOrderId(classOrderId);
+    public Boolean deleteOrderByOrderId(Integer courseOrderId) {
+        return courseOrderMapper.deleteOrderByOrderId(courseOrderId);
     }
 }

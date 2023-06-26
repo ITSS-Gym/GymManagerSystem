@@ -9,8 +9,8 @@ public interface CourseService {
     // Find all courses
     List<Course> findAll();
 
-    // Delete class by id
-    Boolean deleteCourseByCourseId(Integer classId);
+    // Delete course by id
+    Boolean deleteCourseByCourseId(Integer courseId);
 
     // Add course
     Boolean insertCourse(Course course);
@@ -19,9 +19,9 @@ public interface CourseService {
     Boolean updateCourseByCourseId(Course course);
 
     // Query the class schedule by id
-    Course selectByCourseId(Integer classId);
+    Course selectByCourseId(Integer courseId);
 
     // Delete reserved courses according to id
-    Boolean deleteOrderByCourseId(Integer classId);
+    Boolean deleteOrderByCourseId(Integer courseId);
 
 }
