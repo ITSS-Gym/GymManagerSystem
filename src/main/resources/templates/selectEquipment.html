@@ -27,10 +27,10 @@
                             <tr>
                                 <th>Equipment ID</th>
                                 <th>Name</th>
-                                <th>Location</th>
                                 <th>Status</th>
                                 <th>Remark Information</th>
                                 <th>Operation</th>
+                                <th>Room ID</th>
                             </tr>
                             </thead>
 
@@ -38,9 +38,9 @@
                             <tr th:each="equ:${equipmentList}">
                                 <td th:text="${equ.equipmentId}">ID</td>
                                 <td th:text="${equ.equipmentName}">Name</td>
-                                <td th:text="${equ.equipmentLocation}">Location</td>
                                 <td th:text="${equ.equipmentStatus}">Status</td>
                                 <td th:text="${equ.equipmentMessage}">Message</td>
+                                <td th:text="${equ.roomId}">Room ID</td>
                                 <td>
                                     <a th:href="@{/equipment/toUpdateEquipment(equipmentId=${equ.equipmentId})}"
                                        style="text-decoration: none">
