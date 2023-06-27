@@ -5,8 +5,9 @@
 <mapper namespace="com.milotnt.mapper.CourseMapper">
 
     <select id="findAll" resultType="course">
-        SELECT *
+        SELECT course_id, course_name, course_begin, course_time, coach_account, employee_name, price, course_type
         FROM course
+        INNER JOIN employee ON course.coach_account = employee.employee_account
     </select>
 
     <delete id="deleteCourseByCourseId" parameterType="java.lang.Integer">
@@ -16,8 +17,8 @@
     </delete>
 
     <insert id="insertCourse" parameterType="course">
-        INSERT INTO course (course_name, course_begin, course_time, coach, price, course_type)
-        VALUES (#{courseName}, #{courseBegin}, #{courseTime}, #{coach}, #{price}, #{courseType})
+        INSERT INTO course (course_name, course_begin, course_time, coach_account, price, course_type)
+        VALUES (#{courseName}, #{courseBegin}, #{courseTime}, #{coachAccount}, #{price}, #{courseType})
     </insert>
 
     <update id="updateCourseByCourseId" parameterType="course">
@@ -25,15 +26,16 @@
         SET course_name  = #{courseName},
         course_begin     = #{courseBegin},
         course_time      = #{courseTime},
-        coach            = #{coach},
+        coach_account    = #{coachAccount},
         price            = #{price},
         course_type      =#{courseType}
         WHERE course_id = #{courseId}
     </update>
 
     <select id="selectByCourseId" parameterType="java.lang.Integer" resultType="course">
-        SELECT *
+        SELECT course_id, course_name, course_begin, course_time, coach_account, employee_name, price, course_type
         FROM course
+        INNER JOIN employee ON course.coach_account = employee.employee_account
         WHERE course_id = #{courseId}
     </select>
 

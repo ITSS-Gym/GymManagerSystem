@@ -42,8 +42,9 @@ public class UserController {
     // Jump to modify personal information page
     @RequestMapping("/toUpdateInfo")
     public String toUpdateUserInformation(HttpSession session, Model model) {
-        Member member = (Member) session.getAttribute("user");
-        model.addAttribute("member", member);
+        Member member1 = (Member) session.getAttribute("user");
+        List<Member> member = memberService.selectByMemberAccount(member1.getMemberAccount());
+        model.addAttribute("member", member.get(0));
         return "updateUserInformation";
     }
 
@@ -53,9 +54,7 @@ public class UserController {
         Member member1 = (Member) session.getAttribute("user");
 
         member.setMemberAccount(member1.getMemberAccount());
-        member.setCardClass(member1.getCardClass());
-        member.setCardTime(member1.getCardTime());
-        member.setCardNextClass(member1.getCardNextClass());
+        System.out.println(member);
 
         memberService.updateMemberByMemberAccount(member);
         return "userInformation";
@@ -103,12 +102,13 @@ public class UserController {
 
         Integer courseId1 = course.getCourseId();
         String courseName = course.getCourseName();
-        String coach = course.getCoach();
+        Integer coachAccount = course.getCoachAccount();
+        String coachName = course.getCoachName();
         String courseBegin = course.getCourseBegin();
         String memberName = member.getMemberName();
         Integer memberAccount = member.getMemberAccount();
 
-        CourseOrder courseOrder = new CourseOrder(courseId1, courseName, coach, memberName, memberAccount, courseBegin);
+        CourseOrder courseOrder = new CourseOrder(courseId1, courseName, coachAccount, coachName, memberAccount, memberName, courseBegin);
         Integer memberAccount1 = member.getMemberAccount();
         CourseOrder courseOrder1 = courseOrderService.selectMemberByCourseIdAndMemberAccount(courseId1, memberAccount1);
 

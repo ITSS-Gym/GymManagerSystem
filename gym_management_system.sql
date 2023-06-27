@@ -46,28 +46,28 @@ CREATE TABLE `member`  (
   `member_age` int NULL DEFAULT NULL COMMENT 'Age',
   `member_height` int NULL DEFAULT NULL COMMENT 'Height',
   `member_weight` int NULL DEFAULT NULL COMMENT 'weight',
-  `member_phone` bigint NULL DEFAULT NULL COMMENT 'phone',
-  `card_time` date NULL DEFAULT NULL COMMENT 'card time',
-  `card_class` int NULL DEFAULT NULL COMMENT 'card class',
-  `card_next_class` int NULL DEFAULT NULL COMMENT 'card next class',
+  `member_phone` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'phone',
+--  `card_time` date NULL DEFAULT NULL COMMENT 'card time',
+--  `card_class` int NULL DEFAULT NULL COMMENT 'card class',
+--  `card_next_class` int NULL DEFAULT NULL COMMENT 'card next class',
   PRIMARY KEY (`member_account`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of member
 -- ----------------------------
-INSERT INTO `member` VALUES (202009867, '123456', 'Nguyễn', 'female', 24, 182, 60, 13515548482, '2020-06-05', 40, 40);
-INSERT INTO `member` VALUES (202100788, '123456', 'Thái', 'male', 31, 178, 60, 13131554873, '2021-01-01', 50, 50);
-INSERT INTO `member` VALUES (202132539, '123456', 'Bình', 'male', 31, 178, 60, 13154875489, '2021-01-01', 40, 40);
-INSERT INTO `member` VALUES (202186416, '123456', 'Hoàng', 'female', 23, 160, 45, 13124576857, '2021-01-16', 30, 30);
-INSERT INTO `member` VALUES (202106725, '123456', 'Huy', 'male', 24, 178, 88, 13758784959, '2021-02-26', 30, 30);
-INSERT INTO `member` VALUES (202183406, '123456', 'Hiếu', 'female', 19, 170, 60, 13786457488,'2021-02-27', 30, 30);
-INSERT INTO `member` VALUES (202176587, '123456', 'Dương', 'male', 33, 177, 90, 13767546666, '2021-02-27', 30, 30);
-INSERT INTO `member` VALUES (202156754, '123456', 'Ronaldo', 'male', 36, 166, 67, 13786532448, '2021-02-28', 30, 30);
-INSERT INTO `member` VALUES (202153468, '123456', 'Messi', 'female', 25, 173, 44, 13786457124,  '2021-03-01', 50, 50);
-INSERT INTO `member` VALUES (202121345, '123456', 'Mbappe', 'male', 28, 160, 40, 13754457488, '2021-03-02', 30, 30);
-INSERT INTO `member` VALUES (202189776, '123456', 'Haland', 'female', 27, 170, 50, 13986337489,  '2021-03-23', 30, 30);
-INSERT INTO `member` VALUES (202123664, '123456', 'Alice', 'female', 25, 165, 51, 15986457423,  '2021-03-27', 30, 30);
+INSERT INTO `member` VALUES (202009867, '123456', 'Nguyễn', 'female', 24, 182, 60, '0515548482');
+INSERT INTO `member` VALUES (202100788, '123456', 'Thái', 'male', 31, 178, 60, '0131554873');
+INSERT INTO `member` VALUES (202132539, '123456', 'Bình', 'male', 31, 178, 60, '0154875489');
+INSERT INTO `member` VALUES (202186416, '123456', 'Hoàng', 'female', 23, 160, 45, '0124576857');
+INSERT INTO `member` VALUES (202106725, '123456', 'Huy', 'male', 24, 178, 88, '0758784959');
+INSERT INTO `member` VALUES (202183406, '123456', 'Hiếu', 'female', 19, 170, 60, '0786457488');
+INSERT INTO `member` VALUES (202176587, '123456', 'Dương', 'male', 33, 177, 90, '0767546666');
+INSERT INTO `member` VALUES (202156754, '123456', 'Ronaldo', 'male', 36, 166, 67, '0786532448');
+INSERT INTO `member` VALUES (202153468, '123456', 'Messi', 'female', 25, 173, 44, '0786457124');
+INSERT INTO `member` VALUES (202121345, '123456', 'Mbappe', 'male', 28, 160, 40, '0754457488');
+INSERT INTO `member` VALUES (202189776, '123456', 'Haland', 'female', 27, 170, 50, '0986337489');
+INSERT INTO `member` VALUES (202123664, '123456', 'Alice', 'female', 25, 165, 51, '0986457423');
 
 -- ----------------------------
 -- Table structure for employee
@@ -103,28 +103,28 @@ CREATE TABLE `course`  (
   `course_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Name',
   `course_begin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course start time',
   `course_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Duration',
-  `coach` int NULL DEFAULT NULL COMMENT 'Coach Account',
+  `coach_account` int NULL DEFAULT NULL COMMENT 'Coach Account',
   `price` int NULL DEFAULT NULL COMMENT 'vnd',
   `course_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'based on time/sport',
   PRIMARY KEY (`course_id`) USING BTREE,
-  FOREIGN KEY (`coach`) REFERENCES `employee`(`employee_account`)
+  FOREIGN KEY (`coach_account`) REFERENCES `employee`(`employee_account`)
 
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('yoga_3m', '2021-01-01 15:00', '60m', 101038721, 600000, "yoga 3 months");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1m', '2021-01-02 10:20', '90m', 101038721, 200000, "gym 1 month");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_3m', '2021-03-06 18:00', '90m', 101038721, 550000, "gym 3 months");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1m_PT', '2021-02-02 10:00', '45m', 101045354, 3000000, "gym 1 month with PT");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('yoga_1m', '2021-02-03 15:00', '60m', 101053687, 200000, "yoga 1 month");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('cardio_1m', '2021-02-03 15:00', '60m', 101068283, 150000, "cardio 1 month");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1d', '2021-03-01 17:30', '60m', 101053687, 10000, "gym 1 day");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('yoga_1d', '2021-02-22 09:00', '90m', 101068283, 12000,"yoga 1 day");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('cardio_1d', '2021-02-04 15:00', '60m', 101068283, 8000, "cardio 1 day");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1y_PT', '2021-03-08 15:00', '45m', 101068283, 20000000, "gym 1 year with PT");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach`, `price`, `course_type`) VALUES ('gym_1y', '2021-02-22 18:00', '60m', 101068283, 1500000, "gym 1 year");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_3m', '2021-01-01 15:00', '60m', 101038721, 600000, "yoga 3 months");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1m', '2021-01-02 10:20', '90m', 101038721, 200000, "gym 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_3m', '2021-03-06 18:00', '90m', 101038721, 550000, "gym 3 months");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1m_PT', '2021-02-02 10:00', '45m', 101045354, 3000000, "gym 1 month with PT");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_1m', '2021-02-03 15:00', '60m', 101053687, 200000, "yoga 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('cardio_1m', '2021-02-03 15:00', '60m', 101068283, 150000, "cardio 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1d', '2021-03-01 17:30', '60m', 101053687, 10000, "gym 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_1d', '2021-02-22 09:00', '90m', 101068283, 12000,"yoga 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('cardio_1d', '2021-02-04 15:00', '60m', 101068283, 8000, "cardio 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1y_PT', '2021-03-08 15:00', '45m', 101068283, 20000000, "gym 1 year with PT");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1y', '2021-02-22 18:00', '60m', 101068283, 1500000, "gym 1 year");
 
 
 -- ----------------------------

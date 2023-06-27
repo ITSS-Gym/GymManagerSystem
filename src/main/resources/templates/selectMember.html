@@ -27,14 +27,11 @@
                             <tr>
                                 <th>Member Account/Card Number</th>
                                 <th>Name</th>
-                                <th>Card Time</th>
                                 <th>Gender</th>
                                 <th>Age</th>
                                 <th>Contact Information</th>
                                 <th>Height</th>
                                 <th>Weight</th>
-                                <th>Card Class</th>
-                                <th>Card Next Class</th>
                                 <th>Operation</th>
                             </tr>
                             </thead>
@@ -43,14 +40,11 @@
                             <tr th:each="mem:${memberList}">
                                 <td th:text="${mem.memberAccount}">Member Account/Card Number</td>
                                 <td th:text="${mem.memberName}">Name</td>
-                                <td th:text="${mem.cardTime}">Card Time</td>
                                 <td th:text="${mem.memberGender}">Gender</td>
                                 <td th:text="${mem.memberAge}">Age</td>
                                 <td th:text="${mem.memberPhone}">Phone Number</td>
                                 <td th:text="${mem.memberHeight}">Height</td>
                                 <td th:text="${mem.memberWeight}">Weight</td>
-                                <td th:text="${mem.cardClass}">Card Class</td>
-                                <td th:text="${mem.cardNextClass}">Card Next Class</td>
                                 <td>
                                     <a th:href="@{/member/toUpdateMember(memberAccount=${mem.memberAccount})}"
                                        style="text-decoration: none">

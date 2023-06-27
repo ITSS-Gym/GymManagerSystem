@@ -36,29 +36,15 @@ public class MemberController {
     // Add new member
     @RequestMapping("/addMember")
     public String addMember(Member member) {
-        //Member account & card number randomly generated
+        // Member account randomly generated
         Random random = new Random();
-        String account1 = "2021";
+        StringBuilder thisYear = new StringBuilder(new SimpleDateFormat("yyyy").format(new Date()));
         for (int i = 0; i < 5; i++) {
-            account1 += random.nextInt(10);
+            thisYear.append(random.nextInt(10));
         }
-        Integer account = Integer.parseInt(account1);
-
-        // initial password
-        String password = "123456";
-
-        // get current date
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String nowDay = simpleDateFormat.format(date);
-
-        Integer nextClass = member.getCardClass();
+        Integer account = Integer.parseInt(thisYear.toString());
 
         member.setMemberAccount(account);
-        member.setMemberPassword(password);
-        member.setCardTime(nowDay);
-        member.setCardNextClass(nextClass);
-
         memberService.insertMember(member);
 
         return "redirect:selMember";
@@ -83,6 +69,7 @@ public class MemberController {
     // Modify member information
     @RequestMapping("/updateMember")
     public String updateMember(Member member) {
+        System.out.println(member);
         memberService.updateMemberByMemberAccount(member);
         return "redirect:selMember";
     }

@@ -28,7 +28,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Time</th>
-                                <th>Coach</th>
+                                <th>Coach Name</th>
                                 <th>Operation</th>
                             </tr>
                             </thead>
@@ -38,7 +38,7 @@
                                 <td th:text="${course.courseId}">ID</td>
                                 <td th:text="${course.courseName}">Name</td>
                                 <td th:text="${course.courseBegin}">Time</td>
-                                <td th:text="${course.coach}">Coach</td>
+                                <td th:text="${course.coachName}">Coach Name</td>
                                 <td>
                                     <a th:href="@{/user/delUserCourse(courseOrderId=${course.courseOrderId})}"
                                        style="text-decoration: none">

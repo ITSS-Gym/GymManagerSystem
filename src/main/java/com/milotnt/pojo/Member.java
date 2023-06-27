@@ -9,10 +9,7 @@ public class Member {
     private Integer memberAge;
     private Integer memberHeight;
     private Integer memberWeight;
-    private Long memberPhone;
-    private String cardTime;
-    private Integer cardClass;
-    private Integer cardNextClass;
+    private String memberPhone;
 
     public Integer getMemberAccount() {
         return memberAccount;
@@ -70,42 +67,18 @@ public class Member {
         this.memberWeight = memberWeight;
     }
 
-    public Long getMemberPhone() {
+    public String getMemberPhone() {
         return memberPhone;
     }
 
-    public void setMemberPhone(Long memberPhone) {
+    public void setMemberPhone(String memberPhone) {
         this.memberPhone = memberPhone;
-    }
-
-    public String getCardTime() {
-        return cardTime;
-    }
-
-    public void setCardTime(String cardTime) {
-        this.cardTime = cardTime;
-    }
-
-    public Integer getCardClass() {
-        return cardClass;
-    }
-
-    public void setCardClass(Integer cardClass) {
-        this.cardClass = cardClass;
-    }
-
-    public Integer getCardNextClass() {
-        return cardNextClass;
-    }
-
-    public void setCardNextClass(Integer cardNextClass) {
-        this.cardNextClass = cardNextClass;
     }
 
     @Override
     public String toString() {
         return "Member{" +
-                ", memberAccount=" + memberAccount +
+                "memberAccount=" + memberAccount +
                 ", memberPassword='" + memberPassword + '\'' +
                 ", memberName='" + memberName + '\'' +
                 ", memberGender='" + memberGender + '\'' +
@@ -113,9 +86,6 @@ public class Member {
                 ", memberHeight=" + memberHeight +
                 ", memberWeight=" + memberWeight +
                 ", memberPhone=" + memberPhone +
-                ", cardTime='" + cardTime + '\'' +
-                ", cardClass=" + cardClass +
-                ", cardNextClass=" + cardNextClass +
                 '}';
     }
 }

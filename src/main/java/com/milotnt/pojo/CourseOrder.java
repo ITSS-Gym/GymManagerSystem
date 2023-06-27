@@ -5,27 +5,30 @@ public class CourseOrder {
     private Integer courseOrderId;
     private Integer courseId;
     private String courseName;
-    private String coach;
-    private String memberName;
+    private Integer coachAccount;
+    private String coachName;
     private Integer memberAccount;
+    private String memberName;
     private String courseBegin;
     private String status;
 
-    public CourseOrder(Integer courseId, String courseName, String coach, String memberName, Integer memberAccount, String courseBegin) {
+    public CourseOrder(Integer courseId, String courseName, Integer coachAccount, String coachName, Integer memberAccount, String memberName, String courseBegin) {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.coach = coach;
+        this.coachAccount = coachAccount;
+        this.coachName = coachName;
         this.memberName = memberName;
         this.memberAccount = memberAccount;
         this.courseBegin = courseBegin;
         this.status = "waiting";
     }
 
-    public CourseOrder(Integer courseOrderId, Integer courseId, String courseName, String coach, String memberName, Integer memberAccount, String courseBegin, String status) {
+    public CourseOrder(Integer courseOrderId, Integer courseId, String courseName, Integer coachAccount, String coachName, Integer memberAccount, String memberName, String courseBegin, String status) {
         this.courseOrderId = courseOrderId;
         this.courseId = courseId;
         this.courseName = courseName;
-        this.coach = coach;
+        this.coachAccount = coachAccount;
+        this.coachName = coachName;
         this.memberName = memberName;
         this.memberAccount = memberAccount;
         this.courseBegin = courseBegin;
@@ -56,12 +59,20 @@ public class CourseOrder {
         this.courseName = courseName;
     }
 
-    public String getCoach() {
-        return coach;
+    public Integer getCoachAccount() {
+        return coachAccount;
     }
 
-    public void setCoach(String coach) {
-        this.coach = coach;
+    public void setCoachAccount(Integer coachAccount) {
+        this.coachAccount = coachAccount;
+    }
+
+    public String getCoachName() {
+        return coachName;
+    }
+
+    public void setCoachName(String coachName) {
+        this.coachName = coachName;
     }
 
     public String getMemberName() {
@@ -102,7 +113,8 @@ public class CourseOrder {
                 "courseOrderId=" + courseOrderId +
                 ", courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
-                ", coach='" + coach + '\'' +
+                ", coachAccount=" + coachAccount +
+                ", coachName='" + coachName + '\'' +
                 ", memberName='" + memberName + '\'' +
                 ", memberAccount=" + memberAccount +
                 ", courseBegin='" + courseBegin + '\'' +

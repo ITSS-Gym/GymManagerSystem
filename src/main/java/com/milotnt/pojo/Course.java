@@ -6,11 +6,24 @@ public class Course {
     private String courseName;
     private String courseBegin;
     private String courseTime;
-    private String coach;
+
+    private Integer coachAccount;
+    private String coachName;
 
     private Integer price;
 
     private String courseType;
+
+    public Course(Integer courseId, String courseName, String courseBegin, String courseTime, Integer coachAccount, String coachName, Integer price, String courseType) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseBegin = courseBegin;
+        this.courseTime = courseTime;
+        this.coachAccount = coachAccount;
+        this.coachName = coachName;
+        this.price = price;
+        this.courseType = courseType;
+    }
 
     public Integer getCourseId() {
         return courseId;
@@ -44,12 +57,20 @@ public class Course {
         this.courseTime = courseTime;
     }
 
-    public String getCoach() {
-        return coach;
+    public Integer getCoachAccount() {
+        return coachAccount;
     }
 
-    public void setCoach(String coach) {
-        this.coach = coach;
+    public void setCoachAccount(Integer coachAccount) {
+        this.coachAccount = coachAccount;
+    }
+
+    public String getCoachName() {
+        return coachName;
+    }
+
+    public void setCoachName(String coachName) {
+        this.coachName = coachName;
     }
 
     public Integer getPrice() {
@@ -75,7 +96,8 @@ public class Course {
                 ", courseName='" + courseName + '\'' +
                 ", courseBegin='" + courseBegin + '\'' +
                 ", courseTime='" + courseTime + '\'' +
-                ", coach='" + coach + '\'' +
+                ", coachId=" + coachAccount +
+                ", coachName='" + coachName + '\'' +
                 ", price=" + price +
                 ", courseType='" + courseType + '\'' +
                 '}';
