@@ -7,6 +7,7 @@ import com.milotnt.service.FeedbackEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -30,10 +31,10 @@ public class FeedbackEmployeeServiceImpl implements FeedbackEmployeeService {
         return feedbackMapper.insertFeedbackEmployee(feedbackEmployee);
     }
 
-    @Override
-    public Boolean updateByFeedbackId(FeedbackEmployee feedbackEmployee) {
-        return feedbackMapper.updateByFeedbackId(feedbackEmployee);
-    }
+//    @Override
+//    public Boolean updateByFeedbackId(FeedbackEmployee feedbackEmployee) {
+//        return feedbackMapper.updateByFeedbackId(feedbackEmployee);
+//    }
 
     @Override
     public List<FeedbackEmployee> selectByFeedbackId(Integer feedbackId) {
@@ -49,4 +50,15 @@ public class FeedbackEmployeeServiceImpl implements FeedbackEmployeeService {
     public List<FeedbackEmployee> selectByEmployeeAccount(Integer employeeAccount) {
         return feedbackMapper.selectByEmployeeAccount(employeeAccount);
     }
+
+    @Override
+    public List<FeedbackEmployee> selectByContent(String content) {
+        return feedbackMapper.selectByContent(content);
+    }
+
+    @Override
+    public List<FeedbackEmployee> selectByTimeCreate(Timestamp timeCreated) {
+        return feedbackMapper.selectByTimeCreate(timeCreated);
+    }
+
 }

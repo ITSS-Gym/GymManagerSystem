@@ -8,22 +8,22 @@ public class FeedbackEmployee {
 
     private Integer memberAccount;
 
-    private String memberName;
+    //private String memberName;
 
     private Integer employeeAccount;
 
-    private String employeeName;
+    //private String employeeName;
 
     private String content;
 
     private Timestamp timeCreated;
 
-    public FeedbackEmployee(Integer feedbackId, Integer memberAccount, String memberName, Integer employeeAccount, String employeeName, String content, Timestamp timeCreated) {
+    public FeedbackEmployee(Integer feedbackId, Integer memberAccount, Integer employeeAccount, String content, Timestamp timeCreated) {
         this.feedbackId = feedbackId;
         this.memberAccount = memberAccount;
-        this.memberName = memberName;
+        //this.memberName = memberName;
         this.employeeAccount = employeeAccount;
-        this.employeeName = employeeName;
+        //this.employeeName = employeeName;
         this.content = content;
         this.timeCreated = timeCreated;
     }
@@ -44,13 +44,13 @@ public class FeedbackEmployee {
         this.memberAccount = memberAccount;
     }
 
-    public String getMemberName() {
-        return memberName;
-    }
-
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
+//    public String getMemberName() {
+//        return memberName;
+//    }
+//
+//    public void setMemberName(String memberName) {
+//        this.memberName = memberName;
+//    }
 
     public Integer getEmployeeAccount() {
         return employeeAccount;
@@ -60,13 +60,13 @@ public class FeedbackEmployee {
         this.employeeAccount = employeeAccount;
     }
 
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
+//    public String getEmployeeName() {
+//        return employeeName;
+//    }
+//
+//    public void setEmployeeName(String employeeName) {
+//        this.employeeName = employeeName;
+//    }
 
     public String getContent() {
         return content;
@@ -89,9 +89,9 @@ public class FeedbackEmployee {
         return "FeedbackEmployee{" +
                 "feedbackId=" + feedbackId +
                 ", memberAccount=" + memberAccount +
-                ", memberName='" + memberName + '\'' +
+                //", memberName='" + memberName + '\'' +
                 ", employeeAccount=" + employeeAccount +
-                ", employeeName='" + employeeName + '\'' +
+                //", employeeName='" + employeeName + '\'' +
                 ", content='" + content + '\'' +
                 ", timeCreated=" + timeCreated +
                 '}';

@@ -153,11 +153,11 @@ public class UserController {
     }
 
     // Modify Personal Information
-    @RequestMapping("/updateFeedback")
-    public String updateUserFeedback(FeedbackEmployee feedbackEmployee) {
-        feedbackEmployeeService.updateByFeedbackId(feedbackEmployee);
-        return "redirect:userFeedback";
-    }
+//    @RequestMapping("/updateFeedback")
+//    public String updateUserFeedback(FeedbackEmployee feedbackEmployee) {
+//        feedbackEmployeeService.updateByFeedbackId(feedbackEmployee);
+//        return "redirect:userFeedback";
+//    }
 
     @RequestMapping("delUserFeedback")
     public String deleteUserFeedback(Integer feedbackId) {
