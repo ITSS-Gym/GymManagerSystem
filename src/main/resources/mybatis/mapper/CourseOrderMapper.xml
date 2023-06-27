@@ -10,8 +10,8 @@
     </select>
 
     <insert id="insertCourseOrder" parameterType="courseOrder">
-        INSERT INTO course_order(course_order_id, course_id, course_name, coach, member_name, member_account, course_begin)
-        VALUES (#{courseOrderId}, #{courseId}, #{courseName}, #{coach}, #{memberName}, #{memberAccount}, #{courseBegin})
+        INSERT INTO course_order(course_id, course_name, coach, member_name, member_account, course_begin, status)
+        VALUES (#{courseId}, #{courseName}, #{coach}, #{memberName}, #{memberAccount}, #{courseBegin}, #{status})
     </insert>
 
     <select id="selectCourseOrderByMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
@@ -37,6 +37,18 @@
         SELECT *
         FROM course_order
         WHERE course_id = #{courseId}
+    </select>
+
+    <select id="updateStatusByOrderId" parameterType="java.lang.Integer">
+        UPDATE course_order
+        SET status = "accepted"
+        WHERE course_order_id = #{courseOrderId}
+    </select>
+
+    <select id="deleteOrderByOrderId" parameterType="java.lang.Integer">
+        DELETE
+        FROM course_order
+        WHERE course_order_id = #{courseOrderId}
     </select>
 
 </mapper>

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.milotnt.mapper.ClassTableMapper">
+<mapper namespace="com.milotnt.mapper.CourseMapper">
 
-    <select id="findAll" resultType="classTable">
+    <select id="findAll" resultType="course">
         SELECT *
         FROM class_table
     </select>
@@ -15,12 +15,12 @@
         WHERE class_id = #{classId}
     </delete>
 
-    <insert id="insertClass" parameterType="classTable">
+    <insert id="insertClass" parameterType="course">
         INSERT INTO class_table(class_id, class_name, class_begin, class_time, coach)
         VALUES (#{classId}, #{className}, #{classBegin}, #{classTime}, #{coach})
     </insert>
 
-    <select id="selectByClassId" parameterType="java.lang.Integer" resultType="classTable">
+    <select id="selectByClassId" parameterType="java.lang.Integer" resultType="course">
         SELECT *
         FROM class_table
         WHERE class_id = #{classId}

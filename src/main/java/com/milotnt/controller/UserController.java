@@ -1,11 +1,7 @@
 package com.milotnt.controller;
 
-import com.milotnt.pojo.ClassOrder;
-import com.milotnt.pojo.ClassTable;
-import com.milotnt.pojo.Member;
-import com.milotnt.service.ClassOrderService;
-import com.milotnt.service.ClassTableService;
-import com.milotnt.service.MemberService;
+import com.milotnt.pojo.*;
+import com.milotnt.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,26 +11,27 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/21
- */
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    private ClassTableService classTableService;
+    private CourseService courseService;
 
     @Autowired
     private MemberService memberService;
 
     @Autowired
-    private ClassOrderService classOrderService;
+    private CourseOrderService courseOrderService;
+
+    @Autowired
+    private FeedbackEmployeeService feedbackEmployeeService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
 
-    //跳转个人信息页面
+    // Jump to personal information page
     @RequestMapping("/toUserInfo")
     public String toUserInformation(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
@@ -42,7 +39,7 @@ public class UserController {
         return "userInformation";
     }
 
-    //跳转修改个人信息页面
+    // Jump to modify personal information page
     @RequestMapping("/toUpdateInfo")
     public String toUpdateUserInformation(HttpSession session, Model model) {
         Member member = (Member) session.getAttribute("user");
@@ -50,7 +47,7 @@ public class UserController {
         return "updateUserInformation";
     }
 
-    //修改个人信息
+    // Modify Personal Information
     @RequestMapping("/updateInfo")
     public String updateUserInformation(HttpSession session, Member member) {
         Member member1 = (Member) session.getAttribute("user");
@@ -64,62 +61,107 @@ public class UserController {
         return "userInformation";
     }
 
-    //跳转我的课程页面
-    @RequestMapping("/toUserClass")
-    public String toUserClass(Model model, HttpSession session) {
+    // Jump to my course page
+    @RequestMapping("/toUserCourse")
+    public String toUserCourse(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         Integer memberAccount = member.getMemberAccount();
-        List<ClassOrder> classOrderList = classOrderService.selectClassOrderByMemberAccount(memberAccount);
-        model.addAttribute("classOrderList", classOrderList);
-        return "userClass";
+        List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
+        model.addAttribute("courseOrderList", courseOrderList);
+        return "userCourse";
     }
 
-    //退课
-    @RequestMapping("delUserClass")
-    public String deleteUserClass(Integer classOrderId) {
-        classOrderService.deleteByClassOrderId(classOrderId);
-        return "redirect:toUserClass";
+    // Quit course
+    @RequestMapping("delUserCourse")
+    public String deleteUserCourse(Integer courseOrderId) {
+        courseOrderService.deleteByCourseOrderId(courseOrderId);
+        return "redirect:toUserCourse";
     }
 
-    //跳转报名选课页面
-    @RequestMapping("/toApplyClass")
-    public String toUserApplyClass(Model model, HttpSession session) {
+    // Jump to the registration page
+    @RequestMapping("/toApplyCourse")
+    public String toUserApplyCourse(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
-        List<ClassTable> classList = classTableService.findAll();
+        List<Course> courseList = courseService.findAll();
         model.addAttribute("member", member);
-        model.addAttribute("classList", classList);
+        model.addAttribute("courseList", courseList);
 
         Integer memberAccount = member.getMemberAccount();
-        List<ClassOrder> classOrderList = classOrderService.selectClassOrderByMemberAccount(memberAccount);
-        List<Integer> classOrderIdList = classOrderList.stream().map(ClassOrder::getClassId).collect(Collectors.toList());
-        model.addAttribute("classOrderIdList", classOrderIdList);
+        List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
+        List<Integer> courseOrderIdList = courseOrderList.stream().map(CourseOrder::getCourseId).collect(Collectors.toList());
+        model.addAttribute("courseOrderIdList", courseOrderIdList);
 
-        return "userApplyClass";
+        return "userApplyCourse";
     }
 
-    //报名选课
-    @RequestMapping("/applyClass")
-    public String userApplyClass(Integer classId, Model model, HttpSession session) {
-        ClassTable classTable = classTableService.selectByClassId(classId);
+    // Sign up for courses
+    @RequestMapping("/applyCourse")
+    public String userApplyCourse(Integer courseId, Model model, HttpSession session) {
+        Course course = courseService.selectByCourseId(courseId);
         Member member = (Member) session.getAttribute("user");
 
-        Integer classId1 = classTable.getClassId();
-        String className = classTable.getClassName();
-        String coach = classTable.getCoach();
-        String classBegin = classTable.getClassBegin();
+        Integer courseId1 = course.getCourseId();
+        String courseName = course.getCourseName();
+        String coach = course.getCoach();
+        String courseBegin = course.getCourseBegin();
         String memberName = member.getMemberName();
         Integer memberAccount = member.getMemberAccount();
 
-        ClassOrder classOrder = new ClassOrder(classId1, className, coach, memberName, memberAccount, classBegin);
+        CourseOrder courseOrder = new CourseOrder(courseId1, courseName, coach, memberName, memberAccount, courseBegin);
         Integer memberAccount1 = member.getMemberAccount();
-        ClassOrder classOrder1 = classOrderService.selectMemberByClassIdAndMemberAccount(classId1, memberAccount1);
+        CourseOrder courseOrder1 = courseOrderService.selectMemberByCourseIdAndMemberAccount(courseId1, memberAccount1);
 
-        if (classOrder1 == null) {
-            classOrderService.insertClassOrder(classOrder);
+        if (courseOrder1 == null) {
+            courseOrderService.insertCourseOrder(courseOrder);
         }
 
-        return "redirect:toUserClass";
+        return "redirect:toUserCourse";
     }
 
+    // Jump to User Feedback Page
+    @RequestMapping("/toUserFeedback")
+    public String toUserFeedback(Model model, HttpSession session) {
+        Member member = (Member) session.getAttribute("user");
+        model.addAttribute("member", member);
+        Integer memberAccount = member.getMemberAccount();
+        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByMemberAccount(memberAccount);
+        model.addAttribute("feedbackByAccountList", feedbackEmployeeList);
+        return "userFeedback";
+    }
+
+    @RequestMapping("toAddFeedback")
+    public String toAddFeedback(Model model, HttpSession session) {
+        Member member = (Member) session.getAttribute("user");
+        model.addAttribute("member", member);
+        List<Employee> employeeList = employeeService.findAll();
+        model.addAttribute("employeeList", employeeList);
+        return "addFeedback";
+    }
+
+    @RequestMapping("addFeedback")
+    public String addFeedback(FeedbackEmployee feedbackEmployee) {
+        feedbackEmployeeService.insertFeedbackEmployee(feedbackEmployee);
+        return "redirect:userFeedback";
+    }
+
+    @RequestMapping("/toUpdateFeedback")
+    public String toUpdateUserFeedback(Integer feedbackId, Model model) {
+        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByFeedbackId(feedbackId);
+        model.addAttribute("feedbackList", feedbackEmployeeList);
+        return "updateUserFeedback";
+    }
+
+    // Modify Personal Information
+    @RequestMapping("/updateFeedback")
+    public String updateUserFeedback(FeedbackEmployee feedbackEmployee) {
+        feedbackEmployeeService.updateByFeedbackId(feedbackEmployee);
+        return "redirect:userFeedback";
+    }
+
+    @RequestMapping("delUserFeedback")
+    public String deleteUserFeedback(Integer feedbackId) {
+        feedbackEmployeeService.deleteByFeedbackId(feedbackId);
+        return "redirect:toUserFeedback";
+    }
 }
