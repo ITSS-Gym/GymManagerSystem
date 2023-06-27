@@ -74,10 +74,23 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
                     Course
                 </a>
-                <a class="nav-link" th:href="@{/class/selRoom}">
+                <a class="nav-link" th:href="@{/room/selRoom}">
                     <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
                     Room
                 </a>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
+                    Feedback
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" th:href="@{/feedback/selFeedbackEmployee}">Employee</a>
+                        <a class="nav-link" th:href="@{/feedback/selFeedbackEquipment}">Equipment</a>
+                        <a class="nav-link" th:href="@{/feedback/selFeedbackCourse}">Course</a>
+                        <a class="nav-link" th:href="@{/feedback/selFeedbackRoom}">Room</a>
+                    </nav>
+                </div>
 
                 <!--link area-->
                 <div class="sb-sidenav-menu-heading">Link</div>
