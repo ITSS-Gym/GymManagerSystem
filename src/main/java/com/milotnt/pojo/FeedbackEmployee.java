@@ -18,16 +18,6 @@ public class FeedbackEmployee {
 
     private Timestamp timeCreated;
 
-    public FeedbackEmployee(Integer feedbackId, Integer memberAccount, String memberName, Integer employeeAccount, String employeeName, String content, Timestamp timeCreated) {
-        this.feedbackId = feedbackId;
-        this.memberAccount = memberAccount;
-        this.memberName = memberName;
-        this.employeeAccount = employeeAccount;
-        this.employeeName = employeeName;
-        this.content = content;
-        this.timeCreated = timeCreated;
-    }
-
     public Integer getFeedbackId() {
         return feedbackId;
     }

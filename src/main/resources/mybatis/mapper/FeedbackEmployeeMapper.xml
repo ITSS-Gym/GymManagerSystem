@@ -27,7 +27,7 @@
         UPDATE feedback_employee
         SET member_account = #{memberAccount},
         employee_account   = #{employeeAccount},
-        content            = #{content},
+        content            = #{content}
         WHERE feedback_id = #{feedbackId}
     </update>
 

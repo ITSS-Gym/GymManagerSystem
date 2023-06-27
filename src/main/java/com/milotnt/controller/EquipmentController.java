@@ -38,16 +38,14 @@ public class EquipmentController {
     public String toUpdateEquipment(Integer equipmentId, Model model) {
         List<Equipment> equipmentList = equipmentService.selectByEquipmentId(equipmentId);
         model.addAttribute("equipmentList", equipmentList);
-        model.addAttribute("equipmentId", equipmentId);
         return "updateEquipment";
     }
 
     // Modify equipment
     @RequestMapping("/updateEquipment")
-    public String updateEquipment(Integer equipmentId, Equipment equipment) {
-        equipment.setEquipmentId(equipmentId);
+    public String updateEquipment(Equipment equipment) {
         equipmentService.updateEquipmentByEquipmentId(equipment);
-        return "redirect:../selEquipment";
+        return "redirect:selEquipment";
     }
 
     // Jump to the new equipment page

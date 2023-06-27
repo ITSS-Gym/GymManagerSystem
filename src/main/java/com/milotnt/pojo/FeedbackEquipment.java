@@ -2,26 +2,27 @@ package com.milotnt.pojo;
 
 import java.sql.Timestamp;
 
-public class FeedbackCourse {
-    private Integer feedbackId;
+public class FeedbackEquipment {
+
+    private int feedbackId;
 
     private Integer memberAccount;
 
     private String memberName;
 
-    private Integer courseId;
+    private Integer equipmentId;
 
-    private String courseName;
+    private String equipmentName;
 
     private String content;
 
     private Timestamp timeCreated;
 
-    public Integer getFeedbackId() {
+    public int getFeedbackId() {
         return feedbackId;
     }
 
-    public void setFeedbackId(Integer feedbackId) {
+    public void setFeedbackId(int feedbackId) {
         this.feedbackId = feedbackId;
     }
 
@@ -41,20 +42,20 @@ public class FeedbackCourse {
         this.memberName = memberName;
     }
 
-    public Integer getCourseId() {
-        return courseId;
+    public Integer getEquipmentId() {
+        return equipmentId;
     }
 
-    public void setCourseId(Integer courseId) {
-        this.courseId = courseId;
+    public void setEquipmentId(Integer equipmentId) {
+        this.equipmentId = equipmentId;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getEquipmentName() {
+        return equipmentName;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setEquipmentName(String equipmentName) {
+        this.equipmentName = equipmentName;
     }
 
     public String getContent() {
@@ -75,12 +76,12 @@ public class FeedbackCourse {
 
     @Override
     public String toString() {
-        return "FeedbackCourse{" +
+        return "FeedbackEquipment{" +
                 "feedbackId=" + feedbackId +
                 ", memberAccount=" + memberAccount +
                 ", memberName='" + memberName + '\'' +
-                ", courseId=" + courseId +
-                ", courseName='" + courseName + '\'' +
+                ", equipmentId=" + equipmentId +
+                ", equipmentName='" + equipmentName + '\'' +
                 ", content='" + content + '\'' +
                 ", timeCreated=" + timeCreated +
                 '}';

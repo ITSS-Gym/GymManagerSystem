@@ -47,9 +47,6 @@ CREATE TABLE `member`  (
   `member_height` int NULL DEFAULT NULL COMMENT 'Height',
   `member_weight` int NULL DEFAULT NULL COMMENT 'weight',
   `member_phone` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'phone',
---  `card_time` date NULL DEFAULT NULL COMMENT 'card time',
---  `card_class` int NULL DEFAULT NULL COMMENT 'card class',
---  `card_next_class` int NULL DEFAULT NULL COMMENT 'card next class',
   PRIMARY KEY (`member_account`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
@@ -134,11 +131,7 @@ DROP TABLE IF EXISTS `course_order`;
 CREATE TABLE `course_order`  (
   `course_order_id` int NOT NULL AUTO_INCREMENT COMMENT 'Registration Form id',
   `course_id` int NULL DEFAULT NULL COMMENT 'Course id',
---  `course_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Name',
---  `coach` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Coach Account',
---  `member_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Member Name',
   `member_account` int NULL DEFAULT NULL COMMENT 'Member Account',
---  `course_begin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Start time',
   `status` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'accepted/waiting',
   PRIMARY KEY (`course_order_id`) USING BTREE,
   FOREIGN KEY (`course_id`) REFERENCES `course`(`course_id`),

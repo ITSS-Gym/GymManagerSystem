@@ -1,24 +1,26 @@
-package com.milotnt.mapper;
+package com.milotnt.service;
 
 import com.milotnt.pojo.FeedbackCourse;
-import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-@Mapper
-public interface FeedbackCourseMapper {
+public interface FeedbackCourseService {
 
     List<FeedbackCourse> findAll();
 
+    // Delete device by id
     Boolean deleteByFeedbackId(Integer feedbackId);
 
+    // Add equipment
     Boolean insertFeedbackCourse(FeedbackCourse feedbackCourse);
 
+    // Modify device information according to id
     Boolean updateByFeedbackId(FeedbackCourse feedbackCourse);
 
+    // Query devices by id
     List<FeedbackCourse> selectByFeedbackId(Integer feedbackId);
 
     List<FeedbackCourse> selectByMemberAccount(Integer memberAccount);
 
-    List<FeedbackCourse> selectByCourseId(Integer courseId);
+    List<FeedbackCourse> selectByCourseId(Integer CourseId);
 }
