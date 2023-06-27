@@ -22,7 +22,7 @@
 
     <update id="updateRoomByRoomId" parameterType="room">
         UPDATE room
-        SET room_name     = #{roomName},
+        SET room_name     = #{roomName}
         WHERE room_id = #{roomId}
     </update>
 

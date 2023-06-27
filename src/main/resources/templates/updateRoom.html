@@ -19,13 +19,13 @@
 
         <div class="card mb-4">
 
-          <form th:action="@{/room/updateRoom}" method="post">
-            <div th:each="equ:${roomList}">
+          <form th:action="@{/room/updateRoom/(roomId=${roomId})}" method="post">
+            <div th:each="room:${roomList}">
               <table class="table table-hover">
                 <tr>
                   <td text-align="center">Room ID：</td>
                   <td><input type="text" class="form-control" readonly="readonly"
-                             th:value="${room.roomId}" name="equipmentId">
+                             th:value="${room.roomId}" name="RoomId">
                   </td>
                 </tr>
                 <tr>
