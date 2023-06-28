@@ -60,8 +60,8 @@ public class FeedbackController {
 
     //delete employee
     @RequestMapping("/delFeedbackEmployee")
-    public String delFeedbackEmployee(Integer employeeAccount) {
-        feedbackemployeeService.deleteByFeedbackId(employeeAccount);
+    public String delFeedbackEmployee(Integer feedbackID) {
+        feedbackemployeeService.deleteByFeedbackId(feedbackID);
         return "redirect:selFeedbackEmployee";
     }
 

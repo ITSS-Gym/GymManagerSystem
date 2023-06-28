@@ -1,31 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="adminCommon::common-header">
-    <style>
-.topnav {
-  overflow: hidden;
-  background-color: gray;
-}
-
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: red;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: black;
-  color: white;
-}
-</style>
 </head>
 <body class="sb-nav-fixed">
 <nav th:replace="adminCommon::common-navbar"></nav>
@@ -47,19 +22,16 @@
                         <i class="fas fa-table me-1"></i>
                         Feedback Information List
                     </div>
-                    <div class="topnav">
-                        <a class="active" href="">Employee</a>
-                        <a href="">Equipment</a>
-                        <a href="">Course</a>
-                        <a href="">room</a>
-                    </div>
+
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
                             <tr>
                                 <th>Feedback ID</th>
                                 <th>Member Account</th>
+                                <th>Member Name</th>
                                 <th>Employee Account</th>
+                                <th>Employee Name</th>
                                 <th>Content</th>
                                 <th>Time Create</th>
                                 <th>Operation</th>
@@ -70,7 +42,9 @@
                             <tr th:each="fee:${feedbackList}">
                                 <td th:text="${fee.feedbackId}">Feedback ID</td>
                                 <td th:text="${fee.memberAccount}">Member Account</td>
+                                <td th:text="${fee.memberAccount}">Member Name</td>
                                 <td th:text="${fee.employeeAccount}">Employee Account</td>
+                                <td th:text="${fee.employeeAccount}">Employee Name</td>
                                 <td th:text="${fee.content}">Content</td>
                                 <td th:text="${fee.timeCreated}">Time Create</td>
                                 <td>
