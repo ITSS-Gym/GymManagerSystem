@@ -13,25 +13,12 @@
 
         <ol class="breadcrumb mb-4">
           <li class="breadcrumb-item"><a th:href="@{/toAdminMain}">HomePage</a></li>
-
           <li class="breadcrumb-item"><a th:href="@{/room/selRoom}">Room Management</a></li>
-          <li class="breadcrumb-item active">Update Room Information</li>
-
-          <li class="breadcrumb-item"><a th:href="@{/room/selRoom}">Room Management</a></li>
-          <li class="breadcrumb-item active">Update Room Information</li>
-
+          <li class="breadcrumb-item active">Update Equipment Information</li>
         </ol>
 
         <div class="card mb-4">
 
-          <form th:action="@{/room/updateRoom/(roomId=${roomId})}" method="post">
-            <div th:each="room:${roomList}">
-              <table class="table table-hover">
-                <tr>
-                  <td text-align="center">Name:</td>
-                  <td><input type="text" class="form-control" th:value="${room.roomName}"
-                             name="roomName"></td>
-                </tr>
           <form th:action="@{/room/updateRoom}" method="post">
             <div th:each="room:${roomList}">
               <table class="table table-hover">
