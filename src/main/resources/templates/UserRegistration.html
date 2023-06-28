@@ -20,11 +20,12 @@
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
 
-                <form class="mx-1 mx-md-4">
+                <form th:action="@{/userRegistration}" method="post" name="registrationForm"
+                      onsubmit="return beforeSubmit(this)">
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example1c" class="form-control" />
+                      <input type="text" id="form3Example1c" class="form-control" name="memberAccount"/>
                       <label class="form-label" for="form3Example1c">Account</label>
                     </div>
                   </div>
@@ -32,54 +33,22 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example2c" class="form-control" />
+                      <input type="text" id="form3Example2c" class="form-control" name="memberName"/>
                       <label class="form-label" for="form3Example2c">Name</label>
                     </div>
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="form3Example3c"  class="form-control" />
-                      <label class="form-label" for="form3Example3c">Age</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example4c" class="form-control" />
-                      <label class="form-label" for="form3Example4c">Gender</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example5c" class="form-control" />
-                      <label class="form-label" for="form3Example5c">Height</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example6c" class="form-control" />
-                      <label class="form-label" for="form3Example6c">Weight</label>
-                    </div>
-                  </div>
-
-                  <div class="d-flex flex-row align-items-center mb-4">
-                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
-                    <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example7c" class="form-control" onblur="validatePhone()"/>
+                      <input type="tel" id="form3Example7c" class="form-control" name="memberPhone"/>
                       <label class="form-label" for="form3Example7c" >Phone</label>
                     </div>
                   </div>
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example8c" class="form-control" />
+                      <input type="password" id="form3Example8c" class="form-control" name="memberPassword"/>
                       <label class="form-label" for="form3Example8c">Password</label>
                     </div>
                   </div>
@@ -87,22 +56,23 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="form3Example8cd" class="form-control" onblur="checkPasswordMatch()" />
+                      <input type="password" id="form3Example8cd" class="form-control" name="memberPasswordRepeat" />
                       <label class="form-label" for="form3Example8cd">Repeat your password</label>
                     </div>
                   </div>
 
                   <div class="form-check d-flex justify-content-center mb-5">
-                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" onblur="submitForm()" />
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c" name="TermOfService"/>
                     <label class="form-check-label" >
                       I agree all statements in <a href="#!">Terms of service</a>
                     </label>
                   </div>
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" class="btn btn-primary btn-lg">Register</button>
+                    <input type="submit" class="btn btn-success" value="Register">
+                    <a class="btn btn-primary" th:href="@{/toUserLogin}">Member Login</a>
+                    <a class="btn btn-primary" th:href="@{/toAdminLogin}">Admin Login</a>
                   </div>
-
                 </form>
 
               </div>
@@ -116,32 +86,26 @@
     </div>
   </div>
 <script>
-  function checkPasswordMatch() {
-  var password = document.getElementById("form3Example8c").value;
-  var repeatPassword = document.getElementById("form3Example8cd").value;
+  function beforeSubmit(registrationForm) {
+    var phonePattern = /^[0][0-9]{9}$/; //
 
-  if (password !== repeatPassword) {
-    alert("Password incorrect!");
+    if (!phonePattern.test(registrationForm.memberPhone.value)) {
+      alert("Invalid phone number! Please enter 10 digits correctly.");
+      return false;
+    }
+
+    if (registrationForm.memberPassword.value !== registrationForm.memberPasswordRepeat.value) {
+      alert("Password re-input incorrect!");
+      return false;
+    }
+
+    if (!registrationForm.TermOfService.checked) {
+      alert("You must agree to the terms of service before continuing!");
+      return false;
+    }
+
+    return true;
   }
-}
-
-function submitForm() {
-  var termsCheckbox = document.getElementById("form2Example3c");
-
-  if (!termsCheckbox.checked) {
-    alert("You must agree to the terms of service before continuing!");
-    return;
-  }
-}
-
-function validatePhone() {
-  var phoneInput = document.getElementById("form3Example7c");
-  var phonePattern = /^\d{10}$/; //
-
-  if (!phonePattern.test(phoneInput.value)) {
-    alert("Invalid phone number! Please enter 10 digits correctly.");
-  }
-}
 
 </script>
 </body>
