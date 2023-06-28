@@ -49,8 +49,6 @@
                                 <th scope="col" class="border-0">Contact Information</th>
                                 <th scope="col" class="border-0">Height</th>
                                 <th scope="col" class="border-0">Weight</th>
-                                <th scope="col" class="border-0">Bought Course</th>
-                                <th scope="col" class="border-0">Remaining Hours</th>
                                 <th scope="col" class="border-0">Operation</th>
                             </tr>
                             </thead>
@@ -65,8 +63,6 @@
                                 <td th:text="${mem.memberPhone}">Contact Information</td>
                                 <td th:text="${mem.memberHeight}">Height</td>
                                 <td th:text="${mem.memberWeight}">Weight</td>
-                                <td th:text="${mem.cardClass}">Card</td>
-                                <td th:text="${mem.cardNextClass}">Remaining Hours</td>
                                 <td>
                                     <a th:href="@{/member/toUpdateMember(memberAccount=${mem.memberAccount})}">
                                         <input type="button" class="btn btn-sm btn-outline-primary" value="Update">

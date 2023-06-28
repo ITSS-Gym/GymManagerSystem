@@ -5,19 +5,27 @@
 <mapper namespace="com.milotnt.mapper.CourseOrderMapper">
 
     <select id="findAll" resultType="courseOrder">
-        SELECT *
+        SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
+               course_order.member_account, member_name, course_begin, status
         FROM course_order
+        INNER JOIN course ON course_order.course_id = course.course_id
+        INNER JOIN member ON course_order.member_account = member.member_account
+        INNER JOIN employee ON course.coach_account = employee.employee_account
     </select>
 
     <insert id="insertCourseOrder" parameterType="courseOrder">
-        INSERT INTO course_order(course_id, course_name, coach, member_name, member_account, course_begin, status)
-        VALUES (#{courseId}, #{courseName}, #{coach}, #{memberName}, #{memberAccount}, #{courseBegin}, #{status})
+        INSERT INTO course_order(course_id, member_account, status)
+        VALUES (#{courseId}, #{memberAccount}, #{status})
     </insert>
 
     <select id="selectCourseOrderByMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
-        SELECT *
+        SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
+               course_order.member_account, member_name, course_begin, status
         FROM course_order
-        WHERE member_account = #{memberAccount}
+        INNER JOIN course ON course_order.course_id = course.course_id
+        INNER JOIN member ON course_order.member_account = member.member_account
+        INNER JOIN employee ON course.coach_account = employee.employee_account
+        WHERE course_order.member_account = #{memberAccount}
     </select>
 
     <delete id="deleteByCourseOrderId" parameterType="java.lang.Integer">
@@ -27,16 +35,24 @@
     </delete>
 
     <select id="selectMemberByCourseIdAndMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
-        SELECT *
+        SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
+               course_order.member_account, member_name, course_begin, status
         FROM course_order
-        WHERE course_id = #{courseId}
-          AND member_account = #{memberAccount}
+        INNER JOIN course ON course_order.course_id = course.course_id
+        INNER JOIN member ON course_order.member_account = member.member_account
+        INNER JOIN employee ON course.coach_account = employee.employee_account
+        WHERE course_order.course_id = #{courseId}
+          AND course_order.member_account = #{memberAccount}
     </select>
 
     <select id="selectMemberOrderList" parameterType="java.lang.Integer" resultType="courseOrder">
-        SELECT *
+        SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
+               course_order.member_account, member_name, course_begin, status
         FROM course_order
-        WHERE course_id = #{courseId}
+        INNER JOIN course ON course_order.course_id = course.course_id
+        INNER JOIN member ON course_order.member_account = member.member_account
+        INNER JOIN employee ON course.coach_account = employee.employee_account
+        WHERE course_order.course_id = #{courseId}
     </select>
 
     <select id="updateStatusByOrderId" parameterType="java.lang.Integer">
