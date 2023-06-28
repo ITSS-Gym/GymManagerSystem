@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
@@ -80,6 +81,27 @@ public class LoginController {
         }
         model.addAttribute("msg", "The account or password you entered is wrong, please re-enter!");
         return "userLogin";
+    }
+
+    @RequestMapping("/toUserRegistration")
+    public String toUserRegistration() {
+        return "userRegistration";
+    }
+
+    @RequestMapping("/userRegistration")
+    public String userRegistration(Member member, Model model, HttpSession session) {
+        List<Member> memberList = memberService.selectByMemberAccount(member.getMemberAccount());
+        if (memberList.isEmpty()) {
+            memberService.insertMember(member);
+            model.addAttribute("member", member);
+            model.addAttribute("msg", "Register successfully!");
+            session.setAttribute("user", member);
+            return "userMain";
+        }
+        else {
+            model.addAttribute("msg", "Duplicate account! Please change your Account!");
+            return "userRegistration";
+        }
     }
 
     // Jump to admin home page
