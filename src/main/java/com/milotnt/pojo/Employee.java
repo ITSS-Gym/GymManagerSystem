@@ -23,7 +23,6 @@ public class Employee {
         this.employeeMessage = employeeMessage;
     }
 
-
     public Integer getEmployeeAccount() {
         return employeeAccount;
     }
