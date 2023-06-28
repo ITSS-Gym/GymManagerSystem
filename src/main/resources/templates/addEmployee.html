@@ -3,7 +3,7 @@
 <head th:replace="adminCommon::common-header">
 
 </head>
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed" onload='Message()'>
 <nav th:replace="adminCommon::common-navbar"></nav>
 <div id="layoutSidenav">
     <div th:replace="adminCommon::common-sidenav"></div>
@@ -69,7 +69,7 @@
 </div>
 
 <div th:include="adminCommon::common-scripts"></div>
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
     function beforeSubmit(addForm) {
         if (addForm.employeeName.value == "") {
             alert("Please enter name！")
@@ -90,6 +90,12 @@
         }
         return true;
     }
+  function Message() {
+    var message = [[${msg}]];
+    if (message != null) {
+        alert(message);
+    }
+  }
 </script>
 </body>
 </html>

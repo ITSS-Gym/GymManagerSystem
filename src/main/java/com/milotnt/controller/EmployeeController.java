@@ -35,14 +35,12 @@ public class EmployeeController {
 
     // New employee
     @RequestMapping("/addEmployee")
-    public String addEmployee(Employee employee) {
-        //The job number is randomly generated
-        Random random = new Random();
-        String account1 = "1010";
-        for (int i = 0; i < 5; i++) {
-            account1 += random.nextInt(10);
+    public String addEmployee(Employee employee, Model model) {
+        List<Employee> employeeList = employeeService.selectByEmployeeAccount(employee.getEmployeeAccount());
+        if (!employeeList.isEmpty()) {
+            model.addAttribute("msg", "Duplicate Account!");
+            return "addEmployee";
         }
-        Integer account = Integer.parseInt(account1);
 
         //get current date
         Date date = new Date();
