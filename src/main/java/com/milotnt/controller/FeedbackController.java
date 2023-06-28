@@ -21,7 +21,7 @@ public class FeedbackController {
 
     // Query employees
     @RequestMapping("/selFeedbackEmployee")
-    public String selectEmployee(Model model) {
+    public String selectFeedbackEmployee(Model model) {
         List<FeedbackEmployee> feedbackemployeeList = feedbackemployeeService.findAll();
         model.addAttribute("feedbackemployeeList", feedbackemployeeList);
         return "selectFeedbackEmployee";
@@ -79,6 +79,11 @@ public class FeedbackController {
 //        employeeService.updateMemberByEmployeeAccount(employee);
 //        return "redirect:selEmployee";
 //    }
-
+//    @RequestMapping("selFeedbackCourse")
+//    public String selectFeedbackCourse(Model model) {
+//        List<FeedbackCourse> feedbackcourseList = feedbackcourseService.findAll();
+//        model.addAttribute("feedbackcourseList", feedbackcourseList);
+//        return "selectFeebackCourse";
+//    }
 }
 
