@@ -39,7 +39,7 @@ INSERT INTO `room` (`room_name`) VALUES ("yoga");
 -- ----------------------------
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member`  (
-  `member_account` int NOT NULL COMMENT 'Member Account',
+  `member_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL UNIQUE COMMENT 'Member Account',
   `member_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '123456' COMMENT 'Member Password',
   `member_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Member Name',
   `member_gender` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '' COMMENT 'Member Gender',
@@ -53,25 +53,25 @@ CREATE TABLE `member`  (
 -- ----------------------------
 -- Records of member
 -- ----------------------------
-INSERT INTO `member` VALUES (202009867, '123456', 'Nguyễn', 'female', 24, 182, 60, '0515548482');
-INSERT INTO `member` VALUES (202100788, '123456', 'Thái', 'male', 31, 178, 60, '0131554873');
-INSERT INTO `member` VALUES (202132539, '123456', 'Bình', 'male', 31, 178, 60, '0154875489');
-INSERT INTO `member` VALUES (202186416, '123456', 'Hoàng', 'female', 23, 160, 45, '0124576857');
-INSERT INTO `member` VALUES (202106725, '123456', 'Huy', 'male', 24, 178, 88, '0758784959');
-INSERT INTO `member` VALUES (202183406, '123456', 'Hiếu', 'female', 19, 170, 60, '0786457488');
-INSERT INTO `member` VALUES (202176587, '123456', 'Dương', 'male', 33, 177, 90, '0767546666');
-INSERT INTO `member` VALUES (202156754, '123456', 'Ronaldo', 'male', 36, 166, 67, '0786532448');
-INSERT INTO `member` VALUES (202153468, '123456', 'Messi', 'female', 25, 173, 44, '0786457124');
-INSERT INTO `member` VALUES (202121345, '123456', 'Mbappe', 'male', 28, 160, 40, '0754457488');
-INSERT INTO `member` VALUES (202189776, '123456', 'Haland', 'female', 27, 170, 50, '0986337489');
-INSERT INTO `member` VALUES (202123664, '123456', 'Alice', 'female', 25, 165, 51, '0986457423');
+INSERT INTO `member` VALUES ('202009867', '123456', 'Nguyễn', 'female', 24, 182, 60, '0515548482');
+INSERT INTO `member` VALUES ('202100788', '123456', 'Thái', 'male', 31, 178, 60, '0131554873');
+INSERT INTO `member` VALUES ('202132539', '123456', 'Bình', 'male', 31, 178, 60, '0154875489');
+INSERT INTO `member` VALUES ('202186416', '123456', 'Hoàng', 'female', 23, 160, 45, '0124576857');
+INSERT INTO `member` VALUES ('202106725', '123456', 'Huy', 'male', 24, 178, 88, '0758784959');
+INSERT INTO `member` VALUES ('202183406', '123456', 'Hiếu', 'female', 19, 170, 60, '0786457488');
+INSERT INTO `member` VALUES ('202176587', '123456', 'Dương', 'male', 33, 177, 90, '0767546666');
+INSERT INTO `member` VALUES ('202156754', '123456', 'Ronaldo', 'male', 36, 166, 67, '0786532448');
+INSERT INTO `member` VALUES ('202153468', '123456', 'Messi', 'female', 25, 173, 44, '0786457124');
+INSERT INTO `member` VALUES ('202121345', '123456', 'Mbappe', 'male', 28, 160, 40, '0754457488');
+INSERT INTO `member` VALUES ('202189776', '123456', 'Haland', 'female', 27, 170, 50, '0986337489');
+INSERT INTO `member` VALUES ('202123664', '123456', 'Alice', 'female', 25, 165, 51, '0986457423');
 
 -- ----------------------------
 -- Table structure for employee
 -- ----------------------------
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee`  (
-  `employee_account` int NOT NULL COMMENT 'Employee Account Number',
+  `employee_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL UNIQUE COMMENT 'Employee Account',
   `employee_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'employee name',
   `employee_gender` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'employee gender',
   `employee_age` int NULL DEFAULT NULL COMMENT 'Age',
@@ -84,12 +84,12 @@ CREATE TABLE `employee`  (
 -- ----------------------------
 -- Records of employee
 -- ----------------------------
-INSERT INTO employee VALUES (101038721, 'Coach 1', 'Female', 26, '2016-06-29', 'Fitness coach', 'Bodybuilding champion');
-INSERT INTO employee VALUES (101068283, 'Coach 2', 'Male', 34, '2020-01-06', 'Fitness coach', 'Career coach');
-INSERT INTO employee VALUES (101053687, 'Coach 3', 'Male', 30, '2020-06-06', 'Fitness coach', 'Career coach');
-INSERT INTO employee VALUES (101045354, 'Coach 4', 'Male', 24, '2021-01-07', 'Fitness coach', 'Career coach');
-INSERT INTO employee VALUES (101058973, 'Cleaning 1', 'Female', 48, '2019-08-24', 'Cleaners', 'Model employee');
-INSERT INTO employee VALUES (101034208, 'Cleaning 2', 'Female', 48, '2010-08-01', 'Cleaners', '');
+INSERT INTO employee VALUES ('101038721', 'Coach 1', 'Female', 26, '2016-06-29', 'Fitness coach', 'Bodybuilding champion');
+INSERT INTO employee VALUES ('101068283', 'Coach 2', 'Male', 34, '2020-01-06', 'Fitness coach', 'Career coach');
+INSERT INTO employee VALUES ('101053687', 'Coach 3', 'Male', 30, '2020-06-06', 'Fitness coach', 'Career coach');
+INSERT INTO employee VALUES ('101045354', 'Coach 4', 'Male', 24, '2021-01-07', 'Fitness coach', 'Career coach');
+INSERT INTO employee VALUES ('101058973', 'Cleaning 1', 'Female', 48, '2019-08-24', 'Cleaners', 'Model employee');
+INSERT INTO employee VALUES ('101034208', 'Cleaning 2', 'Female', 48, '2010-08-01', 'Cleaners', '');
 
 -- ----------------------------
 -- Table structure for course
