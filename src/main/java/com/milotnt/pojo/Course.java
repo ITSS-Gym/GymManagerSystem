@@ -7,14 +7,14 @@ public class Course {
     private String courseBegin;
     private String courseTime;
 
-    private Integer coachAccount;
+    private String coachAccount;
     private String coachName;
 
     private Integer price;
 
     private String courseType;
 
-    public Course(Integer courseId, String courseName, String courseBegin, String courseTime, Integer coachAccount, String coachName, Integer price, String courseType) {
+    public Course(Integer courseId, String courseName, String courseBegin, String courseTime, String coachAccount, String coachName, Integer price, String courseType) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseBegin = courseBegin;
@@ -57,11 +57,11 @@ public class Course {
         this.courseTime = courseTime;
     }
 
-    public Integer getCoachAccount() {
+    public String getCoachAccount() {
         return coachAccount;
     }
 
-    public void setCoachAccount(Integer coachAccount) {
+    public void setCoachAccount(String coachAccount) {
         this.coachAccount = coachAccount;
     }
 

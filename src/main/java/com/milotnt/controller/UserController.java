@@ -65,7 +65,7 @@ public class UserController {
     public String toUserCourse(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
-        Integer memberAccount = member.getMemberAccount();
+        String memberAccount = member.getMemberAccount();
         List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
         model.addAttribute("courseOrderList", courseOrderList);
         return "userCourse";
@@ -86,7 +86,7 @@ public class UserController {
         model.addAttribute("member", member);
         model.addAttribute("courseList", courseList);
 
-        Integer memberAccount = member.getMemberAccount();
+        String memberAccount = member.getMemberAccount();
         List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
         List<Integer> courseOrderIdList = courseOrderList.stream().map(CourseOrder::getCourseId).collect(Collectors.toList());
         model.addAttribute("courseOrderIdList", courseOrderIdList);
@@ -102,14 +102,14 @@ public class UserController {
 
         Integer courseId1 = course.getCourseId();
         String courseName = course.getCourseName();
-        Integer coachAccount = course.getCoachAccount();
+        String coachAccount = course.getCoachAccount();
         String coachName = course.getCoachName();
         String courseBegin = course.getCourseBegin();
         String memberName = member.getMemberName();
-        Integer memberAccount = member.getMemberAccount();
+        String memberAccount = member.getMemberAccount();
 
         CourseOrder courseOrder = new CourseOrder(courseId1, courseName, coachAccount, coachName, memberAccount, memberName, courseBegin);
-        Integer memberAccount1 = member.getMemberAccount();
+        String memberAccount1 = member.getMemberAccount();
         CourseOrder courseOrder1 = courseOrderService.selectMemberByCourseIdAndMemberAccount(courseId1, memberAccount1);
 
         if (courseOrder1 == null) {
@@ -124,7 +124,7 @@ public class UserController {
     public String toUserFeedback(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
-        Integer memberAccount = member.getMemberAccount();
+        String memberAccount = member.getMemberAccount();
         List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackByAccountList", feedbackEmployeeList);
         return "userFeedback";

@@ -5,14 +5,14 @@ public class CourseOrder {
     private Integer courseOrderId;
     private Integer courseId;
     private String courseName;
-    private Integer coachAccount;
+    private String coachAccount;
     private String coachName;
-    private Integer memberAccount;
+    private String memberAccount;
     private String memberName;
     private String courseBegin;
     private String status;
 
-    public CourseOrder(Integer courseId, String courseName, Integer coachAccount, String coachName, Integer memberAccount, String memberName, String courseBegin) {
+    public CourseOrder(Integer courseId, String courseName, String coachAccount, String coachName, String memberAccount, String memberName, String courseBegin) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.coachAccount = coachAccount;
@@ -23,7 +23,7 @@ public class CourseOrder {
         this.status = "waiting";
     }
 
-    public CourseOrder(Integer courseOrderId, Integer courseId, String courseName, Integer coachAccount, String coachName, Integer memberAccount, String memberName, String courseBegin, String status) {
+    public CourseOrder(Integer courseOrderId, Integer courseId, String courseName, String coachAccount, String coachName, String memberAccount, String memberName, String courseBegin, String status) {
         this.courseOrderId = courseOrderId;
         this.courseId = courseId;
         this.courseName = courseName;
@@ -59,11 +59,11 @@ public class CourseOrder {
         this.courseName = courseName;
     }
 
-    public Integer getCoachAccount() {
+    public String getCoachAccount() {
         return coachAccount;
     }
 
-    public void setCoachAccount(Integer coachAccount) {
+    public void setCoachAccount(String coachAccount) {
         this.coachAccount = coachAccount;
     }
 
@@ -83,11 +83,11 @@ public class CourseOrder {
         this.memberName = memberName;
     }
 
-    public Integer getMemberAccount() {
+    public String getMemberAccount() {
         return memberAccount;
     }
 
-    public void setMemberAccount(Integer memberAccount) {
+    public void setMemberAccount(String memberAccount) {
         this.memberAccount = memberAccount;
     }
 

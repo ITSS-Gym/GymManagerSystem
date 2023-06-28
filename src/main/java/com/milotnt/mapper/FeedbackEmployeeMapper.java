@@ -17,7 +17,7 @@ public interface FeedbackEmployeeMapper {
 
     List<FeedbackEmployee> selectByFeedbackId(Integer feedbackId);
 
-    List<FeedbackEmployee> selectByMemberAccount(Integer memberAccount);
+    List<FeedbackEmployee> selectByMemberAccount(String memberAccount);
 
-    List<FeedbackEmployee> selectByEmployeeAccount(Integer employeeAccount);
+    List<FeedbackEmployee> selectByEmployeeAccount(String employeeAccount);
 }

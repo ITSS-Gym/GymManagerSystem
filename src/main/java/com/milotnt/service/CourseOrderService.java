@@ -18,13 +18,13 @@ public interface CourseOrderService {
     Boolean insertCourseOrder(CourseOrder courseOrder);
 
     // Query the personal registration schedule according to the member account
-    List<CourseOrder> selectCourseOrderByMemberAccount(Integer memberAccount);
+    List<CourseOrder> selectCourseOrderByMemberAccount(String memberAccount);
 
     // Delete a reserved course
     Boolean deleteByCourseOrderId(Integer courseOrderId);
 
     // Check if the member is enrolled in the course
-    CourseOrder selectMemberByCourseIdAndMemberAccount(Integer courseId, Integer memberAccount);
+    CourseOrder selectMemberByCourseIdAndMemberAccount(Integer courseId, String memberAccount);
 
     // Query all registered members according to the course id
     List<CourseOrder> selectMemberOrderList(Integer courseId);

@@ -18,7 +18,7 @@ public interface FeedbackCourseMapper {
 
     List<FeedbackCourse> selectByFeedbackId(Integer feedbackId);
 
-    List<FeedbackCourse> selectByMemberAccount(Integer memberAccount);
+    List<FeedbackCourse> selectByMemberAccount(String memberAccount);
 
     List<FeedbackCourse> selectByCourseId(Integer courseId);
 }

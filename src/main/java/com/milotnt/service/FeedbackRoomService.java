@@ -20,7 +20,7 @@ public interface FeedbackRoomService {
     // Query devices by id
     List<FeedbackRoom> selectByFeedbackId(Integer feedbackId);
 
-    List<FeedbackRoom> selectByMemberAccount(Integer memberAccount);
+    List<FeedbackRoom> selectByMemberAccount(String memberAccount);
 
     List<FeedbackRoom> selectByRoomId(Integer RoomId);
 }

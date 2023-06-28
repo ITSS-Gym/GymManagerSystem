@@ -41,7 +41,7 @@
                         <table class="table table-hover">
                             <thead class="bg-light">
                             <tr>
-                                <th scope="col" class="border-0">Member Account/Card Number</th>
+                                <th scope="col" class="border-0">Member Account</th>
                                 <th scope="col" class="border-0">Name</th>
                                 <th scope="col" class="border-0">Card Processing Time</th>
                                 <th scope="col" class="border-0">Gender</th>
@@ -55,7 +55,7 @@
 
                             <tbody>
                             <tr th:each="mem:${memberList}">
-                                <td th:text="${mem.memberAccount}">Member Account/Card Number</td>
+                                <td th:text="${mem.memberAccount}">Member Account</td>
                                 <td th:text="${mem.memberName}">Name</td>
                                 <td th:text="${mem.cardTime}">Card Processing Time</td>
                                 <td th:text="${mem.memberGender}">Gender</td>

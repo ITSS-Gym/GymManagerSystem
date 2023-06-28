@@ -18,7 +18,7 @@
         VALUES (#{courseId}, #{memberAccount}, #{status})
     </insert>
 
-    <select id="selectCourseOrderByMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
+    <select id="selectCourseOrderByMemberAccount" parameterType="java.lang.String" resultType="courseOrder">
         SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
                course_order.member_account, member_name, course_begin, status
         FROM course_order
@@ -34,7 +34,7 @@
         WHERE course_order_id = #{courseOrderId}
     </delete>
 
-    <select id="selectMemberByCourseIdAndMemberAccount" parameterType="java.lang.Integer" resultType="courseOrder">
+    <select id="selectMemberByCourseIdAndMemberAccount" parameterType="map" resultType="courseOrder">
         SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
                course_order.member_account, member_name, course_begin, status
         FROM course_order

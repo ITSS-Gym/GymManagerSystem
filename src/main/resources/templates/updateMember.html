@@ -24,7 +24,7 @@
                         <div th:each="mem:${memberList}">
                             <table class="table table-hover">
                                 <tr>
-                                    <td text-align="center">Member Account/Card Number：</td>
+                                    <td text-align="center">Member Account</td>
                                     <td><input type="text" class="form-control" readonly="readonly"
                                                th:value="${mem.memberAccount}" name="memberAccount">
                                     </td>
@@ -36,8 +36,7 @@
                                 </tr>
                                 <tr>
                                     <td text-align="center">Password：</td>
-                                    <td><input type="text" class="form-control" readonly="readonly"
-                                               th:value="${mem.memberPassword}" name="memberPassword">
+                                    <td><input type="text" class="form-control" th:value="${mem.memberPassword}" name="memberPassword">
                                     </td>
                                 </tr>
                                 <tr>

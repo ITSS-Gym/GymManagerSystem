@@ -26,7 +26,7 @@ public class CourseOrderServiceImpl implements CourseOrderService {
     }
 
     @Override
-    public List<CourseOrder> selectCourseOrderByMemberAccount(Integer memberAccount) {
+    public List<CourseOrder> selectCourseOrderByMemberAccount(String memberAccount) {
         return courseOrderMapper.selectCourseOrderByMemberAccount(memberAccount);
     }
 
@@ -36,7 +36,7 @@ public class CourseOrderServiceImpl implements CourseOrderService {
     }
 
     @Override
-    public CourseOrder selectMemberByCourseIdAndMemberAccount(Integer courseId, Integer memberAccount) {
+    public CourseOrder selectMemberByCourseIdAndMemberAccount(Integer courseId, String memberAccount) {
         return courseOrderMapper.selectMemberByCourseIdAndMemberAccount(courseId, memberAccount);
     }
 

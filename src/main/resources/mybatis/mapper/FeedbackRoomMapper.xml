@@ -37,7 +37,7 @@
         WHERE feedback_id = #{feedbackId}
     </select>
 
-    <select id="selectByMemberAccount" parameterType="java.lang.Integer" resultType="feedbackRoom">
+    <select id="selectByMemberAccount" parameterType="java.lang.String" resultType="feedbackRoom">
         SELECT feedback_room.feedback_id, feedback_room.member_account, member.member_name,
         feedback_room.room_id, room.room_name, feedback_room.content, feedback_room.time_created
         FROM feedback_room

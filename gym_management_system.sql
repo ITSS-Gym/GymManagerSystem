@@ -100,7 +100,7 @@ CREATE TABLE `course`  (
   `course_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Name',
   `course_begin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course start time',
   `course_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Duration',
-  `coach_account` int NULL DEFAULT NULL COMMENT 'Coach Account',
+  `coach_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Coach Account',
   `price` int NULL DEFAULT NULL COMMENT 'vnd',
   `course_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'based on time/sport',
   PRIMARY KEY (`course_id`) USING BTREE,
@@ -111,17 +111,17 @@ CREATE TABLE `course`  (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_3m', '2021-01-01 15:00', '60m', 101038721, 600000, "yoga 3 months");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1m', '2021-01-02 10:20', '90m', 101038721, 200000, "gym 1 month");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_3m', '2021-03-06 18:00', '90m', 101038721, 550000, "gym 3 months");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1m_PT', '2021-02-02 10:00', '45m', 101045354, 3000000, "gym 1 month with PT");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_1m', '2021-02-03 15:00', '60m', 101053687, 200000, "yoga 1 month");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('cardio_1m', '2021-02-03 15:00', '60m', 101068283, 150000, "cardio 1 month");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1d', '2021-03-01 17:30', '60m', 101053687, 10000, "gym 1 day");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_1d', '2021-02-22 09:00', '90m', 101068283, 12000,"yoga 1 day");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('cardio_1d', '2021-02-04 15:00', '60m', 101068283, 8000, "cardio 1 day");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1y_PT', '2021-03-08 15:00', '45m', 101068283, 20000000, "gym 1 year with PT");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1y', '2021-02-22 18:00', '60m', 101068283, 1500000, "gym 1 year");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_3m', '2021-01-01 15:00', '60m', '101038721', 600000, "yoga 3 months");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1m', '2021-01-02 10:20', '90m', '101038721', 200000, "gym 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_3m', '2021-03-06 18:00', '90m', '101038721', 550000, "gym 3 months");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1m_PT', '2021-02-02 10:00', '45m', '101045354', 3000000, "gym 1 month with PT");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_1m', '2021-02-03 15:00', '60m', '101053687', 200000, "yoga 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('cardio_1m', '2021-02-03 15:00', '60m', '101068283', 150000, "cardio 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1d', '2021-03-01 17:30', '60m', '101053687', 10000, "gym 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_1d', '2021-02-22 09:00', '90m', '101068283', 12000,"yoga 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('cardio_1d', '2021-02-04 15:00', '60m', '101068283', 8000, "cardio 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1y_PT', '2021-03-08 15:00', '45m', '101068283', 20000000, "gym 1 year with PT");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1y', '2021-02-22 18:00', '60m', '101068283', 1500000, "gym 1 year");
 
 
 -- ----------------------------
@@ -131,7 +131,7 @@ DROP TABLE IF EXISTS `course_order`;
 CREATE TABLE `course_order`  (
   `course_order_id` int NOT NULL AUTO_INCREMENT COMMENT 'Registration Form id',
   `course_id` int NULL DEFAULT NULL COMMENT 'Course id',
-  `member_account` int NULL DEFAULT NULL COMMENT 'Member Account',
+  `member_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Member Account',
   `status` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'accepted/waiting',
   PRIMARY KEY (`course_order_id`) USING BTREE,
   FOREIGN KEY (`course_id`) REFERENCES `course`(`course_id`),
@@ -142,17 +142,17 @@ CREATE TABLE `course_order`  (
 -- ----------------------------
 -- Records of course order
 -- ----------------------------
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (1, 202100788, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (2, 202132539, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (3, 202156754, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (4, 202156754, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (5, 202183406, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (6, 202183406, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (7, 202100788, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (8, 202186416, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (9, 202186416, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (10, 202123664, "accepted");
-INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (11, 202153468, "waiting");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (1, '202100788', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (2, '202132539', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (3, '202156754', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (4, '202156754', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (5, '202183406', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (6, '202183406', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (7, '202100788', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (8, '202186416', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (9, '202186416', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (10, '202123664', "accepted");
+INSERT INTO `course_order` (`course_id`, `member_account`, `status`) VALUES (11, '202153468', "waiting");
 
 -- ----------------------------
 -- Table structure for equipment
@@ -185,8 +185,8 @@ INSERT INTO equipment (`equipment_name`, `equipment_status`, `equipment_message`
 DROP TABLE IF EXISTS `feedback_employee`;
 CREATE TABLE `feedback_employee`  (
   `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT 'feedback id',
-  `member_account` int NULL DEFAULT NULL COMMENT 'account of member with feedback',
-  `employee_account` int NULL DEFAULT NULL COMMENT 'account of employee got feedback',
+  `member_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'account of member',
+  `employee_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'account of employee got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`feedback_id`) USING BTREE,
@@ -197,9 +197,9 @@ CREATE TABLE `feedback_employee`  (
 -- ----------------------------
 -- Records of feedback_employee
 -- ----------------------------
-INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES (202100788, 101038721, 'Good');
-INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES (202183406, 101038721, 'Awesome');
-INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES (202183406, 101058973, 'Usually late');
+INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES ('202100788', '101038721', 'Good');
+INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES ('202183406', '101038721', 'Awesome');
+INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES ('202183406', '101058973', 'Usually late');
 
 -- ----------------------------
 -- Table structure for feedback_equipment
@@ -207,7 +207,7 @@ INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`
 DROP TABLE IF EXISTS `feedback_equipment`;
 CREATE TABLE `feedback_equipment`  (
   `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT 'feedback id',
-  `member_account` int NULL DEFAULT NULL COMMENT 'account of member with feedback',
+  `member_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'account of member with feedback',
   `equipment_id` int NULL DEFAULT NULL COMMENT 'id of equipment got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -219,11 +219,9 @@ CREATE TABLE `feedback_equipment`  (
 -- ----------------------------
 -- Records of feedback_equipment
 -- ----------------------------
-INSERT INTO `feedback_equipment` (`member_account`, `equipment_id`, `content`) VALUES (202100788, 1, 'Good');
-INSERT INTO `feedback_equipment` (`member_account`, `equipment_id`, `content`) VALUES (202183406, 1, 'Awesome');
-INSERT INTO `feedback_equipment` (`member_account`, `equipment_id`, `content`) VALUES (202183406, 2, 'Dirty');
-
-SET FOREIGN_KEY_CHECKS = 1;
+INSERT INTO `feedback_equipment` (`member_account`, `equipment_id`, `content`) VALUES ('202100788', 1, 'Good');
+INSERT INTO `feedback_equipment` (`member_account`, `equipment_id`, `content`) VALUES ('202183406', 1, 'Awesome');
+INSERT INTO `feedback_equipment` (`member_account`, `equipment_id`, `content`) VALUES ('202183406', 2, 'Dirty');
 
 -- ----------------------------
 -- Table structure for feedback_course
@@ -231,7 +229,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 DROP TABLE IF EXISTS `feedback_course`;
 CREATE TABLE `feedback_course`  (
   `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT 'feedback id',
-  `member_account` int NULL DEFAULT NULL COMMENT 'account of member with feedback',
+  `member_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'account of member with feedback',
   `course_id` int NULL DEFAULT NULL COMMENT 'id of equipment got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -243,14 +241,14 @@ CREATE TABLE `feedback_course`  (
 -- ----------------------------
 -- Records of feedback_course
 -- ----------------------------
-INSERT INTO `feedback_course` (`member_account`, `course_id`, `content`) VALUES (202100788, 1, 'Good');
-INSERT INTO `feedback_course` (`member_account`, `course_id`, `content`) VALUES (202183406, 1, 'Okay');
-INSERT INTO `feedback_course` (`member_account`, `course_id`, `content`) VALUES (202183406, 2, 'Hate that');
+INSERT INTO `feedback_course` (`member_account`, `course_id`, `content`) VALUES ('202100788', 1, 'Good');
+INSERT INTO `feedback_course` (`member_account`, `course_id`, `content`) VALUES ('202183406', 1, 'Okay');
+INSERT INTO `feedback_course` (`member_account`, `course_id`, `content`) VALUES ('202183406', 2, 'Hate that');
 
 DROP TABLE IF EXISTS `feedback_room`;
 CREATE TABLE `feedback_room`  (
   `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT 'feedback id',
-  `member_account` int NULL DEFAULT NULL COMMENT 'account of member with feedback',
+  `member_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'account of member with feedback',
   `room_id` int NULL DEFAULT NULL COMMENT 'id of equipment got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -262,8 +260,8 @@ CREATE TABLE `feedback_room`  (
 -- ----------------------------
 -- Records of feedback_room
 -- ----------------------------
-INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES (202100788, 1, 'Clean');
-INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES (202183406, 1, 'Okay');
-INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES (202183406, 2, 'A lot of equipment');
+INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES ('202100788', 1, 'Clean');
+INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES ('202183406', 1, 'Okay');
+INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES ('202183406', 2, 'A lot of equipment');
 
 SET FOREIGN_KEY_CHECKS = 1;

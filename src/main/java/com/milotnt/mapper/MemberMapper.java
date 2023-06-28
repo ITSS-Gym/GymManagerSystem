@@ -21,12 +21,12 @@ public interface MemberMapper {
     Member selectByAccountAndPassword(Member member);
 
     // Delete member information based on member account
-    Boolean deleteByMemberAccount(Integer memberAccount);
+    Boolean deleteByMemberAccount(String memberAccount);
 
     // Query the number of members
     Integer selectTotalCount();
 
     // Query members according to member account number
-    List<Member> selectByMemberAccount(Integer memberAccount);
+    List<Member> selectByMemberAccount(String memberAccount);
 
 }

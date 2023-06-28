@@ -10,7 +10,7 @@ public interface EmployeeService {
     List<Employee> findAll();
 
     // Delete employees based on employee account
-    Boolean deleteByEmployeeAccount(Integer employeeAccount);
+    Boolean deleteByEmployeeAccount(String employeeAccount);
 
     // add new employee
     Boolean insertEmployee(Employee employee);
@@ -19,7 +19,7 @@ public interface EmployeeService {
     Boolean updateMemberByEmployeeAccount(Employee employee);
 
     // Query employees based on employee account
-    List<Employee> selectByEmployeeAccount(Integer employeeAccount);
+    List<Employee> selectByEmployeeAccount(String employeeAccount);
 
     // Query the number of employees
     Integer selectTotalCount();

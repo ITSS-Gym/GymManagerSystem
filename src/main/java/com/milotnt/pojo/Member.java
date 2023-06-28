@@ -2,7 +2,7 @@ package com.milotnt.pojo;
 
 public class Member {
 
-    private Integer memberAccount;
+    private String memberAccount;
     private String memberPassword;
     private String memberName;
     private String memberGender;
@@ -11,11 +11,11 @@ public class Member {
     private Integer memberWeight;
     private String memberPhone;
 
-    public Integer getMemberAccount() {
+    public String getMemberAccount() {
         return memberAccount;
     }
 
-    public void setMemberAccount(Integer memberAccount) {
+    public void setMemberAccount(String memberAccount) {
         this.memberAccount = memberAccount;
     }
 

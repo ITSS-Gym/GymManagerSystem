@@ -40,7 +40,7 @@ public class FeedbackRoomServiceImpl implements FeedbackRoomService {
     }
 
     @Override
-    public List<FeedbackRoom> selectByMemberAccount(Integer memberAccount) {
+    public List<FeedbackRoom> selectByMemberAccount(String memberAccount) {
         return feedbackMapper.selectByMemberAccount(memberAccount);
     }
 

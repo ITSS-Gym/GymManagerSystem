@@ -40,7 +40,7 @@
         WHERE feedback_id = #{feedbackId}
     </select>
 
-    <select id="selectByMemberAccount" parameterType="java.lang.Integer" resultType="feedbackEmployee">
+    <select id="selectByMemberAccount" parameterType="java.lang.String" resultType="feedbackEmployee">
         SELECT feedback_employee.feedback_id, feedback_employee.member_account, member.member_name,
             feedback_employee.employee_account, employee.employee_name, feedback_employee.content, feedback_employee.time_created
         FROM feedback_employee
@@ -49,7 +49,7 @@
         WHERE feedback_employee.member_account = #{memberAccount}
     </select>
 
-    <select id="selectByEmployeeAccount" parameterType="java.lang.Integer" resultType="feedbackEmployee">
+    <select id="selectByEmployeeAccount" parameterType="java.lang.String" resultType="feedbackEmployee">
         SELECT feedback_employee.feedback_id, feedback_employee.member_account, member.member_name,
                 feedback_employee.employee_account, employee.employee_name, feedback_employee.content, feedback_employee.time_created
         FROM feedback_employee

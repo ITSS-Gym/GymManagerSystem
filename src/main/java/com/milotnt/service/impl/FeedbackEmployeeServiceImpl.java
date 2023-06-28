@@ -40,12 +40,12 @@ public class FeedbackEmployeeServiceImpl implements FeedbackEmployeeService {
     }
 
     @Override
-    public List<FeedbackEmployee> selectByMemberAccount(Integer memberAccount) {
+    public List<FeedbackEmployee> selectByMemberAccount(String memberAccount) {
         return feedbackMapper.selectByMemberAccount(memberAccount);
     }
 
     @Override
-    public List<FeedbackEmployee> selectByEmployeeAccount(Integer employeeAccount) {
+    public List<FeedbackEmployee> selectByEmployeeAccount(String employeeAccount) {
         return feedbackMapper.selectByEmployeeAccount(employeeAccount);
     }
 }

@@ -36,7 +36,7 @@
           AND member_password = #{memberPassword}
     </select>
 
-    <delete id="deleteByMemberAccount" parameterType="java.lang.Integer">
+    <delete id="deleteByMemberAccount" parameterType="java.lang.String">
         DELETE
         FROM member
         WHERE member_account = #{memberAccount}
@@ -47,7 +47,7 @@
         FROM member
     </select>
 
-    <select id="selectByMemberAccount" parameterType="java.lang.Integer" resultType="member">
+    <select id="selectByMemberAccount" parameterType="java.lang.String" resultType="member">
         SELECT *
         FROM member
         WHERE member_account = #{memberAccount}

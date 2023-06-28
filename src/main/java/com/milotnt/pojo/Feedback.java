@@ -6,7 +6,7 @@ public class Feedback {
 
     protected Integer feedbackId;
 
-    protected Integer memberAccount;
+    protected String memberAccount;
 
     protected String memberName;
 
@@ -22,11 +22,11 @@ public class Feedback {
         this.feedbackId = feedbackId;
     }
 
-    public Integer getMemberAccount() {
+    public String getMemberAccount() {
         return memberAccount;
     }
 
-    public void setMemberAccount(Integer memberAccount) {
+    public void setMemberAccount(String memberAccount) {
         this.memberAccount = memberAccount;
     }
 

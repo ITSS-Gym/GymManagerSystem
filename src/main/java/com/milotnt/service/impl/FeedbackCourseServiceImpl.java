@@ -40,7 +40,7 @@ public class FeedbackCourseServiceImpl implements FeedbackCourseService {
     }
 
     @Override
-    public List<FeedbackCourse> selectByMemberAccount(Integer memberAccount) {
+    public List<FeedbackCourse> selectByMemberAccount(String memberAccount) {
         return feedbackMapper.selectByMemberAccount(memberAccount);
     }
 

@@ -44,7 +44,7 @@ public class MemberController {
         }
         Integer account = Integer.parseInt(thisYear.toString());
 
-        member.setMemberAccount(account);
+//        member.setMemberAccount(account);
         memberService.insertMember(member);
 
         return "redirect:selMember";
@@ -53,14 +53,14 @@ public class MemberController {
 
     // delete member
     @RequestMapping("/delMember")
-    public String deleteMember(Integer memberAccount) {
+    public String deleteMember(String memberAccount) {
         memberService.deleteByMemberAccount(memberAccount);
         return "redirect:selMember";
     }
 
     // Jump to member modification page
     @RequestMapping("/toUpdateMember")
-    public String toUpdateMember(Integer memberAccount, Model model) {
+    public String toUpdateMember(String memberAccount, Model model) {
         List<Member> memberList = memberService.selectByMemberAccount(memberAccount);
         model.addAttribute("memberList", memberList);
         return "updateMember";
@@ -69,7 +69,6 @@ public class MemberController {
     // Modify member information
     @RequestMapping("/updateMember")
     public String updateMember(Member member) {
-        System.out.println(member);
         memberService.updateMemberByMemberAccount(member);
         return "redirect:selMember";
     }
@@ -83,7 +82,7 @@ public class MemberController {
 
     // Query by membership card number
     @RequestMapping("/selByCard")
-    public String selectByCardId(Model model, Integer memberAccount) {
+    public String selectByCardId(Model model, String memberAccount) {
         List<Member> memberList = memberService.selectByMemberAccount(memberAccount);
         if (memberList != null) {
             model.addAttribute("memberList", memberList);

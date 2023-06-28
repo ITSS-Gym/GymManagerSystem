@@ -18,7 +18,7 @@ public interface FeedbackEquipmentMapper {
 
     List<FeedbackEquipment> selectByFeedbackId(Integer feedbackId);
 
-    List<FeedbackEquipment> selectByMemberAccount(Integer memberAccount);
+    List<FeedbackEquipment> selectByMemberAccount(String memberAccount);
 
     List<FeedbackEquipment> selectByEquipmentId(Integer EquipmentId);
 }

@@ -2,7 +2,7 @@ package com.milotnt.pojo;
 
 public class Employee {
 
-    private Integer employeeAccount;
+    private String employeeAccount;
     private String employeeName;
     private String employeeGender;
     private Integer employeeAge;
@@ -13,7 +13,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer employeeAccount, String employeeName, String employeeGender, Integer employeeAge, String entryTime, String staff, String employeeMessage) {
+    public Employee(String employeeAccount, String employeeName, String employeeGender, Integer employeeAge, String entryTime, String staff, String employeeMessage) {
         this.employeeAccount = employeeAccount;
         this.employeeName = employeeName;
         this.employeeGender = employeeGender;
@@ -23,11 +23,11 @@ public class Employee {
         this.employeeMessage = employeeMessage;
     }
 
-    public Integer getEmployeeAccount() {
+    public String getEmployeeAccount() {
         return employeeAccount;
     }
 
-    public void setEmployeeAccount(Integer employeeAccount) {
+    public void setEmployeeAccount(String employeeAccount) {
         this.employeeAccount = employeeAccount;
     }
 

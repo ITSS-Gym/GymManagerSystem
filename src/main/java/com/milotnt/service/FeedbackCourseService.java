@@ -20,7 +20,7 @@ public interface FeedbackCourseService {
     // Query devices by id
     List<FeedbackCourse> selectByFeedbackId(Integer feedbackId);
 
-    List<FeedbackCourse> selectByMemberAccount(Integer memberAccount);
+    List<FeedbackCourse> selectByMemberAccount(String memberAccount);
 
     List<FeedbackCourse> selectByCourseId(Integer CourseId);
 }

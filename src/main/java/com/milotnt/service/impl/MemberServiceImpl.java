@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Boolean deleteByMemberAccount(Integer memberAccount) {
+    public Boolean deleteByMemberAccount(String memberAccount) {
         return memberMapper.deleteByMemberAccount(memberAccount);
     }
 
@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<Member> selectByMemberAccount(Integer memberAccount) {
+    public List<Member> selectByMemberAccount(String memberAccount) {
         return memberMapper.selectByMemberAccount(memberAccount);
     }
 }

@@ -2,16 +2,16 @@ package com.milotnt.pojo;
 
 public class FeedbackEmployee extends Feedback {
 
-    private Integer employeeAccount;
+    private String employeeAccount;
 
     private String employeeName;
 
 
-    public Integer getEmployeeAccount() {
+    public String getEmployeeAccount() {
         return employeeAccount;
     }
 
-    public void setEmployeeAccount(Integer employeeAccount) {
+    public void setEmployeeAccount(String employeeAccount) {
         this.employeeAccount = employeeAccount;
     }
 

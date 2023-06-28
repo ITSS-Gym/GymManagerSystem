@@ -40,7 +40,7 @@ public class FeedbackEquipmentServiceImpl implements FeedbackEquipmentService {
     }
 
     @Override
-    public List<FeedbackEquipment> selectByMemberAccount(Integer memberAccount) {
+    public List<FeedbackEquipment> selectByMemberAccount(String memberAccount) {
         return feedbackMapper.selectByMemberAccount(memberAccount);
     }
 

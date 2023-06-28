@@ -49,7 +49,7 @@ public class EmployeeController {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String nowDay = simpleDateFormat.format(date);
 
-        employee.setEmployeeAccount(account);
+//        employee.setEmployeeAccount(account);
         employee.setEntryTime(nowDay);
 
         employeeService.insertEmployee(employee);
@@ -60,14 +60,14 @@ public class EmployeeController {
 
     //delete employee
     @RequestMapping("/delEmployee")
-    public String deleteEmployee(Integer employeeAccount) {
+    public String deleteEmployee(String employeeAccount) {
         employeeService.deleteByEmployeeAccount(employeeAccount);
         return "redirect:selEmployee";
     }
 
     //Jump to the employee modification page
     @RequestMapping("/toUpdateEmployee")
-    public String toUpdateEmployee(Integer employeeAccount, Model model) {
+    public String toUpdateEmployee(String employeeAccount, Model model) {
         List<Employee> employeeList = employeeService.selectByEmployeeAccount(employeeAccount);
         model.addAttribute("employeeList", employeeList);
         return "updateEmployee";

@@ -9,7 +9,7 @@
         FROM employee
     </select>
 
-    <delete id="deleteByEmployeeAccount" parameterType="java.lang.Integer">
+    <delete id="deleteByEmployeeAccount" parameterType="java.lang.String">
         DELETE
         FROM employee
         WHERE employee_account = #{employeeAccount}
@@ -33,7 +33,7 @@
         WHERE employee_account = #{employeeAccount}
     </update>
 
-    <select id="selectByEmployeeAccount" parameterType="java.lang.Integer" resultType="employee">
+    <select id="selectByEmployeeAccount" parameterType="java.lang.String" resultType="employee">
         SELECT *
         FROM employee
         WHERE employee_account = #{employeeAccount}
