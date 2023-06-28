@@ -5,11 +5,11 @@
 <mapper namespace="com.milotnt.mapper.FeedbackCourseMapper">
 
     <select id="findAll" resultType="feedbackCourse">
-        SELECT feedback_course.feedback_id, feedback_course.member_id, member.member_name,
+        SELECT feedback_course.feedback_id, feedback_course.member_account, member.member_name,
         feedback_course.course_id, course.course_name, feedback_course.content, feedback_course.time_created
         FROM feedback_course
         INNER JOIN course ON feedback_course.course_id = course.course_id
-        INNER JOIN member ON feedback_course.member_id = member.member_id
+        INNER JOIN member ON feedback_course.member_account = member.member_account
     </select>
 
     <delete id="deleteByFeedbackCourseId" parameterType="java.lang.Integer">
@@ -19,15 +19,15 @@
     </delete>
 
     <insert id="insertFeedbackCourse" parameterType="feedbackCourse">
-        INSERT INTO feedback_course (member_id, course_id, content)
+        INSERT INTO feedback_course (member_account, course_id, content)
         VALUES (#{memberAccount}, #{courseId}, #{content})
     </insert>
 
     <update id="updateByFeedbackId" parameterType="feedbackCourse">
         UPDATE feedback_course
-        SET member_id = #{memberAccount},
+        SET member_account = #{memberAccount},
         course_id   = #{courseId},
-        content            = #{content},
+        content            = #{content}
         WHERE feedback_id = #{feedbackId}
     </update>
 
@@ -38,19 +38,19 @@
     </select>
 
     <select id="selectByMemberAccount" parameterType="java.lang.Integer" resultType="feedbackCourse">
-        SELECT feedback_course.feedback_id, feedback_course.member_id, member.member_name,
+        SELECT feedback_course.feedback_id, feedback_course.member_account, member.member_name,
         feedback_course.course_id, course.course_name, feedback_course.content, feedback_course.time_created
         FROM feedback_course
         INNER JOIN course ON feedback_course.course_id = course.course_id
-        INNER JOIN member ON feedback_course.member_id = member.member_id
-        WHERE feedback_course.member_id = #{memberAccount}
+        INNER JOIN member ON feedback_course.member_account = member.member_account
+        WHERE feedback_course.member_account = #{memberAccount}
     </select>
 
     <select id="selectByCourseId" parameterType="java.lang.Integer" resultType="feedbackCourse">
-        SELECT feedback_course.feedback_id, feedback_course.member_id, member.member_name,
+        SELECT feedback_course.feedback_id, feedback_course.member_account, member.member_name,
         feedback_course.course_id, course.course_name, feedback_course.content, feedback_course.time_created
         FROM feedback_course
-        INNER JOIN member ON feedback_course.member_id = member.member_id
+        INNER JOIN member ON feedback_course.member_account = member.member_account
         INNER JOIN course ON feedback_course.course_id = course.course_id
         WHERE feedback_course.course_id = #{courseId};
     </select>

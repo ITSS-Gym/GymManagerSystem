@@ -33,7 +33,7 @@
                              name="roomName"></td>
                 </tr>
           <form th:action="@{/room/updateRoom}" method="post">
-            <div th:each="equ:${roomList}">
+            <div th:each="room:${roomList}">
               <table class="table table-hover">
                 <tr>
                   <td text-align="center">Room ID：</td>

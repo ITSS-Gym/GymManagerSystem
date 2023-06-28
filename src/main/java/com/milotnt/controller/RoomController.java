@@ -35,16 +35,14 @@ public class RoomController {
     public String toUpdateRoom(Integer roomId, Model model) {
         List<Room> roomList = roomService.selectByRoomId(roomId);
         model.addAttribute("roomList", roomList);
-        model.addAttribute("roomId", roomId);
         return "updateRoom";
     }
 
     // Modify room
     @RequestMapping("/updateRoom")
-    public String updateRoom(Integer roomId, Room room) {
-        room.setRoomId(roomId);
+    public String updateRoom(Room room) {
         roomService.updateRoomByRoomId(room);
-        return "redirect:../selRoom";
+        return "redirect:selRoom";
     }
 
     // Jump to the new room page
