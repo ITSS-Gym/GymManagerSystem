@@ -1,26 +1,50 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.FeedbackCourseMapper;
 import server.pojo.FeedbackCourse;
 
 import java.util.List;
 
-public interface FeedbackCourseService {
+@Service
+public class FeedbackCourseService {
 
-    List<FeedbackCourse> findAll();
+    @Autowired
+    private FeedbackCourseMapper feedbackMapper;
 
-    // Delete device by id
-    Boolean deleteByFeedbackId(Integer feedbackId);
+    
+    public List<FeedbackCourse> findAll() {
+        return feedbackMapper.findAll();
+    }
 
-    // Add equipment
-    Boolean insertFeedbackCourse(FeedbackCourse feedbackCourse);
+    
+    public Boolean deleteByFeedbackId(Integer equipmentId) {
+        return feedbackMapper.deleteByFeedbackId(equipmentId);
+    }
 
-    // Modify device information according to id
-    Boolean updateByFeedbackId(FeedbackCourse feedbackCourse);
+    
+    public Boolean insertFeedbackCourse(FeedbackCourse feedbackCourse) {
+        return feedbackMapper.insertFeedbackCourse(feedbackCourse);
+    }
 
-    // Query devices by id
-    List<FeedbackCourse> selectByFeedbackId(Integer feedbackId);
+    
+    public Boolean updateByFeedbackId(FeedbackCourse feedbackCourse) {
+        return feedbackMapper.updateByFeedbackId(feedbackCourse);
+    }
 
-    List<FeedbackCourse> selectByMemberAccount(String memberAccount);
+    
+    public List<FeedbackCourse> selectByFeedbackId(Integer feedbackId) {
+        return feedbackMapper.selectByFeedbackId(feedbackId);
+    }
 
-    List<FeedbackCourse> selectByCourseId(Integer CourseId);
+    
+    public List<FeedbackCourse> selectByMemberAccount(String memberAccount) {
+        return feedbackMapper.selectByMemberAccount(memberAccount);
+    }
+
+    
+    public List<FeedbackCourse> selectByCourseId(Integer CourseAccount) {
+        return feedbackMapper.selectByCourseId(CourseAccount);
+    }
 }

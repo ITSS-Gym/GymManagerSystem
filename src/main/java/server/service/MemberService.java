@@ -1,31 +1,43 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.MemberMapper;
 import server.pojo.Member;
 
 import java.util.List;
 
-public interface MemberService {
+@Service
+public class MemberService {
 
-    // Query member information
-    List<Member> findAll();
+    @Autowired
+    private MemberMapper memberMapper;
 
-    // Add member information
-    Boolean insertMember(Member member);
+    public List<Member> findAll() {
+        return memberMapper.findAll();
+    }
 
-    // Modify member information according to member account
-    Boolean updateMemberByMemberAccount(Member member);
+    public Boolean insertMember(Member member) {
+        return memberMapper.insertMember(member);
+    }
 
-    // Query member account password (login)
-    Member userLogin(Member member);
-    //Member selectByAccountAndPassword(Member member);
+    public Boolean updateMemberByMemberAccount(Member member) {
+        return memberMapper.updateMemberByMemberAccount(member);
+    }
 
-    // Delete member information based on member account
-    Boolean deleteByMemberAccount(String memberAccount);
+    public Member userLogin(Member member) {
+        return memberMapper.selectByAccountAndPassword(member);
+    }
 
-    // Query the number of members
-    Integer selectTotalCount();
+    public Boolean deleteByMemberAccount(String memberAccount) {
+        return memberMapper.deleteByMemberAccount(memberAccount);
+    }
 
-    // Query members according to member account number
-    List<Member> selectByMemberAccount(String memberAccount);
+    public Integer selectTotalCount() {
+        return memberMapper.selectTotalCount();
+    }
 
+    public List<Member> selectByMemberAccount(String memberAccount) {
+        return memberMapper.selectByMemberAccount(memberAccount);
+    }
 }

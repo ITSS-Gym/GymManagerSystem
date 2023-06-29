@@ -1,27 +1,37 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.CourseMapper;
 import server.pojo.Course;
 
 import java.util.List;
 
-public interface CourseService {
+@Service
+public class CourseService {
 
-    // Find all courses
-    List<Course> findAll();
+    @Autowired
+    private CourseMapper courseMapper;
 
-    // Delete course by id
-    Boolean deleteCourseByCourseId(Integer courseId);
+    public List<Course> findAll() {
+        return courseMapper.findAll();
+    }
 
-    // Add course
-    Boolean insertCourse(Course course);
+    public Boolean deleteCourseByCourseId(Integer courseId) {
+        return courseMapper.deleteCourseByCourseId(courseId);
+    }
 
-    // update course
-    Boolean updateCourseByCourseId(Course course);
+    public Boolean insertCourse(Course course) {
+        return courseMapper.insertCourse(course);
+    }
 
-    // Query the class schedule by id
-    Course selectByCourseId(Integer courseId);
+    public Boolean updateCourseByCourseId(Course course) { return  courseMapper.updateCourseByCourseId(course); }
 
-    // Delete reserved courses according to id
-    Boolean deleteOrderByCourseId(Integer courseId);
+    public Course selectByCourseId(Integer courseId) {
+        return courseMapper.selectByCourseId(courseId);
+    }
 
+    public Boolean deleteOrderByCourseId(Integer courseId) {
+        return courseMapper.deleteOrderByCourseId(courseId);
+    }
 }

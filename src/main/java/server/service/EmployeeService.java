@@ -1,27 +1,39 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.EmployeeMapper;
 import server.pojo.Employee;
 
 import java.util.List;
 
-public interface EmployeeService {
+@Service
+public class EmployeeService {
 
-    // Query all employees
-    List<Employee> findAll();
+    @Autowired
+    private EmployeeMapper employeeMapper;
 
-    // Delete employees based on employee account
-    Boolean deleteByEmployeeAccount(String employeeAccount);
+    public List<Employee> findAll() {
+        return employeeMapper.findAll();
+    }
 
-    // add new employee
-    Boolean insertEmployee(Employee employee);
+    public Boolean deleteByEmployeeAccount(String employeeAccount) {
+        return employeeMapper.deleteByEmployeeAccount(employeeAccount);
+    }
 
-    // Modify member information according to employee account
-    Boolean updateMemberByEmployeeAccount(Employee employee);
+    public Boolean insertEmployee(Employee employee) {
+        return employeeMapper.insertEmployee(employee);
+    }
 
-    // Query employees based on employee account
-    List<Employee> selectByEmployeeAccount(String employeeAccount);
+    public Boolean updateMemberByEmployeeAccount(Employee employee) {
+        return employeeMapper.updateMemberByEmployeeAccount(employee);
+    }
 
-    // Query the number of employees
-    Integer selectTotalCount();
+    public List<Employee> selectByEmployeeAccount(String employeeAccount) {
+        return employeeMapper.selectByEmployeeAccount(employeeAccount);
+    }
 
+    public Integer selectTotalCount() {
+        return employeeMapper.selectTotalCount();
+    }
 }

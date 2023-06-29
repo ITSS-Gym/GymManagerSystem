@@ -48,10 +48,10 @@
                                 <td th:text="${fee.content}">Content</td>
                                 <td th:text="${fee.timeCreated}">Time Create</td>
                                 <td>
-<!--                                    <a th:href="@{/feedback/toUpdateFeedback(memberAccount=${mem.memberAccount})}"-->
-<!--                                       style="text-decoration: none">-->
-<!--                                        <input type="button" class="btn btn-sm btn-outline-primary" value="Update">-->
-<!--                                    </a>-->
+                                    <a th:href="@{/feedback/toUpdateFeedback(memberAccount=${mem.memberAccount})}"
+                                       style="text-decoration: none">
+                                        <input type="button" class="btn btn-sm btn-outline-primary" value="Update">
+                                    </a>
                                     <a th:href="@{/feedback/delFeedback(feedbackID=${fee.feedbackID})}"
                                        style="text-decoration: none">
                                         <input type="button" class="btn btn-sm btn-outline-danger"

@@ -1,27 +1,39 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.EquipmentMapper;
 import server.pojo.Equipment;
 
 import java.util.List;
 
-public interface EquipmentService {
+@Service
+public class EquipmentService {
 
-    // Query all devices
-    List<Equipment> findAll();
+    @Autowired
+    private EquipmentMapper equipmentMapper;
 
-    // Delete device by id
-    Boolean deleteByEquipmentId(Integer equipmentId);
+    public List<Equipment> findAll() {
+        return equipmentMapper.findAll();
+    }
 
-    // Add equipment
-    Boolean insertEquipment(Equipment equipment);
+    public Boolean deleteByEquipmentId(Integer equipmentId) {
+        return equipmentMapper.deleteByEquipmentId(equipmentId);
+    }
 
-    // Modify device information according to id
-    Boolean updateEquipmentByEquipmentId(Equipment equipment);
+    public Boolean insertEquipment(Equipment equipment) {
+        return equipmentMapper.insertEquipment(equipment);
+    }
 
-    // Query devices by id
-    List<Equipment> selectByEquipmentId(Integer equipmentId);
+    public Boolean updateEquipmentByEquipmentId(Equipment equipment) {
+        return equipmentMapper.updateEquipmentByEquipmentId(equipment);
+    }
 
-    // Query devices by id
-    Integer selectTotalCount();
+    public List<Equipment> selectByEquipmentId(Integer equipmentId) {
+        return equipmentMapper.selectByEquipmentId(equipmentId);
+    }
 
+    public Integer selectTotalCount() {
+        return equipmentMapper.selectTotalCount();
+    }
 }

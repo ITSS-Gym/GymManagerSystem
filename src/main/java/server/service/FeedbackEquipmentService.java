@@ -1,26 +1,44 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.FeedbackEquipmentMapper;
 import server.pojo.FeedbackEquipment;
 
 import java.util.List;
 
-public interface FeedbackEquipmentService {
+@Service
+public class FeedbackEquipmentService {
 
-    List<FeedbackEquipment> findAll();
+    @Autowired
+    private FeedbackEquipmentMapper feedbackMapper;
 
-    // Delete device by id
-    Boolean deleteByFeedbackId(Integer feedbackId);
+    public List<FeedbackEquipment> findAll() {
+        return feedbackMapper.findAll();
+    }
 
-    // Add equipment
-    Boolean insertFeedbackEquipment(FeedbackEquipment feedbackEquipment);
+    public Boolean deleteByFeedbackId(Integer equipmentId) {
+        return feedbackMapper.deleteByFeedbackId(equipmentId);
+    }
 
-    // Modify device information according to id
-    Boolean updateByFeedbackId(FeedbackEquipment feedbackEquipment);
+    public Boolean insertFeedbackEquipment(FeedbackEquipment feedbackEquipment) {
+        return feedbackMapper.insertFeedbackEquipment(feedbackEquipment);
+    }
 
-    // Query devices by id
-    List<FeedbackEquipment> selectByFeedbackId(Integer feedbackId);
+    public Boolean updateByFeedbackId(FeedbackEquipment feedbackEquipment) {
+        return feedbackMapper.updateByFeedbackId(feedbackEquipment);
+    }
 
-    List<FeedbackEquipment> selectByMemberAccount(String memberAccount);
+    public List<FeedbackEquipment> selectByFeedbackId(Integer feedbackId) {
+        return feedbackMapper.selectByFeedbackId(feedbackId);
+    }
 
-    List<FeedbackEquipment> selectByEquipmentId(Integer EquipmentId);
+    public List<FeedbackEquipment> selectByMemberAccount(String memberAccount) {
+        return feedbackMapper.selectByMemberAccount(memberAccount);
+    }
+
+    public List<FeedbackEquipment> selectByEquipmentId(Integer EquipmentAccount) {
+        return feedbackMapper.selectByEquipmentId(EquipmentAccount);
+    }
+
 }

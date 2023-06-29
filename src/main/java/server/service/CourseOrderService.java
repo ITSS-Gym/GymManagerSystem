@@ -1,36 +1,47 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.CourseOrderMapper;
 import server.pojo.CourseOrder;
 
 import java.util.List;
 
-/**
- * @author MiloTnT [milotntspace@gmail.com]
- * @date 2021/8/11
- */
+@Service
+public class CourseOrderService {
 
-public interface CourseOrderService {
+    @Autowired
+    private CourseOrderMapper courseOrderMapper;
 
-    // Query all registration form information
-    List<CourseOrder> findAll();
+    public List<CourseOrder> findAll() {
+        return courseOrderMapper.findAll();
+    }
 
-    // Add registration information
-    Boolean insertCourseOrder(CourseOrder courseOrder);
+    public Boolean insertCourseOrder(CourseOrder courseOrder) {
+        return courseOrderMapper.insertCourseOrder(courseOrder);
+    }
 
-    // Query the personal registration schedule according to the member account
-    List<CourseOrder> selectCourseOrderByMemberAccount(String memberAccount);
+    public List<CourseOrder> selectCourseOrderByMemberAccount(String memberAccount) {
+        return courseOrderMapper.selectCourseOrderByMemberAccount(memberAccount);
+    }
 
-    // Delete a reserved course
-    Boolean deleteByCourseOrderId(Integer courseOrderId);
+    public Boolean deleteByCourseOrderId(Integer courseOrderId) {
+        return courseOrderMapper.deleteByCourseOrderId(courseOrderId);
+    }
 
-    // Check if the member is enrolled in the course
-    CourseOrder selectMemberByCourseIdAndMemberAccount(Integer courseId, String memberAccount);
+    public CourseOrder selectMemberByCourseIdAndMemberAccount(Integer courseId, String memberAccount) {
+        return courseOrderMapper.selectMemberByCourseIdAndMemberAccount(courseId, memberAccount);
+    }
 
-    // Query all registered members according to the course id
-    List<CourseOrder> selectMemberOrderList(Integer courseId);
+    public List<CourseOrder> selectMemberOrderList(Integer courseId) {
+        return courseOrderMapper.selectMemberOrderList(courseId);
+    }
 
-    Boolean updateStatusByOrderId(Integer courseOrderId);
+    public Boolean updateStatusByOrderId(Integer courseOrderId) {
+        return courseOrderMapper.updateStatusByOrderId(courseOrderId);
+    }
 
-    Boolean deleteOrderByOrderId(Integer courseOrderId);
-
+    public Boolean deleteOrderByOrderId(Integer courseOrderId) {
+        return courseOrderMapper.deleteOrderByOrderId(courseOrderId);
+    }
 }

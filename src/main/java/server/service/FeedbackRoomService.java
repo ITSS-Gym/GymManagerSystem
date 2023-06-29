@@ -1,26 +1,43 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.FeedbackRoomMapper;
 import server.pojo.FeedbackRoom;
 
 import java.util.List;
 
-public interface FeedbackRoomService {
+@Service
+public class FeedbackRoomService {
 
-    List<FeedbackRoom> findAll();
+    @Autowired
+    private FeedbackRoomMapper feedbackMapper;
 
-    // Delete device by id
-    Boolean deleteByFeedbackId(Integer feedbackId);
+    public List<FeedbackRoom> findAll() {
+        return feedbackMapper.findAll();
+    }
 
-    // Add Room
-    Boolean insertFeedbackRoom(FeedbackRoom feedbackRoom);
+    public Boolean deleteByFeedbackId(Integer equipmentId) {
+        return feedbackMapper.deleteByFeedbackId(equipmentId);
+    }
 
-    // Modify device information according to id
-    Boolean updateByFeedbackId(FeedbackRoom feedbackRoom);
+    public Boolean insertFeedbackRoom(FeedbackRoom feedbackRoom) {
+        return feedbackMapper.insertFeedbackRoom(feedbackRoom);
+    }
 
-    // Query devices by id
-    List<FeedbackRoom> selectByFeedbackId(Integer feedbackId);
+    public Boolean updateByFeedbackId(FeedbackRoom feedbackRoom) {
+        return feedbackMapper.updateByFeedbackId(feedbackRoom);
+    }
 
-    List<FeedbackRoom> selectByMemberAccount(String memberAccount);
+    public List<FeedbackRoom> selectByFeedbackId(Integer feedbackId) {
+        return feedbackMapper.selectByFeedbackId(feedbackId);
+    }
 
-    List<FeedbackRoom> selectByRoomId(Integer RoomId);
+    public List<FeedbackRoom> selectByMemberAccount(String memberAccount) {
+        return feedbackMapper.selectByMemberAccount(memberAccount);
+    }
+
+    public List<FeedbackRoom> selectByRoomId(Integer RoomAccount) {
+        return feedbackMapper.selectByRoomId(RoomAccount);
+    }
 }

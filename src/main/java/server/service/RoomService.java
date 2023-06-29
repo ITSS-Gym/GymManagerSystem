@@ -1,24 +1,38 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.RoomMapper;
 import server.pojo.Room;
 
 import java.util.List;
 
-public interface RoomService {
-    List<Room> findAll();
+@Service
+public class RoomService {
+    @Autowired
+    private RoomMapper roomMapper;
 
-    // Delete device by id
-    Boolean deleteByRoomId(Integer roomId);
+    public List<Room> findAll() {
+        return roomMapper.findAll();
+    }
 
-    // Add room
-    Boolean insertRoom(Room room);
+    public Boolean deleteByRoomId(Integer roomId) {
+        return roomMapper.deleteByRoomId(roomId);
+    }
 
-    // Modify device information according to id
-    Boolean updateRoomByRoomId(Room room);
+    public Boolean insertRoom(Room room) {
+        return roomMapper.insertRoom(room);
+    }
 
-    // Query devices by id
-    List<Room> selectByRoomId(Integer roomId);
+    public Boolean updateRoomByRoomId(Room room) {
+        return roomMapper.updateRoomByRoomId(room);
+    }
 
-    // Query devices by id
-    Integer selectTotalCount();
+    public List<Room> selectByRoomId(Integer roomId) {
+        return roomMapper.selectByRoomId(roomId);
+    }
+
+    public Integer selectTotalCount() {
+        return roomMapper.selectTotalCount();
+    }
 }

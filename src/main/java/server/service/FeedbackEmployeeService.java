@@ -1,26 +1,43 @@
 package server.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import server.mapper.FeedbackEmployeeMapper;
 import server.pojo.FeedbackEmployee;
 
 import java.util.List;
 
-public interface FeedbackEmployeeService {
+@Service
+public class FeedbackEmployeeService {
 
-    List<FeedbackEmployee> findAll();
+    @Autowired
+    private FeedbackEmployeeMapper feedbackMapper;
 
-    // Delete device by id
-    Boolean deleteByFeedbackId(Integer feedbackId);
+    public List<FeedbackEmployee> findAll() {
+        return feedbackMapper.findAll();
+    }
 
-    // Add equipment
-    Boolean insertFeedbackEmployee(FeedbackEmployee feedbackEmployee);
+    public Boolean deleteByFeedbackId(Integer equipmentId) {
+        return feedbackMapper.deleteByFeedbackId(equipmentId);
+    }
 
-    // Modify device information according to id
-    Boolean updateByFeedbackId(FeedbackEmployee feedbackEmployee);
+    public Boolean insertFeedbackEmployee(FeedbackEmployee feedbackEmployee) {
+        return feedbackMapper.insertFeedbackEmployee(feedbackEmployee);
+    }
 
-    // Query devices by id
-    List<FeedbackEmployee> selectByFeedbackId(Integer feedbackId);
+    public Boolean updateByFeedbackId(FeedbackEmployee feedbackEmployee) {
+        return feedbackMapper.updateByFeedbackId(feedbackEmployee);
+    }
 
-    List<FeedbackEmployee> selectByMemberAccount(String memberAccount);
+    public List<FeedbackEmployee> selectByFeedbackId(Integer feedbackId) {
+        return feedbackMapper.selectByFeedbackId(feedbackId);
+    }
 
-    List<FeedbackEmployee> selectByEmployeeAccount(String employeeAccount);
+    public List<FeedbackEmployee> selectByMemberAccount(String memberAccount) {
+        return feedbackMapper.selectByMemberAccount(memberAccount);
+    }
+
+    public List<FeedbackEmployee> selectByEmployeeAccount(String employeeAccount) {
+        return feedbackMapper.selectByEmployeeAccount(employeeAccount);
+    }
 }
