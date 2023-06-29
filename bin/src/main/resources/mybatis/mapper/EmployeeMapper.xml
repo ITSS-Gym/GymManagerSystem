@@ -9,34 +9,34 @@
         FROM employee
     </select>
 
-    <delete id="deleteByEmployeeAccount" parameterType="java.lang.Integer">
+    <delete id="deleteByemployeeId" parameterType="java.lang.Integer">
         DELETE
         FROM employee
-        WHERE employee_account = #{employeeAccount}
+        WHERE employee_id = #{employeeId}
     </delete>
 
     <insert id="insertEmployee" parameterType="employee">
-        INSERT INTO employee (employee_account, employee_name, employee_gender,
+        INSERT INTO employee (employee_id, employee_name, employee_gender,
                               employee_age, entry_time, staff, employee_message)
-        VALUES (#{employeeAccount}, #{employeeName}, #{employeeGender},
+        VALUES (#{employeeId}, #{employeeName}, #{employeeGender},
                 #{employeeAge}, #{entryTime}, #{staff}, #{employeeMessage})
     </insert>
 
-    <update id="updateMemberByEmployeeAccount" parameterType="employee">
+    <update id="updateMemberByemployeeId" parameterType="employee">
         UPDATE employee
-        SET employee_account = #{employeeAccount},
+        SET employee_id = #{employeeId},
             employee_name    = #{employeeName},
             employee_gender  = #{employeeGender},
             employee_age     = #{employeeAge},
             staff            = #{staff},
             employee_message=#{employeeMessage}
-        WHERE employee_account = #{employeeAccount}
+        WHERE employee_id = #{employeeId}
     </update>
 
-    <select id="selectByEmployeeAccount" parameterType="java.lang.Integer" resultType="employee">
+    <select id="selectByemployeeId" parameterType="java.lang.Integer" resultType="employee">
         SELECT *
         FROM employee
-        WHERE employee_account = #{employeeAccount}
+        WHERE employee_id = #{employeeId}
     </select>
 
     <select id="selectTotalCount" resultType="java.lang.Integer">

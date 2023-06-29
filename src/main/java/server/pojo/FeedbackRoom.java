@@ -1,12 +1,44 @@
 package server.pojo;
 
-public class FeedbackRoom extends Feedback {
+import java.sql.Timestamp;
 
+public class FeedbackRoom {
+    private Integer feedbackId;
+
+    private String memberAccount;
+
+    private String memberName;
 
     private Integer roomId;
 
     private String roomName;
 
+    private String content;
+    private Timestamp timeCreated;
+
+    public Integer getFeedbackId() {
+        return feedbackId;
+    }
+
+    public void setFeedbackId(Integer feedbackId) {
+        this.feedbackId = feedbackId;
+    }
+
+    public String getMemberAccount() {
+        return memberAccount;
+    }
+
+    public void setMemberAccount(String memberAccount) {
+        this.memberAccount = memberAccount;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
 
     public Integer getRoomId() {
         return roomId;
@@ -24,14 +56,30 @@ public class FeedbackRoom extends Feedback {
         this.roomName = roomName;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Timestamp getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(Timestamp timeCreated) {
+        this.timeCreated = timeCreated;
+    }
+
     @Override
     public String toString() {
         return "FeedbackRoom{" +
-                "roomId=" + roomId +
-                ", roomName='" + roomName + '\'' +
-                ", feedbackId=" + feedbackId +
-                ", memberAccount=" + memberAccount +
+                "feedbackId=" + feedbackId +
+                ", memberAccount='" + memberAccount + '\'' +
                 ", memberName='" + memberName + '\'' +
+                ", roomId=" + roomId +
+                ", roomName='" + roomName + '\'' +
                 ", content='" + content + '\'' +
                 ", timeCreated=" + timeCreated +
                 '}';

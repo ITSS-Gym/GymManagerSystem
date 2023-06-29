@@ -5,9 +5,9 @@
 <mapper namespace="server.mapper.CourseMapper">
 
     <select id="findAll" resultType="course">
-        SELECT course_id, course_name, course_begin, course_time, coach_account, employee_name, price, course_type
+        SELECT course_id, course_name, course_begin, course_time, coach_id, employee_name, price, course_type
         FROM course
-        INNER JOIN employee ON course.coach_account = employee.employee_account
+        INNER JOIN employee ON course.coach_id = employee.employee_id
     </select>
 
     <delete id="deleteCourseByCourseId" parameterType="java.lang.Integer">
@@ -17,8 +17,8 @@
     </delete>
 
     <insert id="insertCourse" parameterType="course">
-        INSERT INTO course (course_name, course_begin, course_time, coach_account, price, course_type)
-        VALUES (#{courseName}, #{courseBegin}, #{courseTime}, #{coachAccount}, #{price}, #{courseType})
+        INSERT INTO course (course_name, course_begin, course_time, coach_id, price, course_type)
+        VALUES (#{courseName}, #{courseBegin}, #{courseTime}, #{coachId}, #{price}, #{courseType})
     </insert>
 
     <update id="updateCourseByCourseId" parameterType="course">
@@ -26,16 +26,16 @@
         SET course_name  = #{courseName},
         course_begin     = #{courseBegin},
         course_time      = #{courseTime},
-        coach_account    = #{coachAccount},
+        coach_id    = #{coachId},
         price            = #{price},
         course_type      =#{courseType}
         WHERE course_id = #{courseId}
     </update>
 
     <select id="selectByCourseId" parameterType="java.lang.Integer" resultType="course">
-        SELECT course_id, course_name, course_begin, course_time, coach_account, employee_name, price, course_type
+        SELECT course_id, course_name, course_begin, course_time, coach_id, employee_name, price, course_type
         FROM course
-        INNER JOIN employee ON course.coach_account = employee.employee_account
+        INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course_id = #{courseId}
     </select>
 

@@ -35,18 +35,17 @@ public class EmployeeController {
     // New employee
     @RequestMapping("/addEmployee")
     public String addEmployee(Employee employee, Model model) {
-        List<Employee> employeeList = employeeService.selectByEmployeeAccount(employee.getEmployeeAccount());
-        if (!employeeList.isEmpty()) {
-            model.addAttribute("msg", "Duplicate Account!");
-            return "addEmployee";
-        }
+//        List<Employee> employeeList = employeeService.selectByEmployeeId(employee.getEmployeeId());
+//        if (!employeeList.isEmpty()) {
+//            model.addAttribute("msg", "Duplicate Account!");
+//            return "addEmployee";
+//        }
 
         //get current date
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String nowDay = simpleDateFormat.format(date);
 
-//        employee.setEmployeeAccount(account);
         employee.setEntryTime(nowDay);
 
         employeeService.insertEmployee(employee);
@@ -57,15 +56,15 @@ public class EmployeeController {
 
     //delete employee
     @RequestMapping("/delEmployee")
-    public String deleteEmployee(String employeeAccount) {
-        employeeService.deleteByEmployeeAccount(employeeAccount);
+    public String deleteEmployee(Integer employeeId) {
+        employeeService.deleteByEmployeeId(employeeId);
         return "redirect:selEmployee";
     }
 
     //Jump to the employee modification page
     @RequestMapping("/toUpdateEmployee")
-    public String toUpdateEmployee(String employeeAccount, Model model) {
-        List<Employee> employeeList = employeeService.selectByEmployeeAccount(employeeAccount);
+    public String toUpdateEmployee(Integer employeeId, Model model) {
+        List<Employee> employeeList = employeeService.selectByEmployeeId(employeeId);
         model.addAttribute("employeeList", employeeList);
         return "updateEmployee";
     }
@@ -73,7 +72,7 @@ public class EmployeeController {
     //Modify employee information
     @RequestMapping("/updateEmployee")
     public String updateEmployee(Employee employee) {
-        employeeService.updateMemberByEmployeeAccount(employee);
+        employeeService.updateMemberByEmployeeId(employee);
         return "redirect:selEmployee";
     }
 

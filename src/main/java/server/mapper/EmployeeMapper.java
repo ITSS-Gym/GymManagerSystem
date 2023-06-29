@@ -11,16 +11,16 @@ public interface EmployeeMapper {
     List<Employee> findAll();
 
     // Delete employees based on employee account
-    Boolean deleteByEmployeeAccount(String employeeAccount);
+    Boolean deleteByEmployeeId(Integer employeeId);
 
     // add new employee
     Boolean insertEmployee(Employee employee);
 
     // Modify member information according to employee account
-    Boolean updateMemberByEmployeeAccount(Employee employee);
+    Boolean updateMemberByEmployeeId(Employee employee);
 
     // Query employees based on employee account
-    List<Employee> selectByEmployeeAccount(String employeeAccount);
+    List<Employee> selectByEmployeeId(Integer employeeId);
 
     // Query the number of employees
     Integer selectTotalCount();

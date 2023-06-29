@@ -102,13 +102,13 @@ public class UserController {
 
         Integer courseId1 = course.getCourseId();
         String courseName = course.getCourseName();
-        String coachAccount = course.getCoachAccount();
+        Integer coachId = course.getCoachId();
         String coachName = course.getCoachName();
         String courseBegin = course.getCourseBegin();
         String memberName = member.getMemberName();
         String memberAccount = member.getMemberAccount();
 
-        CourseOrder courseOrder = new CourseOrder(courseId1, courseName, coachAccount, coachName, memberAccount, memberName, courseBegin);
+        CourseOrder courseOrder = new CourseOrder(courseId1, courseName, coachId, coachName, memberAccount, memberName, courseBegin);
         String memberAccount1 = member.getMemberAccount();
         CourseOrder courseOrder1 = courseOrderService.selectMemberByCourseIdAndMemberAccount(courseId1, memberAccount1);
 

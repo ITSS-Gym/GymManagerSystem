@@ -71,25 +71,25 @@ INSERT INTO `member` VALUES ('202123664', '123456', 'Alice', 'female', 25, 165, 
 -- ----------------------------
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee`  (
-  `employee_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL UNIQUE COMMENT 'Employee Account',
+  `employee_id` int NOT NULL AUTO_INCREMENT COMMENT 'Employee ID',
   `employee_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'employee name',
   `employee_gender` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'employee gender',
   `employee_age` int NULL DEFAULT NULL COMMENT 'Age',
   `entry_time` date NULL DEFAULT NULL COMMENT 'entry time`',
   `staff` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'staff',
   `employee_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'employee message',
-  PRIMARY KEY (`employee_account`) USING BTREE
+  PRIMARY KEY (`employee_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of employee
 -- ----------------------------
-INSERT INTO employee VALUES ('101038721', 'Coach 1', 'Female', 26, '2016-06-29', 'Fitness coach', 'Bodybuilding champion');
-INSERT INTO employee VALUES ('101068283', 'Coach 2', 'Male', 34, '2020-01-06', 'Fitness coach', 'Career coach');
-INSERT INTO employee VALUES ('101053687', 'Coach 3', 'Male', 30, '2020-06-06', 'Fitness coach', 'Career coach');
-INSERT INTO employee VALUES ('101045354', 'Coach 4', 'Male', 24, '2021-01-07', 'Fitness coach', 'Career coach');
-INSERT INTO employee VALUES ('101058973', 'Cleaning 1', 'Female', 48, '2019-08-24', 'Cleaners', 'Model employee');
-INSERT INTO employee VALUES ('101034208', 'Cleaning 2', 'Female', 48, '2010-08-01', 'Cleaners', '');
+INSERT INTO employee (`employee_name`, `employee_gender`, `employee_age`, `entry_time`, `staff`, `employee_message`) VALUES ('Coach 1', 'Female', 26, '2016-06-29', 'Fitness coach', 'Bodybuilding champion');
+INSERT INTO employee (`employee_name`, `employee_gender`, `employee_age`, `entry_time`, `staff`, `employee_message`) VALUES ('Coach 2', 'Male', 34, '2020-01-06', 'Fitness coach', 'Career coach');
+INSERT INTO employee (`employee_name`, `employee_gender`, `employee_age`, `entry_time`, `staff`, `employee_message`) VALUES ('Coach 3', 'Male', 30, '2020-06-06', 'Fitness coach', 'Career coach');
+INSERT INTO employee (`employee_name`, `employee_gender`, `employee_age`, `entry_time`, `staff`, `employee_message`) VALUES ('Coach 4', 'Male', 24, '2021-01-07', 'Fitness coach', 'Career coach');
+INSERT INTO employee (`employee_name`, `employee_gender`, `employee_age`, `entry_time`, `staff`, `employee_message`) VALUES ('Cleaning 1', 'Female', 48, '2019-08-24', 'Cleaners', 'Model employee');
+INSERT INTO employee (`employee_name`, `employee_gender`, `employee_age`, `entry_time`, `staff`, `employee_message`) VALUES ('Cleaning 2', 'Female', 48, '2010-08-01', 'Cleaners', '');
 
 -- ----------------------------
 -- Table structure for course
@@ -100,28 +100,28 @@ CREATE TABLE `course`  (
   `course_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Name',
   `course_begin` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course start time',
   `course_time` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Course Duration',
-  `coach_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Coach Account',
+  `coach_id` int NULL DEFAULT NULL COMMENT 'Coach ID',
   `price` int NULL DEFAULT NULL COMMENT 'vnd',
   `course_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'based on time/sport',
   PRIMARY KEY (`course_id`) USING BTREE,
-  FOREIGN KEY (`coach_account`) REFERENCES `employee`(`employee_account`) ON DELETE SET NULL ON UPDATE CASCADE
+  FOREIGN KEY (`coach_id`) REFERENCES `employee`(`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
 
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_3m', '2021-01-01 15:00', '60m', '101038721', 600000, "yoga 3 months");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1m', '2021-01-02 10:20', '90m', '101038721', 200000, "gym 1 month");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_3m', '2021-03-06 18:00', '90m', '101038721', 550000, "gym 3 months");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1m_PT', '2021-02-02 10:00', '45m', '101045354', 3000000, "gym 1 month with PT");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_1m', '2021-02-03 15:00', '60m', '101053687', 200000, "yoga 1 month");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('cardio_1m', '2021-02-03 15:00', '60m', '101068283', 150000, "cardio 1 month");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1d', '2021-03-01 17:30', '60m', '101053687', 10000, "gym 1 day");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('yoga_1d', '2021-02-22 09:00', '90m', '101068283', 12000,"yoga 1 day");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('cardio_1d', '2021-02-04 15:00', '60m', '101068283', 8000, "cardio 1 day");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1y_PT', '2021-03-08 15:00', '45m', '101068283', 20000000, "gym 1 year with PT");
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_account`, `price`, `course_type`) VALUES ('gym_1y', '2021-02-22 18:00', '60m', '101068283', 1500000, "gym 1 year");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('yoga_3m', '2021-01-01 15:00', '60m', 1, 600000, "yoga 3 months");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('gym_1m', '2021-01-02 10:20', '90m', 1, 200000, "gym 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('gym_3m', '2021-03-06 18:00', '90m', 2, 550000, "gym 3 months");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('gym_1m_PT', '2021-02-02 10:00', '45m', 4, 3000000, "gym 1 month with PT");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('yoga_1m', '2021-02-03 15:00', '60m', 3, 200000, "yoga 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('cardio_1m', '2021-02-03 15:00', '60m', 3, 150000, "cardio 1 month");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('gym_1d', '2021-03-01 17:30', '60m', 4, 10000, "gym 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('yoga_1d', '2021-02-22 09:00', '90m', 4, 12000,"yoga 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('cardio_1d', '2021-02-04 15:00', '60m', 2, 8000, "cardio 1 day");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('gym_1y_PT', '2021-03-08 15:00', '45m', 1, 20000000, "gym 1 year with PT");
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`) VALUES ('gym_1y', '2021-02-22 18:00', '60m', 2, 1500000, "gym 1 year");
 
 
 -- ----------------------------
@@ -186,20 +186,20 @@ DROP TABLE IF EXISTS `feedback_employee`;
 CREATE TABLE `feedback_employee`  (
   `feedback_id` int NOT NULL AUTO_INCREMENT COMMENT 'feedback id',
   `member_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'account of member',
-  `employee_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'account of employee got feedback',
+  `employee_id` int NULL DEFAULT NULL COMMENT 'account of employee got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`feedback_id`) USING BTREE,
   FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`employee_account`) REFERENCES `employee`(`employee_account`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`employee_id`) REFERENCES `employee`(`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of feedback_employee
 -- ----------------------------
-INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES ('202100788', '101038721', 'Good');
-INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES ('202183406', '101038721', 'Awesome');
-INSERT INTO `feedback_employee` (`member_account`, `employee_account`, `content`) VALUES ('202183406', '101058973', 'Usually late');
+INSERT INTO `feedback_employee` (`member_account`, `employee_id`, `content`) VALUES ('202100788', 1, 'Good');
+INSERT INTO `feedback_employee` (`member_account`, `employee_id`, `content`) VALUES ('202183406', 1, 'Awesome');
+INSERT INTO `feedback_employee` (`member_account`, `employee_id`, `content`) VALUES ('202183406', 2, 'Usually late');
 
 -- ----------------------------
 -- Table structure for feedback_equipment

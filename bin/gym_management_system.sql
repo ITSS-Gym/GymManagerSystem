@@ -119,14 +119,14 @@ INSERT INTO `member` VALUES (202123664, '123456', 'Lily', '女', 25, 165, 51, 15
 -- ----------------------------
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee`  (
-  `employee_account` int NOT NULL COMMENT '员工账号',
+  `employee_id` int NOT NULL COMMENT '员工账号',
   `employee_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工姓名',
   `employee_gender` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '员工性别',
   `employee_age` int NULL DEFAULT NULL COMMENT '员工年龄',
   `entry_time` date NULL DEFAULT NULL COMMENT '入职时间',
   `staff` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '职务',
   `employee_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注信息',
-  PRIMARY KEY (`employee_account`) USING BTREE
+  PRIMARY KEY (`employee_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------

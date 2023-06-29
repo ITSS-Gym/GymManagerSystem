@@ -37,7 +37,7 @@ public class FeedbackEmployeeService {
         return feedbackMapper.selectByMemberAccount(memberAccount);
     }
 
-    public List<FeedbackEmployee> selectByEmployeeAccount(String employeeAccount) {
-        return feedbackMapper.selectByEmployeeAccount(employeeAccount);
+    public List<FeedbackEmployee> selectByEmployeeId(Integer employeeId) {
+        return feedbackMapper.selectByEmployeeId(employeeId);
     }
 }

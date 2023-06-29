@@ -5,17 +5,17 @@ public class CourseOrder {
     private Integer courseOrderId;
     private Integer courseId;
     private String courseName;
-    private String coachAccount;
+    private Integer coachId;
     private String coachName;
     private String memberAccount;
     private String memberName;
     private String courseBegin;
     private String status;
 
-    public CourseOrder(Integer courseId, String courseName, String coachAccount, String coachName, String memberAccount, String memberName, String courseBegin) {
+    public CourseOrder(Integer courseId, String courseName, Integer coachId, String coachName, String memberAccount, String memberName, String courseBegin) {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.coachAccount = coachAccount;
+        this.coachId = coachId;
         this.coachName = coachName;
         this.memberName = memberName;
         this.memberAccount = memberAccount;
@@ -23,11 +23,11 @@ public class CourseOrder {
         this.status = "waiting";
     }
 
-    public CourseOrder(Integer courseOrderId, Integer courseId, String courseName, String coachAccount, String coachName, String memberAccount, String memberName, String courseBegin, String status) {
+    public CourseOrder(Integer courseOrderId, Integer courseId, String courseName, Integer coachId, String coachName, String memberAccount, String memberName, String courseBegin, String status) {
         this.courseOrderId = courseOrderId;
         this.courseId = courseId;
         this.courseName = courseName;
-        this.coachAccount = coachAccount;
+        this.coachId = coachId;
         this.coachName = coachName;
         this.memberName = memberName;
         this.memberAccount = memberAccount;
@@ -59,12 +59,12 @@ public class CourseOrder {
         this.courseName = courseName;
     }
 
-    public String getCoachAccount() {
-        return coachAccount;
+    public Integer getCoachId() {
+        return coachId;
     }
 
-    public void setCoachAccount(String coachAccount) {
-        this.coachAccount = coachAccount;
+    public void setCoachId(Integer coachId) {
+        this.coachId = coachId;
     }
 
     public String getCoachName() {
@@ -113,10 +113,10 @@ public class CourseOrder {
                 "courseOrderId=" + courseOrderId +
                 ", courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
-                ", coachAccount=" + coachAccount +
+                ", coachId=" + coachId +
                 ", coachName='" + coachName + '\'' +
+                ", memberAccount='" + memberAccount + '\'' +
                 ", memberName='" + memberName + '\'' +
-                ", memberAccount=" + memberAccount +
                 ", courseBegin='" + courseBegin + '\'' +
                 ", status='" + status + '\'' +
                 '}';

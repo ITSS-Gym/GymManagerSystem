@@ -1,18 +1,53 @@
 package server.pojo;
 
-public class FeedbackEmployee extends Feedback {
+import java.sql.Timestamp;
 
-    private String employeeAccount;
+public class FeedbackEmployee {
+    
+    private Integer feedbackId;
+
+    private String memberAccount;
+
+    private String memberName;
+
+    private Integer employeeId;
 
     private String employeeName;
 
+    private String content;
 
-    public String getEmployeeAccount() {
-        return employeeAccount;
+    private Timestamp timeCreated;
+
+    public Integer getFeedbackId() {
+        return feedbackId;
     }
 
-    public void setEmployeeAccount(String employeeAccount) {
-        this.employeeAccount = employeeAccount;
+    public void setFeedbackId(Integer feedbackId) {
+        this.feedbackId = feedbackId;
+    }
+
+    public String getMemberAccount() {
+        return memberAccount;
+    }
+
+    public void setMemberAccount(String memberAccount) {
+        this.memberAccount = memberAccount;
+    }
+
+    public String getMemberName() {
+        return memberName;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getEmployeeName() {
@@ -23,14 +58,30 @@ public class FeedbackEmployee extends Feedback {
         this.employeeName = employeeName;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Timestamp getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(Timestamp timeCreated) {
+        this.timeCreated = timeCreated;
+    }
+
     @Override
     public String toString() {
         return "FeedbackEmployee{" +
-                "employeeAccount=" + employeeAccount +
-                ", employeeName='" + employeeName + '\'' +
-                ", feedbackId=" + feedbackId +
-                ", memberAccount=" + memberAccount +
+                "feedbackId=" + feedbackId +
+                ", memberAccount='" + memberAccount + '\'' +
                 ", memberName='" + memberName + '\'' +
+                ", employeeId=" + employeeId +
+                ", employeeName='" + employeeName + '\'' +
                 ", content='" + content + '\'' +
                 ", timeCreated=" + timeCreated +
                 '}';

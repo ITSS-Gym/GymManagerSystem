@@ -29,8 +29,8 @@ public class FeedbackEmployeeController {
 
     // Jump to the new course page
     @RequestMapping("/toViewFeedbackEmployee")
-    public String toViewFeedbackEmployee(String employeeAccount, Model model) {
-        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByEmployeeAccount(employeeAccount);
+    public String toViewFeedbackEmployee(Integer employeeId, Model model) {
+        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByEmployeeId(employeeId);
         model.addAttribute("feedbackEmployeeList", feedbackEmployeeList);
         return "selectFeedbackEmployee";
     }

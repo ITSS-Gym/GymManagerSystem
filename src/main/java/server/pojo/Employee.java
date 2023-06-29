@@ -2,7 +2,7 @@ package server.pojo;
 
 public class Employee {
 
-    private String employeeAccount;
+    private Integer employeeId;
     private String employeeName;
     private String employeeGender;
     private Integer employeeAge;
@@ -13,8 +13,8 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String employeeAccount, String employeeName, String employeeGender, Integer employeeAge, String entryTime, String staff, String employeeMessage) {
-        this.employeeAccount = employeeAccount;
+    public Employee(Integer employeeId, String employeeName, String employeeGender, Integer employeeAge, String entryTime, String staff, String employeeMessage) {
+        this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeGender = employeeGender;
         this.employeeAge = employeeAge;
@@ -23,12 +23,12 @@ public class Employee {
         this.employeeMessage = employeeMessage;
     }
 
-    public String getEmployeeAccount() {
-        return employeeAccount;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
-    public void setEmployeeAccount(String employeeAccount) {
-        this.employeeAccount = employeeAccount;
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getEmployeeName() {
@@ -82,7 +82,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                ", employeeAccount=" + employeeAccount +
+                "employeeId=" + employeeId +
                 ", employeeName='" + employeeName + '\'' +
                 ", employeeGender='" + employeeGender + '\'' +
                 ", employeeAge=" + employeeAge +

@@ -5,12 +5,12 @@
 <mapper namespace="server.mapper.CourseOrderMapper">
 
     <select id="findAll" resultType="courseOrder">
-        SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
+        SELECT course_order_id, course_order.course_id, course_name, coach_id, employee_name,
                course_order.member_account, member_name, course_begin, status
         FROM course_order
         INNER JOIN course ON course_order.course_id = course.course_id
         INNER JOIN member ON course_order.member_account = member.member_account
-        INNER JOIN employee ON course.coach_account = employee.employee_account
+        INNER JOIN employee ON course.coach_id = employee.employee_id
     </select>
 
     <insert id="insertCourseOrder" parameterType="courseOrder">
@@ -19,12 +19,12 @@
     </insert>
 
     <select id="selectCourseOrderByMemberAccount" parameterType="java.lang.String" resultType="courseOrder">
-        SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
+        SELECT course_order_id, course_order.course_id, course_name, coach_id, employee_name,
                course_order.member_account, member_name, course_begin, status
         FROM course_order
         INNER JOIN course ON course_order.course_id = course.course_id
         INNER JOIN member ON course_order.member_account = member.member_account
-        INNER JOIN employee ON course.coach_account = employee.employee_account
+        INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course_order.member_account = #{memberAccount}
     </select>
 
@@ -35,23 +35,23 @@
     </delete>
 
     <select id="selectMemberByCourseIdAndMemberAccount" parameterType="map" resultType="courseOrder">
-        SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
+        SELECT course_order_id, course_order.course_id, course_name, coach_id, employee_name,
                course_order.member_account, member_name, course_begin, status
         FROM course_order
         INNER JOIN course ON course_order.course_id = course.course_id
         INNER JOIN member ON course_order.member_account = member.member_account
-        INNER JOIN employee ON course.coach_account = employee.employee_account
+        INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course_order.course_id = #{courseId}
           AND course_order.member_account = #{memberAccount}
     </select>
 
     <select id="selectMemberOrderList" parameterType="java.lang.Integer" resultType="courseOrder">
-        SELECT course_order_id, course_order.course_id, course_name, coach_account, employee_name,
+        SELECT course_order_id, course_order.course_id, course_name, coach_id, employee_name,
                course_order.member_account, member_name, course_begin, status
         FROM course_order
         INNER JOIN course ON course_order.course_id = course.course_id
         INNER JOIN member ON course_order.member_account = member.member_account
-        INNER JOIN employee ON course.coach_account = employee.employee_account
+        INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course_order.course_id = #{courseId}
     </select>
 

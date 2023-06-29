@@ -17,20 +17,20 @@ public class EmployeeService {
         return employeeMapper.findAll();
     }
 
-    public Boolean deleteByEmployeeAccount(String employeeAccount) {
-        return employeeMapper.deleteByEmployeeAccount(employeeAccount);
+    public Boolean deleteByEmployeeId(Integer employeeId) {
+        return employeeMapper.deleteByEmployeeId(employeeId);
     }
 
     public Boolean insertEmployee(Employee employee) {
         return employeeMapper.insertEmployee(employee);
     }
 
-    public Boolean updateMemberByEmployeeAccount(Employee employee) {
-        return employeeMapper.updateMemberByEmployeeAccount(employee);
+    public Boolean updateMemberByEmployeeId(Employee employee) {
+        return employeeMapper.updateMemberByEmployeeId(employee);
     }
 
-    public List<Employee> selectByEmployeeAccount(String employeeAccount) {
-        return employeeMapper.selectByEmployeeAccount(employeeAccount);
+    public List<Employee> selectByEmployeeId(Integer employeeId) {
+        return employeeMapper.selectByEmployeeId(employeeId);
     }
 
     public Integer selectTotalCount() {

@@ -38,7 +38,7 @@
 
                             <tbody>
                             <tr th:each="emp:${employeeList}">
-                                <td th:text="${emp.employeeAccount}">Account</td>
+                                <td th:text="${emp.employeeId}">Account</td>
                                 <td th:text="${emp.employeeName}">Name</td>
                                 <td th:text="${emp.employeeGender}">Gender</td>
                                 <td th:text="${emp.employeeAge}">Age</td>
@@ -46,16 +46,16 @@
                                 <td th:text="${emp.staff}">Staff</td>
                                 <td th:text="${emp.employeeMessage}">Message</td>
                                 <td>
-                                    <a th:href="@{/employee/toUpdateEmployee(employeeAccount=${emp.employeeAccount})}"
+                                    <a th:href="@{/employee/toUpdateEmployee(employeeId=${emp.employeeId})}"
                                        style="text-decoration: none">
                                         <input type="button" class="btn btn-sm btn-outline-primary" value="Update">
                                     </a>
-                                    <a th:href="@{/employee/delEmployee(employeeAccount=${emp.employeeAccount})}"
+                                    <a th:href="@{/employee/delEmployee(employeeId=${emp.employeeId})}"
                                        style="text-decoration: none">
                                         <input type="button" class="btn btn-sm btn-outline-danger"
                                                onclick="return del()" value="Delete">
                                     </a>
-                                    <a th:href="@{/feedback/toViewFeedbackEmployee(employeeAccount=${emp.employeeAccount})}"
+                                    <a th:href="@{/feedback/toViewFeedbackEmployee(employeeId=${emp.employeeId})}"
                                        style="text-decoration: none">
                                         <input type="button" class="btn btn-sm btn-outline-primary" value="View Feedback">
                                     </a>

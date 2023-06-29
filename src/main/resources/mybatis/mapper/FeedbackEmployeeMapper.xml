@@ -6,9 +6,9 @@
 
     <select id="findAll" resultType="feedbackEmployee">
         SELECT feedback_employee.feedback_id, feedback_employee.member_account, member.member_name,
-        feedback_employee.employee_account, employee.employee_name, feedback_employee.content, feedback_employee.time_created
+        feedback_employee.employee_id, employee.employee_name, feedback_employee.content, feedback_employee.time_created
         FROM feedback_employee
-        INNER JOIN employee ON feedback_employee.employee_account = employee.employee_account
+        INNER JOIN employee ON feedback_employee.employee_id = employee.employee_id
         INNER JOIN member ON feedback_employee.member_account = member.member_account
     </select>
 
@@ -19,43 +19,43 @@
     </delete>
 
     <insert id="insertFeedbackEmployee" parameterType="feedbackEmployee">
-        INSERT INTO feedback_employee (member_account, employee_account, content)
-        VALUES (#{memberAccount}, #{employeeAccount}, #{content})
+        INSERT INTO feedback_employee (member_account, employee_id, content)
+        VALUES (#{memberAccount}, #{employeeId}, #{content})
     </insert>
 
     <update id="updateByFeedbackId" parameterType="feedbackEmployee">
         UPDATE feedback_employee
         SET member_account = #{memberAccount},
-        employee_account   = #{employeeAccount},
+        employee_id   = #{employeeId},
         content            = #{content}
         WHERE feedback_id = #{feedbackId}
     </update>
 
     <select id="selectByFeedbackId" parameterType="java.lang.Integer" resultType="feedbackEmployee">
         SELECT feedback_employee.feedback_id, feedback_employee.member_account, member.member_name,
-        feedback_employee.employee_account, employee.employee_name, feedback_employee.content, feedback_employee.time_created
+        feedback_employee.employee_id, employee.employee_name, feedback_employee.content, feedback_employee.time_created
         FROM feedback_employee
-        INNER JOIN employee ON feedback_employee.employee_account = employee.employee_account
+        INNER JOIN employee ON feedback_employee.employee_id = employee.employee_id
         INNER JOIN member ON feedback_employee.member_account = member.member_account
         WHERE feedback_id = #{feedbackId}
     </select>
 
     <select id="selectByMemberAccount" parameterType="java.lang.String" resultType="feedbackEmployee">
         SELECT feedback_employee.feedback_id, feedback_employee.member_account, member.member_name,
-            feedback_employee.employee_account, employee.employee_name, feedback_employee.content, feedback_employee.time_created
+            feedback_employee.employee_id, employee.employee_name, feedback_employee.content, feedback_employee.time_created
         FROM feedback_employee
-        INNER JOIN employee ON feedback_employee.employee_account = employee.employee_account
+        INNER JOIN employee ON feedback_employee.employee_id = employee.employee_id
         INNER JOIN member ON feedback_employee.member_account = member.member_account
         WHERE feedback_employee.member_account = #{memberAccount}
     </select>
 
-    <select id="selectByEmployeeAccount" parameterType="java.lang.String" resultType="feedbackEmployee">
+    <select id="selectByEmployeeId" parameterType="java.lang.Integer" resultType="feedbackEmployee">
         SELECT feedback_employee.feedback_id, feedback_employee.member_account, member.member_name,
-                feedback_employee.employee_account, employee.employee_name, feedback_employee.content, feedback_employee.time_created
+                feedback_employee.employee_id, employee.employee_name, feedback_employee.content, feedback_employee.time_created
         FROM feedback_employee
         INNER JOIN member ON feedback_employee.member_account = member.member_account
-        INNER JOIN employee ON feedback_employee.employee_account = employee.employee_account
-        WHERE feedback_employee.employee_account = #{employeeAccount};
+        INNER JOIN employee ON feedback_employee.employee_id = employee.employee_id
+        WHERE feedback_employee.employee_id = #{employeeId};
     </select>
 
 </mapper>
