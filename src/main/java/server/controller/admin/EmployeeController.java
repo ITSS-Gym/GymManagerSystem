@@ -34,12 +34,7 @@ public class EmployeeController {
 
     // New employee
     @RequestMapping("/addEmployee")
-    public String addEmployee(Employee employee, Model model) {
-//        List<Employee> employeeList = employeeService.selectByEmployeeId(employee.getEmployeeId());
-//        if (!employeeList.isEmpty()) {
-//            model.addAttribute("msg", "Duplicate Account!");
-//            return "addEmployee";
-//        }
+    public String addEmployee(Employee employee) {
 
         //get current date
         Date date = new Date();

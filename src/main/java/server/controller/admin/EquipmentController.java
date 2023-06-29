@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,9 +23,8 @@ public class EquipmentController {
 
     // Query equipment
     @RequestMapping("/selEquipment")
-    public String selectEquipment(Model model, HttpSession session) {
+    public String selectEquipment(Model model) {
         List<Equipment> equipmentList = equipmentService.findAll();
-//        session.setAttribute("equipmentList", equipmentList);
         model.addAttribute("equipmentList", equipmentList);
         return "selectEquipment";
     }

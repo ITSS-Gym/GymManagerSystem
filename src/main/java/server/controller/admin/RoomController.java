@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -17,9 +16,8 @@ public class RoomController {
     private RoomService roomService;
 
     @RequestMapping("/selRoom")
-    public String selectRoom(Model model, HttpSession session) {
+    public String selectRoom(Model model) {
         List<Room> roomList = roomService.findAll();
-        session.setAttribute("roomList", roomList);
         model.addAttribute("roomList", roomList);
         return "selectRoom";
     }
