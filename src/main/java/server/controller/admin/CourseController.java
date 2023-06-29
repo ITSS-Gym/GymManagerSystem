@@ -2,8 +2,10 @@ package server.controller.admin;
 
 import server.pojo.CourseOrder;
 import server.pojo.Course;
+import server.pojo.Employee;
 import server.service.CourseOrderService;
 import server.service.CourseService;
+import server.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class CourseController {
     @Autowired
     private CourseOrderService courseOrderService;
 
+    @Autowired
+    private EmployeeService employeeService;
+
     // Inquire about courses
     @RequestMapping("/selCourse")
     public String selectCourse(Model model) {
@@ -33,7 +38,9 @@ public class CourseController {
 
     // Jump to the new course page
     @RequestMapping("/toAddCourse")
-    public String toAddCourse() {
+    public String toAddCourse(Model model) {
+        List<Employee> employeeList = employeeService.findAll();
+        model.addAttribute("employeeList", employeeList);
         return "addCourse";
     }
 
@@ -47,8 +54,8 @@ public class CourseController {
     // Delete course
     @RequestMapping("/delCourse")
     public String deleteClass(Integer courseId) {
-        courseService.deleteCourseByCourseId(courseId);
         courseService.deleteOrderByCourseId(courseId);
+        courseService.deleteCourseByCourseId(courseId);
         return "redirect:selCourse";
     }
 

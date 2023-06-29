@@ -81,7 +81,7 @@
                                            style="text-decoration: none">
                                             <input type="button" class="btn btn-sm btn-outline-primary" value="Accept">
                                         </a>
-                                        <a th:href="@{/class/delClassOrder(courseId=${order.courseId}, courseOrderId=${order.courseOrderId})}"
+                                        <a th:href="@{/class/delCourseOrder(courseId=${order.courseId}, courseOrderId=${order.courseOrderId})}"
                                            style="text-decoration: none">
                                             <input type="button" class="btn btn-sm btn-outline-danger" value="Refuse">
                                         </a>
@@ -91,7 +91,7 @@
                         </table>
                     </div>
 
-                    <a th:href="@{/class/selClass}" style="text-align:center;margin-top:10px;margin-bottom:20px">
+                    <a th:href="@{/course/selCourse}" style="text-align:center;margin-top:10px;margin-bottom:20px">
                         <input type="submit" class="btn btn-outline-secondary" value="Back">
                     </a>
                 </div>

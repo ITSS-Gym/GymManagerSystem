@@ -96,7 +96,7 @@ public class Course {
                 ", courseName='" + courseName + '\'' +
                 ", courseBegin='" + courseBegin + '\'' +
                 ", courseTime='" + courseTime + '\'' +
-                ", coachId=" + coachAccount +
+                ", coachAccount=" + coachAccount +
                 ", coachName='" + coachName + '\'' +
                 ", price=" + price +
                 ", courseType='" + courseType + '\'' +

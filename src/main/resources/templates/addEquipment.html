@@ -38,7 +38,11 @@
                             </tr>
                             <tr>
                                 <td text-align="center">Room ID:</td>
-                                <td><input type="text" class="form-control" placeholder="e.g. 1,2,..." name="roomId">
+                                <td>
+                                    <select name="roomId" class="form-select" id="selective-room" placeholder="Pick a room...">
+                                        <option th:each="room:${roomList}" th:value="${room.roomId}"
+                                                th:text="${T(java.lang.String).format('%s - %s', room.roomId, room.roomName)}"></option>
+                                    </select>
                                 </td>
                             </tr>
                         </table>

@@ -1,7 +1,9 @@
 package server.controller.admin;
 
 import server.pojo.Equipment;
+import server.pojo.Room;
 import server.service.EquipmentService;
+import server.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,9 @@ public class EquipmentController {
 
     @Autowired
     private EquipmentService equipmentService;
+
+    @Autowired
+    private RoomService roomService;
 
     // Query equipment
     @RequestMapping("/selEquipment")
@@ -38,6 +43,9 @@ public class EquipmentController {
     public String toUpdateEquipment(Integer equipmentId, Model model) {
         List<Equipment> equipmentList = equipmentService.selectByEquipmentId(equipmentId);
         model.addAttribute("equipmentList", equipmentList);
+
+        List<Room> roomList = roomService.findAll();
+        model.addAttribute("roomList", roomList);
         return "updateEquipment";
     }
 
@@ -50,7 +58,10 @@ public class EquipmentController {
 
     // Jump to the new equipment page
     @RequestMapping("/toAddEquipment")
-    public String toAddEquipment() {
+    public String toAddEquipment(Model model) {
+        List<Room> roomList = roomService.findAll();
+        model.addAttribute("roomList", roomList);
+
         return "addEquipment";
     }
 

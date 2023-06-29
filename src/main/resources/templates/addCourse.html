@@ -39,7 +39,10 @@
                             </tr>
                             <tr>
                                 <td text-align="center">Coach:</td>
-                                <td><input type="text" class="form-control" placeholder="Coach" name="coach">
+                                <td>
+                                    <select name="coachAccount" class="form-select" id="selective-coach" placeholder="Pick a coach...">
+                                        <option th:each="emp:${employeeList}" th:value="${emp.employeeAccount}" th:text="${T(java.lang.String).format('%s - %s', emp.employeeAccount, emp.employeeName)}"></option>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>

@@ -104,7 +104,7 @@ CREATE TABLE `course`  (
   `price` int NULL DEFAULT NULL COMMENT 'vnd',
   `course_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'based on time/sport',
   PRIMARY KEY (`course_id`) USING BTREE,
-  FOREIGN KEY (`coach_account`) REFERENCES `employee`(`employee_account`)
+  FOREIGN KEY (`coach_account`) REFERENCES `employee`(`employee_account`) ON DELETE SET NULL ON UPDATE CASCADE
 
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
@@ -134,8 +134,8 @@ CREATE TABLE `course_order`  (
   `member_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Member Account',
   `status` varchar(8) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'accepted/waiting',
   PRIMARY KEY (`course_order_id`) USING BTREE,
-  FOREIGN KEY (`course_id`) REFERENCES `course`(`course_id`),
-  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`)
+  FOREIGN KEY (`course_id`) REFERENCES `course`(`course_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE SET NULL ON UPDATE CASCADE
 
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
@@ -163,9 +163,9 @@ CREATE TABLE `equipment`  (
   `equipment_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'equipment name',
   `equipment_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'equipment status',
   `equipment_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'equipment message',
-  `room_id` int NOT NULL COMMENT 'room id',
+  `room_id` int NULL DEFAULT NULL COMMENT 'room id',
   PRIMARY KEY (`equipment_id`) USING BTREE,
-  FOREIGN KEY (`room_id`) REFERENCES `room`(`room_id`)
+  FOREIGN KEY (`room_id`) REFERENCES `room`(`room_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
@@ -190,8 +190,8 @@ CREATE TABLE `feedback_employee`  (
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`feedback_id`) USING BTREE,
-  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`),
-  FOREIGN KEY (`employee_account`) REFERENCES `employee`(`employee_account`)
+  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`employee_account`) REFERENCES `employee`(`employee_account`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
@@ -212,8 +212,8 @@ CREATE TABLE `feedback_equipment`  (
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`feedback_id`) USING BTREE,
-  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`),
-  FOREIGN KEY (`equipment_id`) REFERENCES `equipment`(`equipment_id`)
+  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY (`equipment_id`) REFERENCES `equipment`(`equipment_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
@@ -234,8 +234,8 @@ CREATE TABLE `feedback_course`  (
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`feedback_id`) USING BTREE,
-  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`),
-  FOREIGN KEY (`course_id`) REFERENCES `course`(`course_id`)
+  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY (`course_id`) REFERENCES `course`(`course_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
@@ -253,8 +253,8 @@ CREATE TABLE `feedback_room`  (
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`feedback_id`) USING BTREE,
-  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`),
-  FOREIGN KEY (`room_id`) REFERENCES `room`(`room_id`)
+  FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY (`room_id`) REFERENCES `room`(`room_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
