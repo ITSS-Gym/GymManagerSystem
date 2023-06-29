@@ -28,9 +28,9 @@ public class FeedbackCourseController {
 
     // Jump to the new course page
     @RequestMapping("/toViewFeedbackCourse")
-    public String toViewFeedbackCourse(Integer CourseId, Model model) {
-        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.selectByCourseId(CourseId);
+    public String toViewFeedbackCourse(Integer courseId, Model model) {
+        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.selectByCourseId(courseId);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
-        return "viewFeedbackCourse";
+        return "selectFeedbackCourse";
     }
 }

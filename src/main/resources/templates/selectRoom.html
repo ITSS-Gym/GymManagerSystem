@@ -14,8 +14,6 @@
         <ol class="breadcrumb mb-4">
           <li class="breadcrumb-item"><a th:href="@{/toAdminMain}">HomePage</a></li>
           <li class="breadcrumb-item active">Room Management</li>
-
-
         </ol>
 
         <div class="card mb-4">
@@ -27,8 +25,9 @@
             <table id="datatablesSimple">
               <thead>
               <tr>
-                <th>Room ID</th>
+                <th>ID</th>
                 <th>Name</th>
+                <th>Operation</th>
               </tr>
               </thead>
 
@@ -39,12 +38,16 @@
                 <td>
                   <a th:href="@{/room/toUpdateRoom(roomId=${room.roomId})}"
                      style="text-decoration: none">
-                    <input type="button" class="btn btn-sm btn-outline-primary" value="Update">
+                    <input type="button" class="btn btn-sm btn-outline-secondary" value="Update">
                   </a>
                   <a th:href="@{/room/delRoom(roomId=${room.roomId})}"
                      style="text-decoration: none">
                     <input type="button" class="btn btn-sm btn-outline-danger"
                            onclick="return del()" value="Delete">
+                  </a>
+                  <a th:href="@{/feedback/toViewFeedbackRoom(roomId=${room.roomId})}"
+                     style="text-decoration: none">
+                    <input type="button" class="btn btn-sm btn-outline-primary" value="View Feedback">
                   </a>
                 </td>
               </tr>
@@ -54,7 +57,7 @@
         </div>
         <div style="text-align:center;margin-top:20px;margin-bottom:20px">
           <a th:href="@{/room/toAddRoom}">
-            <input type="button" class="btn btn-outline-success" value="Add Room Information">
+            <input type="button" class="btn btn-outline-success" value="Add room">
           </a>
         </div>
       </div>
@@ -66,7 +69,7 @@
 <div th:include="adminCommon::common-scripts"></div>
 <script>
     function del() {
-        let msg = "Are you sure you want to delete it?";
+        let msg = "You sure you want to delete it？";
         if (confirm(msg) == true) {
             return true;
         } else {

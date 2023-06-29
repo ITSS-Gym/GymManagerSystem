@@ -26,7 +26,7 @@ public class EquipmentController {
     @RequestMapping("/selEquipment")
     public String selectEquipment(Model model, HttpSession session) {
         List<Equipment> equipmentList = equipmentService.findAll();
-        session.setAttribute("equipmentList", equipmentList);
+//        session.setAttribute("equipmentList", equipmentList);
         model.addAttribute("equipmentList", equipmentList);
         return "selectEquipment";
     }

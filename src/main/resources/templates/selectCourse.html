@@ -57,6 +57,10 @@
                                         <input type="button" class="btn btn-sm btn-outline-danger"
                                                onclick="return del()" value="Delete">
                                     </a>
+                                    <a th:href="@{/feedback/toViewFeedbackCourse(courseId=${course.courseId})}"
+                                       style="text-decoration: none">
+                                        <input type="button" class="btn btn-sm btn-outline-primary" value="View Feedback">
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>

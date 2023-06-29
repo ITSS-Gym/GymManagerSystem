@@ -28,9 +28,9 @@ public class FeedbackRoomController {
 
     // Jump to the new Room page
     @RequestMapping("/toViewFeedbackRoom")
-    public String toViewFeedbackRoom(Integer RoomId, Model model) {
-        List<FeedbackRoom> feedbackRoomList = feedbackRoomService.selectByRoomId(RoomId);
+    public String toViewFeedbackRoom(Integer roomId, Model model) {
+        List<FeedbackRoom> feedbackRoomList = feedbackRoomService.selectByRoomId(roomId);
         model.addAttribute("feedbackRoomList", feedbackRoomList);
-        return "viewFeedbackRoom";
+        return "selectFeedbackRoom";
     }
 }

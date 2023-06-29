@@ -28,9 +28,9 @@ public class FeedbackEquipmentController {
 
     // Jump to the new Equipment page
     @RequestMapping("/toViewFeedbackEquipment")
-    public String toViewFeedbackEquipment(Integer EquipmentId, Model model) {
-        List<FeedbackEquipment> feedbackEquipmentList = feedbackEquipmentService.selectByEquipmentId(EquipmentId);
+    public String toViewFeedbackEquipment(Integer equipmentId, Model model) {
+        List<FeedbackEquipment> feedbackEquipmentList = feedbackEquipmentService.selectByEquipmentId(equipmentId);
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
-        return "viewFeedbackEquipment";
+        return "selectFeedbackEquipment";
     }
 }
