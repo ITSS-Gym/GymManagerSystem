@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.milotnt.mapper.FeedbackCourseMapper">
+<mapper namespace="server.mapper.FeedbackCourseMapper">
 
     <select id="findAll" resultType="feedbackCourse">
         SELECT feedback_course.feedback_id, feedback_course.member_account, member.member_name,

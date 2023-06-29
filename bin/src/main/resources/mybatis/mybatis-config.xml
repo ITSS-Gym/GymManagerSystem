@@ -6,7 +6,7 @@
 <!--
 <configuration>
     <typeAliases>
-        <package name="com.milotnt.pojo"/>
+        <package name="server.pojo"/>
     </typeAliases>
 
     <environments default="development">

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.milotnt.mapper.CourseMapper">
+<mapper namespace="server.mapper.CourseMapper">
 
     <select id="findAll" resultType="course">
         SELECT course_id, course_name, course_begin, course_time, coach_account, employee_name, price, course_type

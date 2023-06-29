@@ -17,4 +17,4 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true
-  type-aliases-package: com.milotnt.pojo
+  type-aliases-package: server.pojo

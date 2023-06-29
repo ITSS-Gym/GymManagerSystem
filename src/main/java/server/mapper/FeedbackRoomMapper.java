@@ -1,0 +1,24 @@
+package server.mapper;
+
+import server.pojo.FeedbackRoom;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
+
+@Mapper
+public interface FeedbackRoomMapper {
+
+    List<FeedbackRoom> findAll();
+
+    Boolean deleteByFeedbackId(Integer feedbackId);
+
+    Boolean insertFeedbackRoom(FeedbackRoom feedbackRoom);
+
+    Boolean updateByFeedbackId(FeedbackRoom feedbackRoom);
+
+    List<FeedbackRoom> selectByFeedbackId(Integer feedbackId);
+
+    List<FeedbackRoom> selectByMemberAccount(String memberAccount);
+
+    List<FeedbackRoom> selectByRoomId(Integer RoomId);
+}
