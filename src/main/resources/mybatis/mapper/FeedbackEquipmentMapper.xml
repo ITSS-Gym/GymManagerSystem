@@ -25,9 +25,7 @@
 
     <update id="updateByFeedbackId" parameterType="feedbackEquipment">
         UPDATE feedback_equipment
-        SET member_account = #{memberAccount},
-        equipment_id   = #{equipmentId},
-        content            = #{content}
+        SET content       = #{content}
         WHERE feedback_id = #{feedbackId}
     </update>
 

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="userCommon::common-header">
+
+</head>
+<body class="sb-nav-fixed" onload='Message()'>
+<nav th:replace="userCommon::common-navbar"></nav>
+<div id="layoutSidenav">
+  <div th:replace="userCommon::common-sidenav"></div>
+
+  <div id="layoutSidenav_content">
+    <main>
+      <div class="container-fluid px-4">
+        <h1 class="mt-4">Add Employee</h1>
+
+        <ol class="breadcrumb mb-4">
+          <li class="breadcrumb-item"><a th:href="@{/toUserMain}">HomePage</a></li>
+          <li class="breadcrumb-item"><a th:href="@{/user/userFeedbackEmployee}">Employee Feedback</a></li>
+          <li class="breadcrumb-item active">Add Employee Feedback</li>
+        </ol>
+
+        <div class="card mb-4">
+
+          <form th:action="@{/user/addFeedbackEmployee}" method="post" name="addForm"
+                onsubmit="return beforeSubmit(this)">
+            <table class="table table-hover">
+              <tr>
+                <td text-align="center">Employee</td>
+                <td>
+                  <select name="employeeId" class="form-select" id="selective-room" placeholder="Select an employee">
+                    <option th:each="emp:${employeeList}" th:value="${emp.employeeId}"
+                            th:text="${T(java.lang.String).format('%s - %s', emp.employeeName, emp.staff)}"></option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td text-align="center">Feedback</td>
+                <td><input type="text" class="form-control" placeholder="write feedback here" name="content">
+                </td>
+              </tr>
+            </table>
+            <div style="text-align:center;margin-top:20px;margin-bottom:20px">
+              <input type="submit" class="btn btn-outline-success" value="ADD">
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer th:replace="userCommon::common-footer"></footer>
+  </div>
+</div>
+
+<div th:include="userCommon::common-scripts"></div>
+<script type="text/javascript" th:inline="javascript">
+    function beforeSubmit(addForm) {
+        if (addForm.employeeName.value == "") {
+            alert("Please enter name！")
+            return false;
+        }
+        if (addForm.employeeGender.value == "") {
+            alert("Please enter gender！")
+            return false;
+        }
+        if (addForm.employeeAge.value == "") {
+            alert("Please enter age！")
+            return false;
+        }
+
+        if (addForm.staff.value == "") {
+            alert("Please enter position！")
+            return false;
+        }
+        return true;
+    }
+  function Message() {
+    var message = [[${msg}]];
+    if (message != null) {
+        alert(message);
+    }
+  }
+</script>
+</body>
+</html>
