@@ -44,6 +44,9 @@ public class LoginController {
     public String adminLogin(Admin admin, Model model, HttpSession session) {
         Admin admin1 = adminService.adminLogin(admin);
         if (admin1 != null) {
+            session.setAttribute("admin", admin1);
+        }
+        if (session.getAttribute("admin") != null) {
             // number of members
             Integer memberTotal = memberService.selectTotalCount();
             model.addAttribute("memberTotal", memberTotal);
@@ -74,9 +77,14 @@ public class LoginController {
     @RequestMapping("/userLogin")
     public String userLogin(Member member, Model model, HttpSession session) {
         Member member1 = memberService.userLogin(member);
-        if (member1 != null) {
+        if (memberService.userLogin(member) != null) {
             model.addAttribute("member", member1);
             session.setAttribute("user", member1);
+
+        }
+        if (session.getAttribute("user") != null) {
+            Member member_login = (Member) session.getAttribute("user");
+            model.addAttribute("member", member_login);
             return "userMain";
         }
         model.addAttribute("msg", "The account or password you entered is wrong, please re-enter!");
