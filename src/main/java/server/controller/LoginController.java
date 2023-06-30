@@ -30,13 +30,13 @@ public class LoginController {
     // Home-page, jump to administrator login page
     @RequestMapping("/")
     public String toAdminLogin() {
-        return "adminLogin";
+        return "userLogin";
     }
 
     // Jump to member login page
-    @RequestMapping("/toUserLogin")
+    @RequestMapping("/toAdminLogin")
     public String toUserLogin() {
-        return "userLogin";
+        return "adminLogin";
     }
 
     // admin login 
@@ -124,6 +124,12 @@ public class LoginController {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         return "userMain";
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "userLogin";
     }
 
 }

@@ -45,6 +45,10 @@
                                         <input type="button" class="btn btn-sm btn-outline-danger"
                                                onclick="return del()" value="Leave">
                                     </a>
+                                    <a th:href="@{/user/userOtherFeedbackCourse(courseId=${course.courseId})}"
+                                       style="text-decoration: none">
+                                        <input type="button" class="btn btn-sm btn-outline-primary" value="View Feedback">
+                                    </a>
                                 </td>
                             </tr>
                             </tbody>

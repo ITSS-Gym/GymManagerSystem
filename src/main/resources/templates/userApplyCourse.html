@@ -49,7 +49,11 @@
                                     <td>
                                         <a th:href="@{/user/applyCourse(courseId=${course.courseId})}"
                                            style="text-decoration: none">
-                                            <input type="button" class="btn btn-sm btn-outline-primary" value="Registration">
+                                            <input type="button" class="btn btn-sm btn-outline-success" value="Registration">
+                                        </a>
+                                        <a th:href="@{/user/userOtherFeedbackCourse(courseId=${course.courseId})}"
+                                           style="text-decoration: none">
+                                            <input type="button" class="btn btn-sm btn-outline-primary" value="View Feedback">
                                         </a>
                                     </td>
                                 </tr>

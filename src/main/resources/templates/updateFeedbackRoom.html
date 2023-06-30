@@ -13,18 +13,18 @@
 
         <ol class="breadcrumb mb-4">
           <li class="breadcrumb-item"><a th:href="@{/toUserMain}">HomePage</a></li>
-          <li class="breadcrumb-item"><a th:href="@{/user/userFeedbackEmployee}">Employee Feedback</a></li>
-          <li class="breadcrumb-item active">Update Employee Feedback</li>
+          <li class="breadcrumb-item"><a th:href="@{/user/userFeedbackRoom}">Room Feedback</a></li>
+          <li class="breadcrumb-item active">Update Room Feedback</li>
         </ol>
 
-          <form th:action="@{/user/updateFeedbackEmployee}" method="post" name="addForm"
+          <form th:action="@{/user/updateFeedbackRoom}" method="post" name="addForm"
                 onsubmit="return beforeSubmit(this)">
-            <div th:each="fee:${feedbackEmployeeList}">
-                  <input type="hidden" name="feedbackId" th:value="${fee.feedbackId}"/>
+            <div th:each="fee:${feedbackRoomList}">
+              <input type="hidden" name="feedbackId" th:value="${fee.feedbackId}"/>
               <div class="form-group">
-                  <label for="content">Feedback</label>
-                  <textarea class="form-control" style="margin-top:10px;"
-                            id="content" name="content" rows="3">[[${fee.content}]]</textarea>
+                <label for="content">Feedback</label>
+                <textarea class="form-control" style="margin-top:10px;"
+                          id="content" name="content" rows="3">[[${fee.content}]]</textarea>
               </div>
               <div style="text-align:center;margin-bottom:15px;margin-top:20px">
                 <input type="submit" class="btn btn-outline-success" value="Update">

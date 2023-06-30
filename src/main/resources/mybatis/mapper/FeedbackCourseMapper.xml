@@ -12,7 +12,7 @@
         INNER JOIN member ON feedback_course.member_account = member.member_account
     </select>
 
-    <delete id="deleteByFeedbackCourseId" parameterType="java.lang.Integer">
+    <delete id="deleteByFeedbackId" parameterType="java.lang.Integer">
         DELETE
         FROM feedback_course
         WHERE feedback_id = #{feedbackId}

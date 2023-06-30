@@ -44,7 +44,7 @@ public class FeedbackCourseService {
     }
 
     
-    public List<FeedbackCourse> selectByCourseId(Integer CourseAccount) {
-        return feedbackMapper.selectByCourseId(CourseAccount);
+    public List<FeedbackCourse> selectByCourseId(Integer courseId) {
+        return feedbackMapper.selectByCourseId(courseId);
     }
 }

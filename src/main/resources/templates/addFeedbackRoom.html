@@ -3,7 +3,7 @@
 <head th:replace="userCommon::common-header">
 
 </head>
-<body class="sb-nav-fixed" onload='Message()'>
+<body class="sb-nav-fixed">
 <nav th:replace="userCommon::common-navbar"></nav>
 <div id="layoutSidenav">
   <div th:replace="userCommon::common-sidenav"></div>
@@ -11,23 +11,23 @@
   <div id="layoutSidenav_content">
     <main>
       <div class="container-fluid px-4">
-        <h1 class="mt-4">Add Employee</h1>
+        <h1 class="mt-4">Add Room</h1>
 
         <ol class="breadcrumb mb-4">
           <li class="breadcrumb-item"><a th:href="@{/toUserMain}">HomePage</a></li>
-          <li class="breadcrumb-item"><a th:href="@{/user/userFeedbackEmployee}">Employee Feedback</a></li>
-          <li class="breadcrumb-item active">Add Employee Feedback</li>
+          <li class="breadcrumb-item"><a th:href="@{/user/userFeedbackRoom}">Room Feedback</a></li>
+          <li class="breadcrumb-item active">Add Room Feedback</li>
         </ol>
 
-          <form th:action="@{/user/addFeedbackEmployee}" method="post" name="addForm"
+          <form th:action="@{/user/addFeedbackRoom}" method="post" name="addForm"
                 onsubmit="return beforeSubmit(this)">
             <table class="table table-hover">
               <tr>
-                <td text-align="center">Employee</td>
+                <td text-align="center">Room</td>
                 <td>
-                  <select name="employeeId" class="form-select" id="selective-employee" placeholder="Select an employee">
-                    <option th:each="emp:${employeeList}" th:value="${emp.employeeId}"
-                            th:text="${T(java.lang.String).format('%s - %s', emp.employeeName, emp.staff)}"></option>
+                  <select name="roomId" class="form-select" id="selective-room" placeholder="Select a room">
+                    <option th:each="room:${roomList}" th:value="${room.roomId}"
+                            th:text="${T(java.lang.String).format('Room %d: %s', room.roomId, room.roomName)}"></option>
                   </select>
                 </td>
               </tr>
