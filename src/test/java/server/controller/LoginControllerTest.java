@@ -33,7 +33,7 @@ public class LoginControllerTest {
     void testAdminLoginSuccess() throws Exception {
         // given
         Admin admin = new Admin();
-        admin.setAdminAccount(1001);
+        admin.setAdminAccount("1001");
         admin.setAdminPassword("123456");
         // when
         String expected = underTest.adminLogin(admin, model, session);
@@ -45,7 +45,7 @@ public class LoginControllerTest {
     void testAdminLoginFailed() {
         // given
         Admin admin = new Admin();
-        admin.setAdminAccount(1);
+        admin.setAdminAccount("1");
         admin.setAdminPassword("admin");
         // when
         String expected = underTest.adminLogin(admin, model, session);

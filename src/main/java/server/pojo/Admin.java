@@ -2,14 +2,14 @@ package server.pojo;
 
 public class Admin {
 
-    private Integer adminAccount;
+    private String adminAccount;
     private String adminPassword;
 
-    public Integer getAdminAccount() {
+    public String getAdminAccount() {
         return adminAccount;
     }
 
-    public void setAdminAccount(Integer adminAccount) {
+    public void setAdminAccount(String adminAccount) {
         this.adminAccount = adminAccount;
     }
 

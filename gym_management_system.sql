@@ -14,9 +14,9 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1001, '123456');
-INSERT INTO `admin` VALUES (1002, '123456');
-INSERT INTO `admin` VALUES (1003, '123456');
+INSERT INTO `admin` VALUES ('1001', '123456');
+INSERT INTO `admin` VALUES ('1002', '123456');
+INSERT INTO `admin` VALUES ('1003', '123456');
 
 -- ----------------------------
 -- Table structure for room
