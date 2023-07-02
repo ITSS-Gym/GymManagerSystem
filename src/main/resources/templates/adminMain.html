@@ -79,5 +79,9 @@
 </div>
 
 <div th:include="adminCommon::common-scripts"></div>
+<script th:inline="javascript">
+    var revenueDayList = [[${revenueDayList}]];
+</script>
+<script src="/static/assets/demo/chart-bar-demo.js" th:src="@{/assets/demo/chart-bar-demo.js}"></script>
 </body>
 </html>

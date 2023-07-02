@@ -1,17 +1,16 @@
 package server.controller;
 
+import server.mapper.OrderRecordMapper;
 import server.pojo.Admin;
 import server.pojo.Member;
-import server.service.AdminService;
-import server.service.EmployeeService;
-import server.service.EquipmentService;
-import server.service.MemberService;
+import server.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,6 +25,9 @@ public class LoginController {
     private EmployeeService employeeService;
     @Autowired
     private EquipmentService equipmentService;
+
+    @Autowired
+    private OrderRecordService orderRecordService;
 
     // Home-page, jump to administrator login page
     @RequestMapping("/")
@@ -66,6 +68,38 @@ public class LoginController {
             Integer equipmentTotal = equipmentService.selectTotalCount();
             model.addAttribute("equipmentTotal", equipmentTotal);
             session.setAttribute("equipmentTotal", equipmentTotal);
+
+            // Revenue by day (10 days nearest)
+            List<Integer> revenueDayList = new ArrayList<>();
+            for (int numDay=9; numDay>=0; numDay--) {
+                revenueDayList.add(orderRecordService.selectRevenueByNPreviousDay(numDay));
+            }
+            model.addAttribute("revenueDayList", revenueDayList);
+            session.setAttribute("revenueDayList", revenueDayList);
+
+            // Revenue by month (12 months nearest)
+            List<Integer> revenueMonthList = new ArrayList<>();
+            for (int numMonth=11; numMonth>=0; numMonth--) {
+                revenueMonthList.add(orderRecordService.selectRevenueByNPreviousMonth(numMonth));
+            }
+            model.addAttribute("revenueMonthList", revenueMonthList);
+            session.setAttribute("revenueMonthList", revenueMonthList);
+
+            // Revenue by quarter (4 quarters nearest)
+            List<Integer> revenueQuarterList = new ArrayList<>();
+            for (int numQuarter=3; numQuarter>=0; numQuarter--) {
+                revenueQuarterList.add(orderRecordService.selectRevenueByNPreviousQuarter(numQuarter));
+            }
+            model.addAttribute("revenueQuarterList", revenueQuarterList);
+            session.setAttribute("revenueQuarterList", revenueQuarterList);
+
+            // Revenue by year (3 years nearest)
+            List<Integer> revenueYearList = new ArrayList<>();
+            for (int numYear=2; numYear>=0; numYear--) {
+                revenueYearList.add(orderRecordService.selectRevenueByNPreviousYear(numYear));
+            }
+            model.addAttribute("revenueYearList", revenueYearList);
+            session.setAttribute("revenueYearList", revenueYearList);
 
             return "adminMain";
         }

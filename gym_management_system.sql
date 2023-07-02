@@ -264,4 +264,33 @@ INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES ('20
 INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES ('202183406', 1, 'Okay');
 INSERT INTO `feedback_room` (`member_account`, `room_id`, `content`) VALUES ('202183406', 2, 'A lot of equipment');
 
+
+
+DROP TABLE IF EXISTS `order_record`;
+CREATE TABLE `order_record` (
+    record_id int NOT NULL AUTO_INCREMENT COMMENT 'record of order id' ,
+    course_order_id int NULL DEFAULT NULL COMMENT 'id of course order',
+    price int NULL DEFAULT NULL COMMENT 'price when the course is ordered',
+    time_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`record_id`) USING BTREE,
+    FOREIGN KEY (`course_order_id`) REFERENCES `course_order`(`course_order_id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+DELIMITER $$
+
+CREATE TRIGGER after_order_update
+AFTER UPDATE
+ON course_order FOR EACH ROW
+BEGIN
+    IF (old.status = "waiting" AND new.status = "accepted") THEN
+        INSERT INTO order_record (course_order_id, price)
+        SELECT old.course_order_id, course.price
+        FROM course_order
+        INNER JOIN course ON course_order.course_id = course.course_id
+        WHERE course_order.course_order_id = old.course_order_id;
+    END IF;
+END$$
+
+DELIMITER ;
+
 SET FOREIGN_KEY_CHECKS = 1;
