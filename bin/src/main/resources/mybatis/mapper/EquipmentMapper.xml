@@ -5,7 +5,7 @@
 <mapper namespace="server.mapper.EquipmentMapper">
 
     <select id="findAll" resultType="equipment">
-        SELECt *
+        SELECT *
         FROM equipment
     </select>
 
@@ -16,17 +16,16 @@
     </delete>
 
     <insert id="insertEquipment" parameterType="equipment">
-        INSERT INTO equipment (equipment_id, equipment_name, equipment_location, equipment_status, equipment_message)
-        VALUES (#{equipmentId}, #{equipmentName}, #{equipmentLocation}, #{equipmentStatus}, #{equipmentMessage})
+        INSERT INTO equipment (equipment_name, equipment_status, equipment_message, room_id)
+        VALUES (#{equipmentName}, #{equipmentStatus}, #{equipmentMessage}, #{roomId})
     </insert>
 
     <update id="updateEquipmentByEquipmentId" parameterType="equipment">
         UPDATE equipment
-        SET equipment_id       = #{equipmentId},
-            equipment_name     = #{equipmentName},
-            equipment_location = #{equipmentLocation},
+        SET equipment_name     = #{equipmentName},
             equipment_status   = #{equipmentStatus},
-            equipment_message  = #{equipmentMessage}
+            equipment_message  = #{equipmentMessage},
+            room_id            = #{roomId}
         WHERE equipment_id = #{equipmentId}
     </update>
 

@@ -9,20 +9,20 @@
         FROM employee
     </select>
 
-    <delete id="deleteByemployeeId" parameterType="java.lang.Integer">
+    <delete id="deleteByEmployeeId" parameterType="java.lang.Integer">
         DELETE
         FROM employee
         WHERE employee_id = #{employeeId}
     </delete>
 
     <insert id="insertEmployee" parameterType="employee">
-        INSERT INTO employee (employee_id, employee_name, employee_gender,
+        INSERT INTO employee (employee_name, employee_gender,
                               employee_age, entry_time, staff, employee_message)
-        VALUES (#{employeeId}, #{employeeName}, #{employeeGender},
+        VALUES (#{employeeName}, #{employeeGender},
                 #{employeeAge}, #{entryTime}, #{staff}, #{employeeMessage})
     </insert>
 
-    <update id="updateMemberByemployeeId" parameterType="employee">
+    <update id="updateMemberByEmployeeId" parameterType="employee">
         UPDATE employee
         SET employee_id = #{employeeId},
             employee_name    = #{employeeName},
@@ -33,7 +33,7 @@
         WHERE employee_id = #{employeeId}
     </update>
 
-    <select id="selectByemployeeId" parameterType="java.lang.Integer" resultType="employee">
+    <select id="selectByEmployeeId" parameterType="java.lang.Integer" resultType="employee">
         SELECT *
         FROM employee
         WHERE employee_id = #{employeeId}
