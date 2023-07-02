@@ -26,6 +26,7 @@
         INNER JOIN member ON course_order.member_account = member.member_account
         INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course_order.member_account = #{memberAccount}
+        AND course_order.status = "accepted"
     </select>
 
     <delete id="deleteByCourseOrderId" parameterType="java.lang.Integer">
