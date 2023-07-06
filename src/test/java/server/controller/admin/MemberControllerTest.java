@@ -1,14 +1,15 @@
 package server.controller.admin;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -16,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.Model;
@@ -74,6 +77,12 @@ public class MemberControllerTest {
         jdbcTemplate.execute(insertRecordsSql);
     }
 
+    @AfterEach
+    public void tearDown() {
+        String dropTableSql = "DROP TABLE IF EXISTS member";
+        jdbcTemplate.execute(dropTableSql);
+    }
+
     @Test
     void testSelectMember() throws Exception {
         mockMvc.perform(get("/member/selMember"))
@@ -123,7 +132,7 @@ public class MemberControllerTest {
         member.setMemberAge(20);
         member.setMemberHeight(180);
         member.setMemberWeight(80);
-        member.setMemberPhone("123456789");
+        member.setMemberPhone("0123456789");
 
         // when
         String result = underTest.addMember(member);
@@ -140,6 +149,71 @@ public class MemberControllerTest {
         assertThat(queryResult.get("member_age")).isEqualTo(20);
         assertThat(queryResult.get("member_height")).isEqualTo(180);
         assertThat(queryResult.get("member_weight")).isEqualTo(80);
-        assertThat(queryResult.get("member_phone")).isEqualTo("123456789");
+        assertThat(queryResult.get("member_phone")).isEqualTo("0123456789");
+    }
+
+    @Test
+    void testAddMemberWithNullAccount() {
+        // given
+        Member member = new Member();
+        member.setMemberPassword("testPassword");
+        member.setMemberName("testName");
+        member.setMemberGender("Male");
+        member.setMemberAge(20);
+        member.setMemberHeight(180);
+        member.setMemberWeight(80);
+        member.setMemberPhone("0123456789");
+
+        // when
+        Throwable exception = assertThrows(DataIntegrityViolationException.class, () -> {
+            underTest.addMember(member);
+        });
+
+        // then
+        assertThat(exception).isInstanceOf(DataIntegrityViolationException.class);
+    }
+
+    @Test
+    void testAddMemberWithLongAccount() {
+        // given
+        Member member = new Member();
+        member.setMemberAccount("a".repeat(256)); // Set account with more than 255 characters
+        member.setMemberPassword("testPassword");
+        member.setMemberName("testName");
+        member.setMemberGender("Male");
+        member.setMemberAge(20);
+        member.setMemberHeight(180);
+        member.setMemberWeight(80);
+        member.setMemberPhone("0123456789");
+
+        // when
+        Throwable exception = assertThrows(DataIntegrityViolationException.class, () -> {
+            underTest.addMember(member);
+        });
+
+        // then
+        assertThat(exception).isInstanceOf(DataIntegrityViolationException.class);
+    }
+
+    @Test
+    void testAddMemberWithNonUniqueAccount() {
+        // given
+        Member member = new Member();
+        member.setMemberAccount("202009867"); // Set non-unique account (already exists in the database)
+        member.setMemberPassword("testPassword");
+        member.setMemberName("testName");
+        member.setMemberGender("Male");
+        member.setMemberAge(20);
+        member.setMemberHeight(180);
+        member.setMemberWeight(80);
+        member.setMemberPhone("0123456789");
+
+        // when
+        Throwable exception = assertThrows(DuplicateKeyException.class, () -> {
+            underTest.addMember(member);
+        });
+
+        // then
+        assertThat(exception).isInstanceOf(DuplicateKeyException.class);
     }
 }
