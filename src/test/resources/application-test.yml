@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
+    url: jdbc:mysql://localhost:3306/gym_management_system
+    username: root
     password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: jdbc:mysql://localhost:3306/gym_management_system

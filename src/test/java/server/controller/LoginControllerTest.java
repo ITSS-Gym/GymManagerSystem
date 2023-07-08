@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.Model;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import server.pojo.Admin;
 import server.pojo.Member;
 
@@ -28,6 +29,8 @@ public class LoginControllerTest {
     private Model model;
     @Mock
     private HttpSession session;
+    @Mock
+    private RedirectAttributes redirectAttributes;
 
     @Test
     void testAdminLoginSuccess() throws Exception {
@@ -36,7 +39,7 @@ public class LoginControllerTest {
         admin.setAdminAccount("1001");
         admin.setAdminPassword("123456");
         // when
-        String expected = underTest.adminLogin(admin, model, session);
+        String expected = underTest.adminMain(admin, model, session, redirectAttributes);
         // then
         assertThat(expected).isEqualTo("adminMain");
     }
@@ -48,9 +51,9 @@ public class LoginControllerTest {
         admin.setAdminAccount("1");
         admin.setAdminPassword("admin");
         // when
-        String expected = underTest.adminLogin(admin, model, session);
+        String expected = underTest.adminMain(admin, model, session, redirectAttributes);
         // then
-        assertThat(expected).isEqualTo("adminLogin");
+        assertThat(expected).isEqualTo("redirect:/toAdminLogin");
     }
 
     @Test
@@ -60,7 +63,7 @@ public class LoginControllerTest {
         member.setMemberAccount("202153468");
         member.setMemberPassword("123456");
         // when
-        String expected = underTest.userLogin(member, model, session);
+        String expected = underTest.userMain(member, model, session, redirectAttributes);
         // then
         assertThat(expected).isEqualTo("userMain");
     }
@@ -72,8 +75,8 @@ public class LoginControllerTest {
         member.setMemberAccount("202153468");
         member.setMemberPassword("123455");
         // when
-        String expected = underTest.userLogin(member, model, session);
+        String expected = underTest.userMain(member, model, session, redirectAttributes);
         // then
-        assertThat(expected).isEqualTo("userLogin");
+        assertThat(expected).isEqualTo("redirect:/");
     }
 }

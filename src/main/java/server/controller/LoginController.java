@@ -1,5 +1,6 @@
 package server.controller;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import server.mapper.OrderRecordMapper;
 import server.pojo.Admin;
 import server.pojo.Member;
@@ -31,19 +32,23 @@ public class LoginController {
 
     // Home-page, jump to administrator login page
     @RequestMapping("/")
-    public String toAdminLogin() {
+    public String toUserLogin(Model model) {
+        String msg = (String) model.asMap().get("msg");
+        model.addAttribute("msg", msg);
         return "userLogin";
     }
 
     // Jump to member login page
     @RequestMapping("/toAdminLogin")
-    public String toUserLogin() {
+    public String toAdminLogin(Model model) {
+        String msg = (String) model.asMap().get("msg");
+        model.addAttribute("msg", msg);
         return "adminLogin";
     }
 
     // admin login 
-    @RequestMapping("/adminLogin")
-    public String adminLogin(Admin admin, Model model, HttpSession session) {
+    @RequestMapping("/adminMain")
+    public String adminMain(Admin admin, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
         Admin admin1 = adminService.adminLogin(admin);
         if (admin1 != null) {
             session.setAttribute("admin", admin1);
@@ -103,13 +108,15 @@ public class LoginController {
 
             return "adminMain";
         }
-        model.addAttribute("msg", "The account or password you entered is wrong, please re-enter！");
-        return "adminLogin";
+        else {
+            redirectAttributes.addFlashAttribute("msg", "The account or password you entered is wrong, please re-enter");
+            return "redirect:/toAdminLogin";
+        }
     }
 
     // User Login
-    @RequestMapping("/userLogin")
-    public String userLogin(Member member, Model model, HttpSession session) {
+    @RequestMapping("/userMain")
+    public String userMain(Member member, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
         Member member1 = memberService.userLogin(member);
         if (memberService.userLogin(member) != null) {
             model.addAttribute("member", member1);
@@ -121,8 +128,10 @@ public class LoginController {
             model.addAttribute("member", member_login);
             return "userMain";
         }
-        model.addAttribute("msg", "The account or password you entered is wrong, please re-enter!");
-        return "userLogin";
+        else {
+            redirectAttributes.addFlashAttribute("msg", "The account or password you entered is wrong, please re-enter!");
+            return "redirect:/";
+        }
     }
 
     @RequestMapping("/toUserRegistration")
