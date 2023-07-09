@@ -54,52 +54,5 @@ public class UserInfoController {
         memberService.updateMemberByMemberAccount(member);
         return "userInformation";
     }
-
-
-    // Jump to User Feedback Page
-    @RequestMapping("/toUserFeedback")
-    public String toUserFeedback(Model model, HttpSession session) {
-        Member member = (Member) session.getAttribute("user");
-        model.addAttribute("member", member);
-        String memberAccount = member.getMemberAccount();
-        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByMemberAccount(memberAccount);
-        model.addAttribute("feedbackByAccountList", feedbackEmployeeList);
-        return "userFeedback";
-    }
-
-    @RequestMapping("toAddFeedback")
-    public String toAddFeedback(Model model, HttpSession session) {
-        Member member = (Member) session.getAttribute("user");
-        model.addAttribute("member", member);
-        List<Employee> employeeList = employeeService.findAll();
-        model.addAttribute("employeeList", employeeList);
-        return "addFeedback";
-    }
-
-    @RequestMapping("addFeedback")
-    public String addFeedback(FeedbackEmployee feedbackEmployee) {
-        feedbackEmployeeService.insertFeedbackEmployee(feedbackEmployee);
-        return "redirect:userFeedback";
-    }
-
-    @RequestMapping("/toUpdateFeedback")
-    public String toUpdateUserFeedback(Integer feedbackId, Model model) {
-        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByFeedbackId(feedbackId);
-        model.addAttribute("feedbackList", feedbackEmployeeList);
-        return "updateUserFeedback";
-    }
-
-    // Modify Personal Information
-    @RequestMapping("/updateFeedback")
-    public String updateUserFeedback(FeedbackEmployee feedbackEmployee) {
-        feedbackEmployeeService.updateByFeedbackId(feedbackEmployee);
-        return "redirect:userFeedback";
-    }
-
-    @RequestMapping("delUserFeedback")
-    public String deleteUserFeedback(Integer feedbackId) {
-        feedbackEmployeeService.deleteByFeedbackId(feedbackId);
-        return "redirect:toUserFeedback";
-    }
 }
 

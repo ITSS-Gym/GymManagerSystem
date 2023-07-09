@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import server.model.Equipment;
 import server.model.FeedbackEquipment;
+import server.model.Feedback;
 import server.model.Member;
 import server.service.EquipmentService;
 import server.service.FeedbackEquipmentService;
@@ -27,7 +28,7 @@ public class UserFeedbackEquipmentController {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         String memberAccount = member.getMemberAccount();
-        List<FeedbackEquipment> feedbackEquipmentList = feedbackEquipmentService.selectByMemberAccount(memberAccount);
+        List<Feedback> feedbackEquipmentList = feedbackEquipmentService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
         return "userFeedbackEquipment";
     }
@@ -43,7 +44,7 @@ public class UserFeedbackEquipmentController {
     public String addFeedbackEquipment(FeedbackEquipment feedbackEquipment, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         feedbackEquipment.setMemberAccount(member.getMemberAccount());
-        feedbackEquipmentService.insertFeedbackEquipment(feedbackEquipment);
+        feedbackEquipmentService.insertFeedback(feedbackEquipment);
         return "redirect:userFeedbackEquipment";
     }
 
@@ -56,7 +57,7 @@ public class UserFeedbackEquipmentController {
 
     @RequestMapping("/toUpdateFeedbackEquipment")
     public String toUpdateFeedbackEquipment(Integer feedbackId, Model model) {
-        List<FeedbackEquipment> feedbackEquipmentList = feedbackEquipmentService.selectByFeedbackId(feedbackId);
+        List<Feedback> feedbackEquipmentList = feedbackEquipmentService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
         return "updateFeedbackEquipment";
     }

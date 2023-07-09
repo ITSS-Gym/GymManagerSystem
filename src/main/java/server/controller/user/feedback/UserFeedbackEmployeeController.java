@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import server.model.Employee;
 import server.model.FeedbackEmployee;
+import server.model.Feedback;
 import server.model.Member;
 import server.service.EmployeeService;
 import server.service.FeedbackEmployeeService;
@@ -27,7 +28,7 @@ public class UserFeedbackEmployeeController {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         String memberAccount = member.getMemberAccount();
-        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByMemberAccount(memberAccount);
+        List<Feedback> feedbackEmployeeList = feedbackEmployeeService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackEmployeeList", feedbackEmployeeList);
         return "userFeedbackEmployee";
     }
@@ -43,7 +44,7 @@ public class UserFeedbackEmployeeController {
     public String addFeedbackEmployee(FeedbackEmployee feedbackEmployee, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         feedbackEmployee.setMemberAccount(member.getMemberAccount());
-        feedbackEmployeeService.insertFeedbackEmployee(feedbackEmployee);
+        feedbackEmployeeService.insertFeedback(feedbackEmployee);
         return "redirect:userFeedbackEmployee";
     }
 
@@ -56,7 +57,7 @@ public class UserFeedbackEmployeeController {
 
     @RequestMapping("/toUpdateFeedbackEmployee")
     public String toUpdateFeedbackEmployee(Integer feedbackId, Model model) {
-        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByFeedbackId(feedbackId);
+        List<Feedback> feedbackEmployeeList = feedbackEmployeeService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackEmployeeList", feedbackEmployeeList);
         return "updateFeedbackEmployee";
     }

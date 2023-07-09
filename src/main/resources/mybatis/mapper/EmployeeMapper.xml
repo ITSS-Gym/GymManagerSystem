@@ -7,6 +7,7 @@
     <select id="findAll" resultType="employee">
         SELECT *
         FROM employee
+        WHERE active = true
     </select>
 
     <update id="deleteByEmployeeId" parameterType="java.lang.Integer">
@@ -49,6 +50,7 @@
     <select id="selectTotalCount" resultType="java.lang.Integer">
         SELECT count(*)
         FROM employee
+        WHERE active = true
     </select>
 
 </mapper>

@@ -1,6 +1,7 @@
 package server.mapper;
 
 import server.model.FeedbackEquipment;
+import server.model.Feedback;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -8,17 +9,17 @@ import java.util.List;
 @Mapper
 public interface FeedbackEquipmentMapper {
 
-    List<FeedbackEquipment> findAll();
+    List<Feedback> findAll();
 
     Boolean deleteByFeedbackId(Integer feedbackId);
 
-    Boolean insertFeedbackEquipment(FeedbackEquipment feedbackEquipment);
+    Boolean insertFeedbackEquipment(Feedback feedback);
 
-    Boolean updateByFeedbackId(FeedbackEquipment feedbackEquipment);
+    Boolean updateByFeedbackId(Feedback feedback);
 
-    List<FeedbackEquipment> selectByFeedbackId(Integer feedbackId);
+    List<Feedback> selectByFeedbackId(Integer feedbackId);
 
-    List<FeedbackEquipment> selectByMemberAccount(String memberAccount);
+    List<Feedback> selectByMemberAccount(String memberAccount);
 
-    List<FeedbackEquipment> selectByEquipmentId(Integer EquipmentId);
+    List<Feedback> selectByEquipmentId(Integer EquipmentId);
 }

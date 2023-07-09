@@ -4,41 +4,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.mapper.FeedbackEquipmentMapper;
 import server.model.FeedbackEquipment;
+import server.model.Feedback;
+import server.service.feedback.FeedbackService;
 
 import java.util.List;
 
 @Service
-public class FeedbackEquipmentService {
+public class FeedbackEquipmentService implements FeedbackService {
 
     @Autowired
     private FeedbackEquipmentMapper feedbackMapper;
 
-    public List<FeedbackEquipment> findAll() {
+    @Override
+    public List<Feedback> findAll() {
         return feedbackMapper.findAll();
     }
 
-    public Boolean deleteByFeedbackId(Integer equipmentId) {
-        return feedbackMapper.deleteByFeedbackId(equipmentId);
+    @Override
+    public Boolean deleteByFeedbackId(Integer feedbackId) {
+        return feedbackMapper.deleteByFeedbackId(feedbackId);
     }
 
-    public Boolean insertFeedbackEquipment(FeedbackEquipment feedbackEquipment) {
-        return feedbackMapper.insertFeedbackEquipment(feedbackEquipment);
+    @Override
+    public Boolean insertFeedback(Feedback feedback) {
+        return feedbackMapper.insertFeedbackEquipment(feedback);
     }
 
-    public Boolean updateByFeedbackId(FeedbackEquipment feedbackEquipment) {
-        return feedbackMapper.updateByFeedbackId(feedbackEquipment);
+    @Override
+    public Boolean updateByFeedbackId(Feedback feedback) {
+        return feedbackMapper.updateByFeedbackId(feedback);
     }
 
-    public List<FeedbackEquipment> selectByFeedbackId(Integer feedbackId) {
+    @Override
+    public List<Feedback> selectByFeedbackId(Integer feedbackId) {
         return feedbackMapper.selectByFeedbackId(feedbackId);
     }
 
-    public List<FeedbackEquipment> selectByMemberAccount(String memberAccount) {
+    @Override
+    public List<Feedback> selectByMemberAccount(String memberAccount) {
         return feedbackMapper.selectByMemberAccount(memberAccount);
     }
 
-    public List<FeedbackEquipment> selectByEquipmentId(Integer EquipmentAccount) {
-        return feedbackMapper.selectByEquipmentId(EquipmentAccount);
+    public List<Feedback> selectByEquipmentId(Integer EquipmentId) {
+        return feedbackMapper.selectByEquipmentId(EquipmentId);
     }
 
 }

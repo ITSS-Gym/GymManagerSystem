@@ -1,23 +1,23 @@
 package server.mapper;
 
-import server.model.FeedbackEmployee;
+import server.model.Feedback;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 @Mapper
 public interface FeedbackEmployeeMapper {
 
-    List<FeedbackEmployee> findAll();
+    List<Feedback> findAll();
 
     Boolean deleteByFeedbackId(Integer feedbackId);
 
-    Boolean insertFeedbackEmployee(FeedbackEmployee feedbackEmployee);
+    Boolean insertFeedbackEmployee(Feedback feedback);
 
-    Boolean updateByFeedbackId(FeedbackEmployee feedbackEmployee);
+    Boolean updateByFeedbackId(Feedback feedback);
 
-    List<FeedbackEmployee> selectByFeedbackId(Integer feedbackId);
+    List<Feedback> selectByFeedbackId(Integer feedbackId);
 
-    List<FeedbackEmployee> selectByMemberAccount(String memberAccount);
+    List<Feedback> selectByMemberAccount(String memberAccount);
 
-    List<FeedbackEmployee> selectByEmployeeId(Integer employeeId);
+    List<Feedback> selectByEmployeeId(Integer employeeId);
 }

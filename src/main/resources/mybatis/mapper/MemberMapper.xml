@@ -7,6 +7,7 @@
     <select id="findAll" resultType="member">
         SELECT *
         FROM member
+        WHERE active = true
     </select>
 
     <insert id="insertMember" parameterType="member">
@@ -33,7 +34,8 @@
         SELECT *
         FROM member
         WHERE member_account = #{memberAccount}
-          AND member_password = #{memberPassword}
+            AND member_password = #{memberPassword}
+            AND active = true
     </select>
 
     <update id="deleteByMemberAccount" parameterType="java.lang.String">
@@ -51,6 +53,7 @@
     <select id="selectTotalCount" resultType="java.lang.Integer">
         SELECT count(*)
         FROM member
+        WHERE active = true
     </select>
 
     <select id="selectByMemberAccount" parameterType="java.lang.String" resultType="member">

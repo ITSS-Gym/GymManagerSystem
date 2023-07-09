@@ -10,6 +10,7 @@
         FROM feedback_room
         INNER JOIN room ON feedback_room.room_id = room.room_id
         INNER JOIN member ON feedback_room.member_account = member.member_account
+        WHERE feedback_room.active = true
     </select>
 
     <update id="deleteByFeedbackId" parameterType="java.lang.Integer">
@@ -47,7 +48,7 @@
         FROM feedback_room
         INNER JOIN room ON feedback_room.room_id = room.room_id
         INNER JOIN member ON feedback_room.member_account = member.member_account
-        WHERE feedback_room.member_account = #{memberAccount}
+        WHERE feedback_room.member_account = #{memberAccount} AND feedback_room.active = true;
     </select>
 
     <select id="selectByRoomId" parameterType="java.lang.Integer" resultType="feedbackRoom">
@@ -56,7 +57,7 @@
         FROM feedback_room
         INNER JOIN member ON feedback_room.member_account = member.member_account
         INNER JOIN room ON feedback_room.room_id = room.room_id
-        WHERE feedback_room.room_id = #{roomId};
+        WHERE feedback_room.room_id = #{roomId} AND feedback_room.active = true;
     </select>
 
 </mapper>

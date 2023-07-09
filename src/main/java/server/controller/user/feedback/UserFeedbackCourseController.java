@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import server.model.Course;
 import server.model.FeedbackCourse;
+import server.model.Feedback;
 import server.model.Member;
 import server.service.CourseService;
 import server.service.FeedbackCourseService;
@@ -27,7 +28,7 @@ public class UserFeedbackCourseController {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         String memberAccount = member.getMemberAccount();
-        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.selectByMemberAccount(memberAccount);
+        List<Feedback> feedbackCourseList = feedbackCourseService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
         return "userFeedbackCourse";
     }
@@ -43,7 +44,7 @@ public class UserFeedbackCourseController {
     public String addFeedbackCourse(FeedbackCourse feedbackCourse, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         feedbackCourse.setMemberAccount(member.getMemberAccount());
-        feedbackCourseService.insertFeedbackCourse(feedbackCourse);
+        feedbackCourseService.insertFeedback(feedbackCourse);
         return "redirect:userFeedbackCourse";
     }
 
@@ -56,7 +57,7 @@ public class UserFeedbackCourseController {
 
     @RequestMapping("/toUpdateFeedbackCourse")
     public String toUpdateFeedbackCourse(Integer feedbackId, Model model) {
-        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.selectByFeedbackId(feedbackId);
+        List<Feedback> feedbackCourseList = feedbackCourseService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
         return "updateFeedbackCourse";
     }
@@ -68,7 +69,7 @@ public class UserFeedbackCourseController {
 
     @RequestMapping("/userOtherFeedbackCourse")
     public String toSelectOtherFeedbackCourse(Integer courseId, Model model) {
-        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.selectByCourseId(courseId);
+        List<Feedback> feedbackCourseList = feedbackCourseService.selectByCourseId(courseId);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
         model.addAttribute("courseId", courseId);
         return "userOtherFeedbackCourse";

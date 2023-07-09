@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.model.FeedbackRoom;
+import server.model.Feedback;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -8,17 +8,17 @@ import java.util.List;
 @Mapper
 public interface FeedbackRoomMapper {
 
-    List<FeedbackRoom> findAll();
+    List<Feedback> findAll();
 
     Boolean deleteByFeedbackId(Integer feedbackId);
 
-    Boolean insertFeedbackRoom(FeedbackRoom feedbackRoom);
+    Boolean insertFeedbackRoom(Feedback feedback);
 
-    Boolean updateByFeedbackId(FeedbackRoom feedbackRoom);
+    Boolean updateByFeedbackId(Feedback feedback);
 
-    List<FeedbackRoom> selectByFeedbackId(Integer feedbackId);
+    List<Feedback> selectByFeedbackId(Integer feedbackId);
 
-    List<FeedbackRoom> selectByMemberAccount(String memberAccount);
+    List<Feedback> selectByMemberAccount(String memberAccount);
 
-    List<FeedbackRoom> selectByRoomId(Integer RoomId);
+    List<Feedback> selectByRoomId(Integer RoomId);
 }

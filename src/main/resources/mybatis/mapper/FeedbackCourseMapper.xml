@@ -10,6 +10,7 @@
         FROM feedback_course
         INNER JOIN course ON feedback_course.course_id = course.course_id
         INNER JOIN member ON feedback_course.member_account = member.member_account
+        WHERE feedback_course.active = true
     </select>
 
     <update id="deleteByFeedbackId" parameterType="java.lang.Integer">
@@ -47,7 +48,7 @@
         FROM feedback_course
         INNER JOIN course ON feedback_course.course_id = course.course_id
         INNER JOIN member ON feedback_course.member_account = member.member_account
-        WHERE feedback_course.member_account = #{memberAccount}
+        WHERE feedback_course.member_account = #{memberAccount} AND feedback_course.active = true
     </select>
 
     <select id="selectByCourseId" parameterType="java.lang.Integer" resultType="feedbackCourse">
@@ -56,7 +57,7 @@
         FROM feedback_course
         INNER JOIN member ON feedback_course.member_account = member.member_account
         INNER JOIN course ON feedback_course.course_id = course.course_id
-        WHERE feedback_course.course_id = #{courseId};
+        WHERE feedback_course.course_id = #{courseId} AND feedback_course.active = true;
     </select>
 
 </mapper>

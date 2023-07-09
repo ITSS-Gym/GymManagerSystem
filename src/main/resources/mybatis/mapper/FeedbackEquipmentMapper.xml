@@ -10,6 +10,7 @@
         FROM feedback_equipment
         INNER JOIN equipment ON feedback_equipment.equipment_id = equipment.equipment_id
         INNER JOIN member ON feedback_equipment.member_account = member.member_account
+        WHERE feedback_equipment.active = true
     </select>
 
     <update id="deleteByFeedbackId" parameterType="java.lang.Integer">
@@ -50,7 +51,7 @@
         FROM feedback_equipment
         INNER JOIN equipment ON feedback_equipment.equipment_id = equipment.equipment_id
         INNER JOIN member ON feedback_equipment.member_account = member.member_account
-        WHERE feedback_equipment.member_account = #{memberAccount}
+        WHERE feedback_equipment.member_account = #{memberAccount} AND feedback_equipment.active = true;
     </select>
 
     <select id="selectByEquipmentId" parameterType="java.lang.Integer" resultType="feedbackEquipment">
@@ -59,7 +60,7 @@
         FROM feedback_equipment
         INNER JOIN member ON feedback_equipment.member_account = member.member_account
         INNER JOIN equipment ON feedback_equipment.equipment_id = equipment.equipment_id
-        WHERE feedback_equipment.equipment_id = #{equipmentId};
+        WHERE feedback_equipment.equipment_id = #{equipmentId} AND feedback_equipment.active = true;
     </select>
 
 </mapper>

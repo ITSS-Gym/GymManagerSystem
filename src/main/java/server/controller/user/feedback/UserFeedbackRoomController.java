@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import server.model.Room;
 import server.model.FeedbackRoom;
+import server.model.Feedback;
 import server.model.Member;
 import server.service.RoomService;
 import server.service.FeedbackRoomService;
@@ -27,7 +28,7 @@ public class UserFeedbackRoomController {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         String memberAccount = member.getMemberAccount();
-        List<FeedbackRoom> feedbackRoomList = feedbackRoomService.selectByMemberAccount(memberAccount);
+        List<Feedback> feedbackRoomList = feedbackRoomService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackRoomList", feedbackRoomList);
         return "userFeedbackRoom";
     }
@@ -43,7 +44,7 @@ public class UserFeedbackRoomController {
     public String addFeedbackRoom(FeedbackRoom feedbackRoom, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         feedbackRoom.setMemberAccount(member.getMemberAccount());
-        feedbackRoomService.insertFeedbackRoom(feedbackRoom);
+        feedbackRoomService.insertFeedback(feedbackRoom);
         return "redirect:userFeedbackRoom";
     }
 
@@ -56,7 +57,7 @@ public class UserFeedbackRoomController {
 
     @RequestMapping("/toUpdateFeedbackRoom")
     public String toUpdateFeedbackRoom(Integer feedbackId, Model model) {
-        List<FeedbackRoom> feedbackRoomList = feedbackRoomService.selectByFeedbackId(feedbackId);
+        List<Feedback> feedbackRoomList = feedbackRoomService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackRoomList", feedbackRoomList);
         return "updateFeedbackRoom";
     }

@@ -8,6 +8,7 @@
         SELECT course_id, course_name, course_begin, course_time, coach_id, employee_name, price, course_type
         FROM course
         INNER JOIN employee ON course.coach_id = employee.employee_id
+        WHERE course.active = true;
     </select>
 
     <update id="deleteCourseByCourseId" parameterType="java.lang.Integer">

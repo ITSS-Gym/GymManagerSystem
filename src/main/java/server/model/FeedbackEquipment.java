@@ -1,47 +1,10 @@
 package server.model;
 
-import java.sql.Timestamp;
-
-public class FeedbackEquipment {
-
-    private Integer feedbackId;
-
-    private String memberAccount;
-
-    private String memberName;
+public class FeedbackEquipment extends Feedback {
 
     private Integer equipmentId;
 
     private String equipmentName;
-
-    private String content;
-    private Timestamp timeCreated;
-
-    private boolean active;
-
-    public Integer getFeedbackId() {
-        return feedbackId;
-    }
-
-    public void setFeedbackId(Integer feedbackId) {
-        this.feedbackId = feedbackId;
-    }
-
-    public String getMemberAccount() {
-        return memberAccount;
-    }
-
-    public void setMemberAccount(String memberAccount) {
-        this.memberAccount = memberAccount;
-    }
-
-    public String getMemberName() {
-        return memberName;
-    }
-
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
 
     public Integer getEquipmentId() {
         return equipmentId;
@@ -57,30 +20,6 @@ public class FeedbackEquipment {
 
     public void setEquipmentName(String equipmentName) {
         this.equipmentName = equipmentName;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Timestamp getTimeCreated() {
-        return timeCreated;
-    }
-
-    public void setTimeCreated(Timestamp timeCreated) {
-        this.timeCreated = timeCreated;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     @Override
