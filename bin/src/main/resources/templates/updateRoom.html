@@ -23,13 +23,13 @@
             <div th:each="room:${roomList}">
               <table class="table table-hover">
                 <tr>
-                  <td text-align="center">Room ID：</td>
+                  <td text-align="center">Room ID:</td>
                   <td><input type="text" class="form-control" readonly="readonly"
                              th:value="${room.roomId}" name="roomId">
                   </td>
                 </tr>
                 <tr>
-                  <td text-align="center">Name：</td>
+                  <td text-align="center">Name:</td>
                   <td><input type="text" class="form-control" th:value="${room.roomName}"
                              name="roomName"></td>
                 </tr>

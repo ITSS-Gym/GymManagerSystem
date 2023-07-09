@@ -1,18 +1,18 @@
-package server.pojo;
+package server.model;
 
 import java.sql.Timestamp;
 
-public class FeedbackEquipment {
-
+public class FeedbackCourse {
+    
     private Integer feedbackId;
 
     private String memberAccount;
 
     private String memberName;
 
-    private Integer equipmentId;
-
-    private String equipmentName;
+    private Integer courseId;
+    
+    private String courseName;
 
     private String content;
     private Timestamp timeCreated;
@@ -43,20 +43,20 @@ public class FeedbackEquipment {
         this.memberName = memberName;
     }
 
-    public Integer getEquipmentId() {
-        return equipmentId;
+    public Integer getCourseId() {
+        return courseId;
     }
 
-    public void setEquipmentId(Integer equipmentId) {
-        this.equipmentId = equipmentId;
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 
-    public String getEquipmentName() {
-        return equipmentName;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setEquipmentName(String equipmentName) {
-        this.equipmentName = equipmentName;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public String getContent() {
@@ -85,12 +85,12 @@ public class FeedbackEquipment {
 
     @Override
     public String toString() {
-        return "FeedbackEquipment{" +
+        return "FeedbackCourse{" +
                 "feedbackId=" + feedbackId +
                 ", memberAccount='" + memberAccount + '\'' +
                 ", memberName='" + memberName + '\'' +
-                ", equipmentId=" + equipmentId +
-                ", equipmentName='" + equipmentName + '\'' +
+                ", courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
                 ", content='" + content + '\'' +
                 ", timeCreated=" + timeCreated +
                 ", active=" + active +

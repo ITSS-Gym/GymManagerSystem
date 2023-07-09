@@ -3,7 +3,7 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.mapper.AdminMapper;
-import server.pojo.Admin;
+import server.model.Admin;
 
 @Service
 public class AdminService {

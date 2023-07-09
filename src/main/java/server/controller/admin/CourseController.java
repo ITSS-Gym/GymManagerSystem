@@ -1,8 +1,8 @@
 package server.controller.admin;
 
-import server.pojo.CourseOrder;
-import server.pojo.Course;
-import server.pojo.Employee;
+import server.model.CourseOrder;
+import server.model.Course;
+import server.model.Employee;
 import server.service.CourseOrderService;
 import server.service.CourseService;
 import server.service.EmployeeService;

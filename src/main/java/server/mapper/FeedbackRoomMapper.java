@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.pojo.FeedbackRoom;
+import server.model.FeedbackRoom;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

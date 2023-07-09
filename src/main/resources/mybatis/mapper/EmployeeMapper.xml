@@ -22,20 +22,21 @@
     </update>
 
     <insert id="insertEmployee" parameterType="employee">
-        INSERT INTO employee (employee_name, employee_gender,
+        INSERT INTO employee (employee_account, employee_password, employee_name, employee_gender,
                               employee_age, entry_time, staff, employee_message)
-        VALUES (#{employeeName}, #{employeeGender},
+        VALUES (#{employeeAccount}, #{employeePassword}, #{employeeName}, #{employeeGender},
                 #{employeeAge}, #{entryTime}, #{staff}, #{employeeMessage})
     </insert>
 
     <update id="updateMemberByEmployeeId" parameterType="employee">
         UPDATE employee
         SET employee_id = #{employeeId},
+            employee_password = #{employeePassword},
             employee_name    = #{employeeName},
             employee_gender  = #{employeeGender},
             employee_age     = #{employeeAge},
             staff            = #{staff},
-            employee_message=#{employeeMessage}
+            employee_message =#{employeeMessage}
         WHERE employee_id = #{employeeId}
     </update>
 

@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import server.pojo.Equipment;
-import server.pojo.FeedbackEquipment;
-import server.pojo.Member;
+import server.model.Equipment;
+import server.model.FeedbackEquipment;
+import server.model.Member;
 import server.service.EquipmentService;
 import server.service.FeedbackEquipmentService;
 

@@ -1,7 +1,7 @@
 package server.controller.admin;
 
-import server.pojo.Equipment;
-import server.pojo.Room;
+import server.model.Equipment;
+import server.model.Room;
 import server.service.EquipmentService;
 import server.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.pojo.Member;
+import server.model.Member;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

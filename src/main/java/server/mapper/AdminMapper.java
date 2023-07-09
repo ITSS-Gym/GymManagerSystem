@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.pojo.Admin;
+import server.model.Admin;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

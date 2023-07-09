@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import server.pojo.FeedbackRoom;
+import server.model.FeedbackRoom;
 import server.service.RoomService;
 import server.service.FeedbackRoomService;
 

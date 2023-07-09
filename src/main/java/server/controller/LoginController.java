@@ -1,9 +1,8 @@
 package server.controller;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import server.mapper.OrderRecordMapper;
-import server.pojo.Admin;
-import server.pojo.Member;
+import server.model.Admin;
+import server.model.Member;
 import server.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

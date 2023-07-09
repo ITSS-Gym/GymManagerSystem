@@ -23,7 +23,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.Model;
 
-import server.pojo.Member;
+import server.model.Member;
 import server.service.MemberService;
 
 @SpringBootTest

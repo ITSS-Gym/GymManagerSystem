@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.pojo.Course;
+import server.model.Course;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

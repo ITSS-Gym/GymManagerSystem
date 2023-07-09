@@ -3,7 +3,7 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.mapper.FeedbackRoomMapper;
-import server.pojo.FeedbackRoom;
+import server.model.FeedbackRoom;
 
 import java.util.List;
 

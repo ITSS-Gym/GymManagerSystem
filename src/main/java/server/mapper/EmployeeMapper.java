@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.pojo.Employee;
+import server.model.Employee;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

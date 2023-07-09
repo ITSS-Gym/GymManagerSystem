@@ -1,6 +1,6 @@
 package server.controller.admin;
 
-import server.pojo.Member;
+import server.model.Member;
 import server.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

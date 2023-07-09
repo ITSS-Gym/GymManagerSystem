@@ -76,8 +76,8 @@ VALUES
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee`  (
   `employee_id` int NOT NULL AUTO_INCREMENT COMMENT 'Employee ID',
-  `employee_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL UNIQUE COMMENT 'employee account',
-  `employee_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'employee password',
+  `employee_account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL UNIQUE COMMENT 'employee account',
+  `employee_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'employee password',
   `employee_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'employee name',
   `employee_gender` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'employee gender',
   `employee_age` int NULL DEFAULT NULL COMMENT 'Age',

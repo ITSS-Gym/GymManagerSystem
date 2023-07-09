@@ -1,6 +1,6 @@
 package server.controller.admin.feedback;
 
-import server.pojo.FeedbackEmployee;
+import server.model.FeedbackEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

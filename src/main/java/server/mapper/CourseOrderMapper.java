@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.pojo.CourseOrder;
+import server.model.CourseOrder;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

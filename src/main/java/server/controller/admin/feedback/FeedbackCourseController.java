@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import server.pojo.FeedbackCourse;
+import server.model.FeedbackCourse;
 import server.service.CourseService;
 import server.service.FeedbackCourseService;
 

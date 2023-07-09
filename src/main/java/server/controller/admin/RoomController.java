@@ -1,6 +1,6 @@
 package server.controller.admin;
 
-import server.pojo.Room;
+import server.model.Room;
 import server.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

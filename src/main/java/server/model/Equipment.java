@@ -1,4 +1,4 @@
-package server.pojo;
+package server.model;
 
 public class Equipment {
 

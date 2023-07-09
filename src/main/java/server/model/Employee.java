@@ -1,8 +1,10 @@
-package server.pojo;
+package server.model;
 
 public class Employee {
 
     private Integer employeeId;
+    private String employeeAccount;
+    private String employeePassword;
     private String employeeName;
     private String employeeGender;
     private Integer employeeAge;
@@ -15,8 +17,10 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer employeeId, String employeeName, String employeeGender, Integer employeeAge, String entryTime, String staff, String employeeMessage) {
+    public Employee(Integer employeeId, String employeeAccount, String employeePassword, String employeeName, String employeeGender, Integer employeeAge, String entryTime, String staff, String employeeMessage) {
         this.employeeId = employeeId;
+        this.employeeAccount = employeeAccount;
+        this.employeePassword = employeePassword;
         this.employeeName = employeeName;
         this.employeeGender = employeeGender;
         this.employeeAge = employeeAge;
@@ -32,6 +36,22 @@ public class Employee {
 
     public void setEmployeeId(Integer employeeId) {
         this.employeeId = employeeId;
+    }
+
+    public String getEmployeeAccount() {
+        return employeeAccount;
+    }
+
+    public void setEmployeeAccount(String employeeAccount) {
+        this.employeeAccount = employeeAccount;
+    }
+
+    public String getEmployeePassword() {
+        return employeePassword;
+    }
+
+    public void setEmployeePassword(String employeePassword) {
+        this.employeePassword = employeePassword;
     }
 
     public String getEmployeeName() {
@@ -94,6 +114,8 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "employeeId=" + employeeId +
+                ", employeeAccount='" + employeeAccount + '\'' +
+                ", employeePassword='" + employeePassword + '\'' +
                 ", employeeName='" + employeeName + '\'' +
                 ", employeeGender='" + employeeGender + '\'' +
                 ", employeeAge=" + employeeAge +
