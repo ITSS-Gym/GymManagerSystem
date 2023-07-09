@@ -9,11 +9,17 @@
         FROM employee
     </select>
 
-    <delete id="deleteByEmployeeId" parameterType="java.lang.Integer">
-        DELETE
-        FROM employee
+    <update id="deleteByEmployeeId" parameterType="java.lang.Integer">
+        UPDATE employee
+        SET active = false
         WHERE employee_id = #{employeeId}
-    </delete>
+    </update>
+
+    <update id="enableByEmployeeId" parameterType="java.lang.Integer">
+        UPDATE employee
+        SET active = true
+        WHERE employee_id = #{employeeId}
+    </update>
 
     <insert id="insertEmployee" parameterType="employee">
         INSERT INTO employee (employee_name, employee_gender,

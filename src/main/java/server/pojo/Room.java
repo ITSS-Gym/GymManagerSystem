@@ -5,9 +5,12 @@ public class Room {
 
     private String roomName;
 
+    private boolean active;
+
     public Room(Integer roomId, String roomName) {
         this.roomId = roomId;
         this.roomName = roomName;
+        this.active = true;
     }
 
     public Integer getRoomId() {
@@ -26,11 +29,20 @@ public class Room {
         this.roomName = roomName;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
                 "roomId=" + roomId +
                 ", roomName='" + roomName + '\'' +
+                ", active=" + active +
                 '}';
     }
 }

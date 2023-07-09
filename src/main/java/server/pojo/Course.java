@@ -14,6 +14,8 @@ public class Course {
 
     private String courseType;
 
+    private boolean active;
+
     public Course(Integer courseId, String courseName, String courseBegin, String courseTime, Integer coachId, String coachName, Integer price, String courseType) {
         this.courseId = courseId;
         this.courseName = courseName;
@@ -23,6 +25,7 @@ public class Course {
         this.coachName = coachName;
         this.price = price;
         this.courseType = courseType;
+        this.active = true;
     }
 
     public Integer getCourseId() {
@@ -89,6 +92,14 @@ public class Course {
         this.courseType = courseType;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -100,6 +111,7 @@ public class Course {
                 ", coachName='" + coachName + '\'' +
                 ", price=" + price +
                 ", courseType='" + courseType + '\'' +
+                ", active=" + active +
                 '}';
     }
 }

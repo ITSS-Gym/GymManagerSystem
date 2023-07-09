@@ -9,12 +9,15 @@ public class Equipment {
 
     private Integer roomId;
 
+    private boolean active;
+
     public Equipment(Integer equipmentId, String equipmentName, String equipmentStatus, String equipmentMessage, Integer roomId) {
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
         this.equipmentStatus = equipmentStatus;
         this.equipmentMessage = equipmentMessage;
         this.roomId = roomId;
+        this.active = true;
     }
 
     public Integer getEquipmentId() {
@@ -57,6 +60,14 @@ public class Equipment {
         this.roomId = roomId;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Equipment{" +
@@ -65,6 +76,7 @@ public class Equipment {
                 ", equipmentStatus='" + equipmentStatus + '\'' +
                 ", equipmentMessage='" + equipmentMessage + '\'' +
                 ", roomId=" + roomId +
+                ", active=" + active +
                 '}';
     }
 }

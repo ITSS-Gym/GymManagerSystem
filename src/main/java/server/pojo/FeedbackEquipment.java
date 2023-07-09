@@ -17,6 +17,8 @@ public class FeedbackEquipment {
     private String content;
     private Timestamp timeCreated;
 
+    private boolean active;
+
     public Integer getFeedbackId() {
         return feedbackId;
     }
@@ -73,6 +75,14 @@ public class FeedbackEquipment {
         this.timeCreated = timeCreated;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "FeedbackEquipment{" +
@@ -83,6 +93,7 @@ public class FeedbackEquipment {
                 ", equipmentName='" + equipmentName + '\'' +
                 ", content='" + content + '\'' +
                 ", timeCreated=" + timeCreated +
+                ", active=" + active +
                 '}';
     }
 }

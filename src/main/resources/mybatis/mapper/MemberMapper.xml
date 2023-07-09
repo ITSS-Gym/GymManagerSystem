@@ -36,11 +36,17 @@
           AND member_password = #{memberPassword}
     </select>
 
-    <delete id="deleteByMemberAccount" parameterType="java.lang.String">
-        DELETE
-        FROM member
+    <update id="deleteByMemberAccount" parameterType="java.lang.String">
+        UPDATE member
+        SET active = false
         WHERE member_account = #{memberAccount}
-    </delete>
+    </update>
+
+    <update id="enableByMemberAccount" parameterType="java.lang.String">
+        UPDATE member
+        SET active = true
+        WHERE member_account = #{memberAccount}
+    </update>
 
     <select id="selectTotalCount" resultType="java.lang.Integer">
         SELECT count(*)

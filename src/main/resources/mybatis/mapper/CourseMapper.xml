@@ -10,11 +10,17 @@
         INNER JOIN employee ON course.coach_id = employee.employee_id
     </select>
 
-    <delete id="deleteCourseByCourseId" parameterType="java.lang.Integer">
-        DELETE
-        FROM course
+    <update id="deleteCourseByCourseId" parameterType="java.lang.Integer">
+        UPDATE course
+        SET active = false
         WHERE course_id = #{courseId}
-    </delete>
+    </update>
+
+    <update id="enableCourseByCourseId" parameterType="java.lang.Integer">
+        UPDATE course
+        SET active = true
+        WHERE course_id = #{courseId}
+    </update>
 
     <insert id="insertCourse" parameterType="course">
         INSERT INTO course (course_name, course_begin, course_time, coach_id, price, course_type)

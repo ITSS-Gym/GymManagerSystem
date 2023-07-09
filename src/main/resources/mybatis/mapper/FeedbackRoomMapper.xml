@@ -12,11 +12,17 @@
         INNER JOIN member ON feedback_room.member_account = member.member_account
     </select>
 
-    <delete id="deleteByFeedbackId" parameterType="java.lang.Integer">
-        DELETE
-        FROM feedback_room
+    <update id="deleteByFeedbackId" parameterType="java.lang.Integer">
+        UPDATE feedback_room
+        SET active = false
         WHERE feedback_id = #{feedbackId}
-    </delete>
+    </update>
+
+    <update id="enableByFeedbackId" parameterType="java.lang.Integer">
+        UPDATE feedback_room
+        SET active = true
+        WHERE feedback_id = #{feedbackId}
+    </update>
 
     <insert id="insertFeedbackRoom" parameterType="feedbackRoom">
         INSERT INTO feedback_room (member_account, room_id, content)

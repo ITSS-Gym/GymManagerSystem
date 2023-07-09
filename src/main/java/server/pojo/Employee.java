@@ -10,6 +10,8 @@ public class Employee {
     private String staff;
     private String employeeMessage;
 
+    private boolean active;
+
     public Employee() {
     }
 
@@ -21,6 +23,7 @@ public class Employee {
         this.entryTime = entryTime;
         this.staff = staff;
         this.employeeMessage = employeeMessage;
+        this.active = true;
     }
 
     public Integer getEmployeeId() {
@@ -79,6 +82,14 @@ public class Employee {
         this.employeeMessage = employeeMessage;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -89,6 +100,7 @@ public class Employee {
                 ", entryTime='" + entryTime + '\'' +
                 ", staff='" + staff + '\'' +
                 ", employeeMessage='" + employeeMessage + '\'' +
+                ", active=" + active +
                 '}';
     }
 }

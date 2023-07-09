@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `room`;
 CREATE TABLE `room`  (
   `room_id` int NOT NULL AUTO_INCREMENT COMMENT 'Room id',
   `room_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'Room Name',
-  `disabled` BOOLEAN NULL DEFAULT FALSE COMMENT "disable or not",
+  `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`room_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
@@ -48,7 +48,7 @@ CREATE TABLE `member`  (
   `member_height` int NULL DEFAULT NULL COMMENT 'Height',
   `member_weight` int NULL DEFAULT NULL COMMENT 'weight',
   `member_phone` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'phone',
-  `disabled` BOOLEAN NULL DEFAULT FALSE COMMENT "disable or not",
+  `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`member_account`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
@@ -80,7 +80,7 @@ CREATE TABLE `employee`  (
   `entry_time` date NULL DEFAULT NULL COMMENT 'entry time`',
   `staff` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'staff',
   `employee_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'employee message',
-  `disabled` BOOLEAN NULL DEFAULT FALSE COMMENT "disable or not",
+  `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`employee_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
@@ -106,7 +106,7 @@ CREATE TABLE `course`  (
   `coach_id` int NULL DEFAULT NULL COMMENT 'Coach ID',
   `price` int NULL DEFAULT NULL COMMENT 'vnd',
   `course_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'based on time/sport',
-  `disabled` BOOLEAN NULL DEFAULT FALSE COMMENT "disable or not",
+  `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`course_id`) USING BTREE,
   FOREIGN KEY (`coach_id`) REFERENCES `employee`(`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
 
@@ -168,7 +168,7 @@ CREATE TABLE `equipment`  (
   `equipment_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'equipment status',
   `equipment_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'equipment message',
   `room_id` int NULL DEFAULT NULL COMMENT 'room id',
-  `disabled` BOOLEAN NULL DEFAULT FALSE COMMENT "disable or not",
+  `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`equipment_id`) USING BTREE,
   FOREIGN KEY (`room_id`) REFERENCES `room`(`room_id`) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -194,7 +194,7 @@ CREATE TABLE `feedback_employee`  (
   `employee_id` int NULL DEFAULT NULL COMMENT 'account of employee got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `disabled` BOOLEAN NULL DEFAULT FALSE COMMENT "disable or not",
+  `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`feedback_id`) USING BTREE,
   FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`employee_id`) REFERENCES `employee`(`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -217,7 +217,7 @@ CREATE TABLE `feedback_equipment`  (
   `equipment_id` int NULL DEFAULT NULL COMMENT 'id of equipment got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `disabled` BOOLEAN NULL DEFAULT FALSE COMMENT "disable or not",
+  `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`feedback_id`) USING BTREE,
   FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE SET NULL ON UPDATE CASCADE,
   FOREIGN KEY (`equipment_id`) REFERENCES `equipment`(`equipment_id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -240,7 +240,7 @@ CREATE TABLE `feedback_course`  (
   `course_id` int NULL DEFAULT NULL COMMENT 'id of equipment got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `disabled` BOOLEAN NULL DEFAULT FALSE COMMENT "disable or not",
+  `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`feedback_id`) USING BTREE,
   FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE SET NULL ON UPDATE CASCADE,
   FOREIGN KEY (`course_id`) REFERENCES `course`(`course_id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -260,7 +260,7 @@ CREATE TABLE `feedback_room`  (
   `room_id` int NULL DEFAULT NULL COMMENT 'id of equipment got feedback',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'content of feedback',
   `time_created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `disabled` BOOLEAN NULL DEFAULT FALSE COMMENT "disable or not",
+  `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`feedback_id`) USING BTREE,
   FOREIGN KEY (`member_account`) REFERENCES `member`(`member_account`) ON DELETE SET NULL ON UPDATE CASCADE,
   FOREIGN KEY (`room_id`) REFERENCES `room`(`room_id`) ON DELETE SET NULL ON UPDATE CASCADE

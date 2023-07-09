@@ -9,11 +9,17 @@
         FROM room
     </select>
 
-    <delete id="deleteByRoomId" parameterType="java.lang.Integer">
-        DELETE
-        FROM room
+    <update id="deleteByRoomId" parameterType="java.lang.Integer">
+        UPDATE room
+        SET active = false
         WHERE room_id = #{roomId}
-    </delete>
+    </update>
+
+    <update id="enableByRoomId" parameterType="java.lang.Integer">
+        UPDATE room
+        SET active = true
+        WHERE room_id = #{roomId}
+    </update>
 
     <insert id="insertRoom" parameterType="room">
         INSERT INTO room (room_name)

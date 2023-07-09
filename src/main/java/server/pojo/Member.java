@@ -10,6 +10,7 @@ public class Member {
     private Integer memberHeight;
     private Integer memberWeight;
     private String memberPhone;
+    private boolean active;
 
     public String getMemberAccount() {
         return memberAccount;
@@ -75,17 +76,26 @@ public class Member {
         this.memberPhone = memberPhone;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Member{" +
-                "memberAccount=" + memberAccount +
+                "memberAccount='" + memberAccount + '\'' +
                 ", memberPassword='" + memberPassword + '\'' +
                 ", memberName='" + memberName + '\'' +
                 ", memberGender='" + memberGender + '\'' +
                 ", memberAge=" + memberAge +
                 ", memberHeight=" + memberHeight +
                 ", memberWeight=" + memberWeight +
-                ", memberPhone=" + memberPhone +
+                ", memberPhone='" + memberPhone + '\'' +
+                ", active=" + active +
                 '}';
     }
 }
