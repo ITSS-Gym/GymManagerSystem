@@ -33,6 +33,10 @@ public class EmployeeService {
         return employeeMapper.selectByEmployeeId(employeeId);
     }
 
+    public List<Employee> selectByEmployeeAccount(String employeeAccount) {
+        return employeeMapper.selectByEmployeeAccount(employeeAccount);
+    }
+
     public Integer selectTotalCount() {
         return employeeMapper.selectTotalCount();
     }

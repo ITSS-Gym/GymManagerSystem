@@ -11,13 +11,14 @@ public class Employee {
     private String entryTime;
     private String staff;
     private String employeeMessage;
+    private boolean isCoach;
 
     private boolean active;
 
     public Employee() {
     }
 
-    public Employee(Integer employeeId, String employeeAccount, String employeePassword, String employeeName, String employeeGender, Integer employeeAge, String entryTime, String staff, String employeeMessage) {
+    public Employee(Integer employeeId, String employeeAccount, String employeePassword, String employeeName, String employeeGender, Integer employeeAge, String entryTime, String staff, String employeeMessage, boolean isCoach) {
         this.employeeId = employeeId;
         this.employeeAccount = employeeAccount;
         this.employeePassword = employeePassword;
@@ -27,6 +28,7 @@ public class Employee {
         this.entryTime = entryTime;
         this.staff = staff;
         this.employeeMessage = employeeMessage;
+        this.isCoach = isCoach;
         this.active = true;
     }
 
@@ -102,6 +104,14 @@ public class Employee {
         this.employeeMessage = employeeMessage;
     }
 
+    public boolean isCoach() {
+        return isCoach;
+    }
+
+    public void setCoach(boolean coach) {
+        isCoach = coach;
+    }
+
     public boolean isActive() {
         return active;
     }
@@ -122,6 +132,7 @@ public class Employee {
                 ", entryTime='" + entryTime + '\'' +
                 ", staff='" + staff + '\'' +
                 ", employeeMessage='" + employeeMessage + '\'' +
+                ", isCoach=" + isCoach +
                 ", active=" + active +
                 '}';
     }

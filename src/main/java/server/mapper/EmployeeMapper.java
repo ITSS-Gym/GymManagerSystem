@@ -22,6 +22,8 @@ public interface EmployeeMapper {
     // Query employees based on employee account
     List<Employee> selectByEmployeeId(Integer employeeId);
 
+    List<Employee> selectByEmployeeAccount(String employeeAccount);
+
     // Query the number of employees
     Integer selectTotalCount();
 

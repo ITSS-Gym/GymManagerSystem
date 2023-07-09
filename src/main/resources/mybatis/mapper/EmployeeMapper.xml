@@ -24,9 +24,9 @@
 
     <insert id="insertEmployee" parameterType="employee">
         INSERT INTO employee (employee_account, employee_password, employee_name, employee_gender,
-                              employee_age, entry_time, staff, employee_message)
+                              employee_age, entry_time, staff, employee_message, is_coach)
         VALUES (#{employeeAccount}, #{employeePassword}, #{employeeName}, #{employeeGender},
-                #{employeeAge}, #{entryTime}, #{staff}, #{employeeMessage})
+                #{employeeAge}, #{entryTime}, #{staff}, #{employeeMessage}, #{isCoach})
     </insert>
 
     <update id="updateMemberByEmployeeId" parameterType="employee">
@@ -37,7 +37,8 @@
             employee_gender  = #{employeeGender},
             employee_age     = #{employeeAge},
             staff            = #{staff},
-            employee_message =#{employeeMessage}
+            employee_message = #{employeeMessage},
+            is_coach         = #{isCoach}
         WHERE employee_id = #{employeeId}
     </update>
 
@@ -45,6 +46,12 @@
         SELECT *
         FROM employee
         WHERE employee_id = #{employeeId}
+    </select>
+
+    <select id="selectByEmployeeAccount" parameterType="java.lang.String" resultType="employee">
+        SELECT *
+        FROM employee
+        WHERE employee_account = #{employeeAccount}
     </select>
 
     <select id="selectTotalCount" resultType="java.lang.Integer">

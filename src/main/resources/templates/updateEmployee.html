@@ -69,6 +69,15 @@
                                                name="employeeMessage">
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td text-align="center">Is he/she a coach?</td>
+                                    <td>
+                                        <select name="isCoach" class="form-select" id="selective-role">
+                                            <option th:selected="${emp.isCoach.equals(true)}" value="1">Yes</option>
+                                            <option th:selected="${emp.isCoach.equals(false)}" value="0">No</option>
+                                        </select>
+                                    </td>
+                                </tr>
                             </table>
                             <div style="text-align:center;margin-bottom:15px">
                                 <input type="submit" class="btn btn-outline-success" value="Update">

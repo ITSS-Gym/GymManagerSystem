@@ -1,5 +1,6 @@
 package server.controller.admin;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import server.model.Employee;
 import server.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,18 +35,23 @@ public class EmployeeController {
 
     // New employee
     @RequestMapping("/addEmployee")
-    public String addEmployee(Employee employee) {
+    public String addEmployee(Employee employee, @ModelAttribute("isCoach") boolean isCoach, Model model) {
+        List<Employee> employeeList = employeeService.selectByEmployeeAccount(employee.getEmployeeAccount());
+        if (employeeList.isEmpty()) {
+            employee.setCoach(isCoach);
 
-        //get current date
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String nowDay = simpleDateFormat.format(date);
+            //get current date
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String nowDay = simpleDateFormat.format(date);
+            employee.setEntryTime(nowDay);
 
-        employee.setEntryTime(nowDay);
+            employeeService.insertEmployee(employee);
 
-        employeeService.insertEmployee(employee);
-
-        return "redirect:selEmployee";
+            return "redirect:selEmployee";
+        }
+        model.addAttribute("msg", "Duplicate Employee Account!");
+        return "addEmployee";
 
     }
 
@@ -66,7 +72,8 @@ public class EmployeeController {
 
     //Modify employee information
     @RequestMapping("/updateEmployee")
-    public String updateEmployee(Employee employee) {
+    public String updateEmployee(Employee employee, @ModelAttribute("isCoach") boolean isCoach) {
+        employee.setCoach(isCoach);
         employeeService.updateMemberByEmployeeId(employee);
         return "redirect:selEmployee";
     }
