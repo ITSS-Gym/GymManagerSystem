@@ -9,57 +9,51 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Course Management</h1>
+                <h1 class="mt-4">Member Management</h1>
 
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a th:href="@{/adminMain}">HomePage</a></li>
-                    <li class="breadcrumb-item active">Course Management</li>
+                    <li class="breadcrumb-item active">Member Management</li>
                 </ol>
 
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Course Information List
+                        Member Information List
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Member Account</th>
                                 <th>Name</th>
-                                <th>Time</th>
-                                <th>Duration</th>
-                                <th>Coach Account</th>
-                                <th>Coach Name</th>
-                                <th>Price</th>
-                                <th>Type</th>
+                                <th>Gender</th>
+                                <th>Age</th>
+                                <th>Contact Information</th>
+                                <th>Height</th>
+                                <th>Weight</th>
                                 <th>Operation</th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            <tr th:each="course:${courseList}">
-                                <td th:text="${course.courseId}">ID</td>
-                                <td th:text="${course.courseName}">Name</td>
-                                <td th:text="${course.courseBegin}">Time</td>
-                                <td th:text="${course.courseTime}">Duration</td>
-                                <td th:text="${course.coachId}">Coach Account</td>
-                                <td th:text="${course.coachName}">Coach Name</td>
-                                <td th:text="${course.price}">Price</td>
-                                <td th:text="${course.courseType}">Type</td>
+                            <tr th:each="mem:${memberList}">
+                                <td th:text="${mem.memberAccount}">Member Account</td>
+                                <td th:text="${mem.memberName}">Name</td>
+                                <td th:text="${mem.memberGender}">Gender</td>
+                                <td th:text="${mem.memberAge}">Age</td>
+                                <td th:text="${mem.memberPhone}">Phone Number</td>
+                                <td th:text="${mem.memberHeight}">Height</td>
+                                <td th:text="${mem.memberWeight}">Weight</td>
                                 <td>
-                                    <a th:href="@{/course/selCourseOrder(courseId=${course.courseId})}"
+                                    <a th:href="@{/member/toUpdateMember(memberAccount=${mem.memberAccount})}"
                                        style="text-decoration: none">
-                                        <input type="button" class="btn btn-sm btn-outline-secondary" value="Register">
+                                        <input type="button" class="btn btn-sm btn-outline-primary" value="Update">
                                     </a>
-                                    <a th:href="@{/course/delCourse(courseId=${course.courseId})}"
+                                    <a th:href="@{/member/delMember(memberAccount=${mem.memberAccount})}"
                                        style="text-decoration: none">
                                         <input type="button" class="btn btn-sm btn-outline-danger"
                                                onclick="return del()" value="Delete">
-                                    </a>
-                                    <a th:href="@{/feedback/toViewFeedbackCourse(courseId=${course.courseId})}"
-                                       style="text-decoration: none">
-                                        <input type="button" class="btn btn-sm btn-outline-primary" value="View Feedback">
                                     </a>
                                 </td>
                             </tr>
@@ -68,8 +62,8 @@
                     </div>
                 </div>
                 <div style="text-align:center;margin-top:20px;margin-bottom:20px">
-                    <a th:href="@{/course/toAddCourse}">
-                        <input type="button" class="btn btn-outline-success" value="Add Course">
+                    <a th:href="@{/member/toAddMember}">
+                        <input type="button" class="btn btn-outline-success" value="Add Member Information">
                     </a>
                 </div>
             </div>
@@ -81,7 +75,7 @@
 <div th:include="adminCommon::common-scripts"></div>
 <script>
     function del() {
-        let msg = "You sure you want to delete it？";
+        let msg = "Are you sure you want to delete it?";
         if (confirm(msg) == true) {
             return true;
         } else {

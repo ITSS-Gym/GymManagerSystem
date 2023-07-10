@@ -32,7 +32,7 @@ public class UserCourseController {
         String memberAccount = member.getMemberAccount();
         List<CourseOrder> courseOrderList = courseOrderService.selectCourseOrderByMemberAccount(memberAccount);
         model.addAttribute("courseOrderList", courseOrderList);
-        return "userCourse";
+        return "user/userCourse";
     }
 
     // Quit course
@@ -55,7 +55,7 @@ public class UserCourseController {
         List<Integer> courseOrderIdList = courseOrderList.stream().map(CourseOrder::getCourseId).collect(Collectors.toList());
         model.addAttribute("courseOrderIdList", courseOrderIdList);
 
-        return "userApplyCourse";
+        return "user/userApplyCourse";
     }
 
     // Sign up for courses

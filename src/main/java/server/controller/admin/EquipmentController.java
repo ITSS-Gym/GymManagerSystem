@@ -26,7 +26,7 @@ public class EquipmentController {
     public String selectEquipment(Model model) {
         List<Equipment> equipmentList = equipmentService.findAll();
         model.addAttribute("equipmentList", equipmentList);
-        return "selectEquipment";
+        return "admin/selectEquipment";
     }
 
     // Delete device
@@ -44,7 +44,7 @@ public class EquipmentController {
 
         List<Room> roomList = roomService.findAll();
         model.addAttribute("roomList", roomList);
-        return "updateEquipment";
+        return "admin/updateEquipment";
     }
 
     // Modify equipment
@@ -60,7 +60,7 @@ public class EquipmentController {
         List<Room> roomList = roomService.findAll();
         model.addAttribute("roomList", roomList);
 
-        return "addEquipment";
+        return "admin/addEquipment";
     }
 
     // Add new equipment

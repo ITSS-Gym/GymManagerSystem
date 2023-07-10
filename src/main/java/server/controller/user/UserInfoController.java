@@ -31,7 +31,7 @@ public class UserInfoController {
     public String toUserInformation(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
-        return "userInformation";
+        return "user/userInformation";
     }
 
     // Jump to modify personal information page
@@ -40,19 +40,16 @@ public class UserInfoController {
         Member member1 = (Member) session.getAttribute("user");
         List<Member> member = memberService.selectByMemberAccount(member1.getMemberAccount());
         model.addAttribute("member", member.get(0));
-        return "updateUserInformation";
+        return "user/updateUserInformation";
     }
 
     // Modify Personal Information
     @RequestMapping("/updateInfo")
     public String updateUserInformation(HttpSession session, Member member) {
         Member member1 = (Member) session.getAttribute("user");
-
         member.setMemberAccount(member1.getMemberAccount());
-        System.out.println(member);
-
         memberService.updateMemberByMemberAccount(member);
-        return "userInformation";
+        return "user/userInformation";
     }
 }
 

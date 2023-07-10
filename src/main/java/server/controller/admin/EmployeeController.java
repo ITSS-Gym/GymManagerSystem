@@ -24,13 +24,13 @@ public class EmployeeController {
     public String selectEmployee(Model model) {
         List<Employee> employeeList = employeeService.findAll();
         model.addAttribute("employeeList", employeeList);
-        return "selectEmployee";
+        return "admin/selectEmployee";
     }
 
     // Jump to the new employee page
     @RequestMapping("/toAddEmployee")
     public String toAddEmployee() {
-        return "addEmployee";
+        return "admin/addEmployee";
     }
 
     // New employee
@@ -51,7 +51,7 @@ public class EmployeeController {
             return "redirect:selEmployee";
         }
         model.addAttribute("msg", "Duplicate Employee Account!");
-        return "addEmployee";
+        return "admin/addEmployee";
 
     }
 
@@ -67,7 +67,7 @@ public class EmployeeController {
     public String toUpdateEmployee(Integer employeeId, Model model) {
         List<Employee> employeeList = employeeService.selectByEmployeeId(employeeId);
         model.addAttribute("employeeList", employeeList);
-        return "updateEmployee";
+        return "admin/updateEmployee";
     }
 
     //Modify employee information

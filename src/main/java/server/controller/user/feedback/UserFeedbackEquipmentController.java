@@ -30,14 +30,14 @@ public class UserFeedbackEquipmentController {
         String memberAccount = member.getMemberAccount();
         List<Feedback> feedbackEquipmentList = feedbackEquipmentService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
-        return "userFeedbackEquipment";
+        return "user/userFeedbackEquipment";
     }
 
     @RequestMapping("/toAddFeedbackEquipment")
     public String toAddEquipment(Model model) {
         List<Equipment> equipmentList = EquipmentService.findAll();
         model.addAttribute("equipmentList", equipmentList);
-        return "addFeedbackEquipment";
+        return "user/addFeedbackEquipment";
     }
 
     @RequestMapping("/addFeedbackEquipment")
@@ -59,7 +59,7 @@ public class UserFeedbackEquipmentController {
     public String toUpdateFeedbackEquipment(Integer feedbackId, Model model) {
         List<Feedback> feedbackEquipmentList = feedbackEquipmentService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
-        return "updateFeedbackEquipment";
+        return "user/updateFeedbackEquipment";
     }
     @RequestMapping("/updateFeedbackEquipment")
     public String updateFeedbackEquipment(FeedbackEquipment feedbackEquipment) {

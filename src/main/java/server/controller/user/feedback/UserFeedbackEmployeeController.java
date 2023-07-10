@@ -30,14 +30,14 @@ public class UserFeedbackEmployeeController {
         String memberAccount = member.getMemberAccount();
         List<Feedback> feedbackEmployeeList = feedbackEmployeeService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackEmployeeList", feedbackEmployeeList);
-        return "userFeedbackEmployee";
+        return "user/userFeedbackEmployee";
     }
 
     @RequestMapping("/toAddFeedbackEmployee")
     public String toAddEmployee(Model model) {
         List<Employee> employeeList = employeeService.findAll();
         model.addAttribute("employeeList", employeeList);
-        return "addFeedbackEmployee";
+        return "user/addFeedbackEmployee";
     }
 
     @RequestMapping("/addFeedbackEmployee")
@@ -59,7 +59,7 @@ public class UserFeedbackEmployeeController {
     public String toUpdateFeedbackEmployee(Integer feedbackId, Model model) {
         List<Feedback> feedbackEmployeeList = feedbackEmployeeService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackEmployeeList", feedbackEmployeeList);
-        return "updateFeedbackEmployee";
+        return "user/updateFeedbackEmployee";
     }
     @RequestMapping("/updateFeedbackEmployee")
     public String updateFeedbackEmployee(FeedbackEmployee feedbackEmployee) {

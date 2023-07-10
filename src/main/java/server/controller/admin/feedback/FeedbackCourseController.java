@@ -23,7 +23,7 @@ public class FeedbackCourseController {
     public String selectFeedbackCourse(Model model) {
         List<Feedback> feedbackCourseList = feedbackCourseService.findAll();
         model.addAttribute("feedbackCourseList", feedbackCourseList);
-        return "selectFeedbackCourse";
+        return "admin/selectFeedbackCourse";
     }
 
     // Jump to the new course page
@@ -31,6 +31,6 @@ public class FeedbackCourseController {
     public String toViewFeedbackCourse(Integer courseId, Model model) {
         List<Feedback> feedbackCourseList = feedbackCourseService.selectByCourseId(courseId);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
-        return "selectFeedbackCourse";
+        return "admin/selectFeedbackCourse";
     }
 }

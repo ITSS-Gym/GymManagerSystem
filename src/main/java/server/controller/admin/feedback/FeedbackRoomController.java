@@ -23,7 +23,7 @@ public class FeedbackRoomController {
     public String selectFeedbackRoom(Model model) {
         List<Feedback> feedbackRoomList = feedbackRoomService.findAll();
         model.addAttribute("feedbackRoomList", feedbackRoomList);
-        return "selectFeedbackRoom";
+        return "admin/selectFeedbackRoom";
     }
 
     // Jump to the new Room page
@@ -31,6 +31,6 @@ public class FeedbackRoomController {
     public String toViewFeedbackRoom(Integer roomId, Model model) {
         List<Feedback> feedbackRoomList = feedbackRoomService.selectByRoomId(roomId);
         model.addAttribute("feedbackRoomList", feedbackRoomList);
-        return "selectFeedbackRoom";
+        return "admin/selectFeedbackRoom";
     }
 }

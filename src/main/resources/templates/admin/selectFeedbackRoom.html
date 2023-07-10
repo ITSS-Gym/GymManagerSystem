@@ -13,15 +13,15 @@
         <h1 class="mt-4">Feedback Management</h1>
 
         <ol class="breadcrumb mb-4">
-          <li class="breadcrumb-item"><a th:href="@{/toAdminMain}">HomePage</a></li>
-          <li class="breadcrumb-item active"><a th:href="@{/equipment/selEquipment}">Equipment Management</a></li>
-          <li class="breadcrumb-item active">Equipment Feedback</li>
+          <li class="breadcrumb-item"><a th:href="@{/adminMain}">HomePage</a></li>
+          <li class="breadcrumb-item active"><a th:href="@{/room/selRoom}">Room Management</a></li>
+          <li class="breadcrumb-item active">Room Feedback</li>
         </ol>
 
         <div class="card mb-4">
           <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Equipment Feedback
+            Room Feedback
           </div>
 
           <div class="card-body">
@@ -31,20 +31,20 @@
                 <th>Feedback ID</th>
                 <th>Member Account</th>
                 <th>Member Name</th>
-                <th>Equipment ID</th>
-                <th>Equipment Name</th>
+                <th>Room ID</th>
+                <th>Room Name</th>
                 <th>Content</th>
                 <th>Time Create</th>
               </tr>
               </thead>
 
               <tbody>
-              <tr th:each="fee:${feedbackEquipmentList}">
+              <tr th:each="fee:${feedbackRoomList}">
                 <td th:text="${fee.feedbackId}">Feedback ID</td>
                 <td th:text="${fee.memberAccount}">Member Account</td>
                 <td th:text="${fee.memberName}">Member Name</td>
-                <td th:text="${fee.equipmentId}">Equipment ID</td>
-                <td th:text="${fee.equipmentName}">Equipment Name</td>
+                <td th:text="${fee.roomId}">Room ID</td>
+                <td th:text="${fee.roomName}">Room Name</td>
                 <td th:text="${fee.content}">Content</td>
                 <td th:text="${fee.timeCreated}">Time Create</td>
               </tr>

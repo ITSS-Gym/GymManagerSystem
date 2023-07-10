@@ -30,14 +30,14 @@ public class UserFeedbackRoomController {
         String memberAccount = member.getMemberAccount();
         List<Feedback> feedbackRoomList = feedbackRoomService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackRoomList", feedbackRoomList);
-        return "userFeedbackRoom";
+        return "user/userFeedbackRoom";
     }
 
     @RequestMapping("/toAddFeedbackRoom")
     public String toAddRoom(Model model) {
         List<Room> roomList = RoomService.findAll();
         model.addAttribute("roomList", roomList);
-        return "addFeedbackRoom";
+        return "user/addFeedbackRoom";
     }
 
     @RequestMapping("/addFeedbackRoom")
@@ -59,7 +59,7 @@ public class UserFeedbackRoomController {
     public String toUpdateFeedbackRoom(Integer feedbackId, Model model) {
         List<Feedback> feedbackRoomList = feedbackRoomService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackRoomList", feedbackRoomList);
-        return "updateFeedbackRoom";
+        return "user/updateFeedbackRoom";
     }
     @RequestMapping("/updateFeedbackRoom")
     public String updateFeedbackRoom(FeedbackRoom feedbackRoom) {

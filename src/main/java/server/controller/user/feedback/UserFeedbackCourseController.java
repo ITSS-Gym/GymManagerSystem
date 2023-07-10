@@ -30,14 +30,14 @@ public class UserFeedbackCourseController {
         String memberAccount = member.getMemberAccount();
         List<Feedback> feedbackCourseList = feedbackCourseService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
-        return "userFeedbackCourse";
+        return "user/userFeedbackCourse";
     }
 
     @RequestMapping("/toAddFeedbackCourse")
     public String toAddCourse(Model model) {
         List<Course> courseList = CourseService.findAll();
         model.addAttribute("courseList", courseList);
-        return "addFeedbackCourse";
+        return "user/addFeedbackCourse";
     }
 
     @RequestMapping("/addFeedbackCourse")
@@ -59,7 +59,7 @@ public class UserFeedbackCourseController {
     public String toUpdateFeedbackCourse(Integer feedbackId, Model model) {
         List<Feedback> feedbackCourseList = feedbackCourseService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
-        return "updateFeedbackCourse";
+        return "user/updateFeedbackCourse";
     }
     @RequestMapping("/updateFeedbackCourse")
     public String updateFeedbackCourse(FeedbackCourse feedbackCourse) {
@@ -72,7 +72,7 @@ public class UserFeedbackCourseController {
         List<Feedback> feedbackCourseList = feedbackCourseService.selectByCourseId(courseId);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
         model.addAttribute("courseId", courseId);
-        return "userOtherFeedbackCourse";
+        return "user/userOtherFeedbackCourse";
     }
 
 }

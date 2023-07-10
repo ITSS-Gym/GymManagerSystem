@@ -23,7 +23,7 @@ public class FeedbackEquipmentController {
     public String selectFeedbackEquipment(Model model) {
         List<Feedback> feedbackEquipmentList = feedbackEquipmentService.findAll();
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
-        return "selectFeedbackEquipment";
+        return "admin/selectFeedbackEquipment";
     }
 
     // Jump to the new Equipment page
@@ -31,6 +31,6 @@ public class FeedbackEquipmentController {
     public String toViewFeedbackEquipment(Integer equipmentId, Model model) {
         List<Feedback> feedbackEquipmentList = feedbackEquipmentService.selectByEquipmentId(equipmentId);
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
-        return "selectFeedbackEquipment";
+        return "admin/selectFeedbackEquipment";
     }
 }

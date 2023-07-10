@@ -33,7 +33,7 @@ public class CourseController {
     public String selectCourse(Model model) {
         List<Course> courseList = courseService.findAll();
         model.addAttribute("courseList", courseList);
-        return "selectCourse";
+        return "admin/selectCourse";
     }
 
     // Jump to the new course page
@@ -41,7 +41,7 @@ public class CourseController {
     public String toAddCourse(Model model) {
         List<Employee> employeeList = employeeService.findAll();
         model.addAttribute("employeeList", employeeList);
-        return "addCourse";
+        return "admin/addCourse";
     }
 
     // New course
@@ -54,7 +54,7 @@ public class CourseController {
     // Delete course
     @RequestMapping("/delCourse")
     public String deleteClass(Integer courseId) {
-        courseService.deleteOrderByCourseId(courseId);
+//        courseService.deleteOrderByCourseId(courseId);
         courseService.deleteCourseByCourseId(courseId);
         return "redirect:selCourse";
     }
@@ -64,7 +64,7 @@ public class CourseController {
     public String selectCourseOrder(Integer courseId, Model model) {
         List<CourseOrder> courseOrderList = courseOrderService.selectMemberOrderList(courseId);
         model.addAttribute("courseOrderList", courseOrderList);
-        return "selectCourseOrder";
+        return "admin/selectCourseOrder";
     }
 
     @RequestMapping("/updateAcceptCourseOrder")

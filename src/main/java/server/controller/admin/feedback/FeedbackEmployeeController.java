@@ -24,7 +24,7 @@ public class FeedbackEmployeeController {
     public String selectFeedbackEmployee(Model model) {
         List<Feedback> feedbackEmployeeList = feedbackEmployeeService.findAll();
         model.addAttribute("feedbackEmployeeList", feedbackEmployeeList);
-        return "selectFeedbackEmployee";
+        return "admin/selectFeedbackEmployee";
     }
 
     // Jump to the new course page
@@ -32,6 +32,6 @@ public class FeedbackEmployeeController {
     public String toViewFeedbackEmployee(Integer employeeId, Model model) {
         List<Feedback> feedbackEmployeeList = feedbackEmployeeService.selectByEmployeeId(employeeId);
         model.addAttribute("feedbackEmployeeList", feedbackEmployeeList);
-        return "selectFeedbackEmployee";
+        return "admin/selectFeedbackEmployee";
     }
 }

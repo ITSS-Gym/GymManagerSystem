@@ -71,7 +71,6 @@ public class LoginController {
         }
     }
 
-
     // admin login 
     @RequestMapping("/adminMain")
     public String adminMain(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
@@ -133,7 +132,7 @@ public class LoginController {
             model.addAttribute("revenueYearList", revenueYearList);
             session.setAttribute("revenueYearList", revenueYearList);
 
-            return "adminMain";
+            return "admin/adminMain";
         }
         else {
             redirectAttributes.addFlashAttribute("msg", "The account or password you entered is wrong, please re-enter");
@@ -154,7 +153,7 @@ public class LoginController {
         if (session.getAttribute("user") != null) {
             Member member_login = (Member) session.getAttribute("user");
             model.addAttribute("member", member_login);
-            return "userMain";
+            return "user/userMain";
         }
         else {
             redirectAttributes.addFlashAttribute("msg", "The account or password you entered is wrong, please re-enter!");
@@ -174,7 +173,7 @@ public class LoginController {
         if (session.getAttribute("user") != null) {
            Employee employee_login = (Employee) session.getAttribute("user");
             model.addAttribute("employee", employee_login);
-            return "employeeMain";
+            return "employee/employeeMain";
         }
         else {
             redirectAttributes.addFlashAttribute("msg", "The account or password you entered is wrong, please re-enter!");
@@ -184,7 +183,7 @@ public class LoginController {
 
     @RequestMapping("/register")
     public String toUserRegistration() {
-        return "userRegistration";
+        return "user/userRegistration";
     }
 
     @RequestMapping("/userRegistration")
@@ -195,11 +194,11 @@ public class LoginController {
             model.addAttribute("member", member);
             model.addAttribute("msg", "Register successfully!");
             session.setAttribute("user", member);
-            return "userMain";
+            return "user/userMain";
         }
         else {
             model.addAttribute("msg", "Duplicate account! Please change your Account!");
-            return "userRegistration";
+            return "user/userRegistration";
         }
     }
 
@@ -214,7 +213,7 @@ public class LoginController {
         model.addAttribute("employeeTotal", employeeTotal);
         model.addAttribute("humanTotal", humanTotal);
         model.addAttribute("equipmentTotal", equipmentTotal);
-        return "adminMain";
+        return "admin/adminMain";
     }
 
     // Jump to member home page
@@ -222,7 +221,7 @@ public class LoginController {
     public String toUserMain(Model model, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
-        return "userMain";
+        return "user/userMain";
     }
 
     @RequestMapping("/logout")
