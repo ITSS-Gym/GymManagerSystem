@@ -19,13 +19,6 @@ public class UserInfoController {
     @Autowired
     private MemberService memberService;
 
-    @Autowired
-    private FeedbackEmployeeService feedbackEmployeeService;
-
-    @Autowired
-    private EmployeeService employeeService;
-
-
     // Jump to personal information page
     @RequestMapping("/toUserInfo")
     public String toUserInformation(Model model, HttpSession session) {

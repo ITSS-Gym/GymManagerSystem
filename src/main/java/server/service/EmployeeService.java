@@ -25,8 +25,8 @@ public class EmployeeService {
         return employeeMapper.insertEmployee(employee);
     }
 
-    public Boolean updateMemberByEmployeeId(Employee employee) {
-        return employeeMapper.updateMemberByEmployeeId(employee);
+    public Boolean updateEmployeeByEmployeeId(Employee employee) {
+        return employeeMapper.updateEmployeeByEmployeeId(employee);
     }
 
     public List<Employee> selectByEmployeeId(Integer employeeId) {

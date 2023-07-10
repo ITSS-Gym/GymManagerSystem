@@ -47,15 +47,22 @@ public class CourseController {
     // New course
     @RequestMapping("/addCourse")
     public String addCourse(Course course) {
+        course.setStatus("accepted");
         courseService.insertCourse(course);
         return "redirect:selCourse";
     }
 
     // Delete course
     @RequestMapping("/delCourse")
-    public String deleteClass(Integer courseId) {
+    public String deleteCourse(Integer courseId) {
 //        courseService.deleteOrderByCourseId(courseId);
         courseService.deleteCourseByCourseId(courseId);
+        return "redirect:selCourse";
+    }
+
+    @RequestMapping("/acceptCourse")
+    public String acceptCourse(Integer courseId) {
+        courseService.acceptCourseByCourseId(courseId);
         return "redirect:selCourse";
     }
 

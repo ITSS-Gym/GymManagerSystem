@@ -23,6 +23,10 @@ public interface CourseMapper {
     // Query the class schedule by id
     Course selectByCourseId(Integer courseId);
 
+    List<Course> selectByEmployeeId(Integer employeeId);
+
+    Boolean acceptCourseByCourseId(Integer courseId);
+
     // Delete reserved courses according to id
     Boolean deleteOrderByCourseId(Integer courseId);
 

@@ -17,7 +17,7 @@ public interface EmployeeMapper {
     Boolean insertEmployee(Employee employee);
 
     // Modify member information according to employee account
-    Boolean updateMemberByEmployeeId(Employee employee);
+    Boolean updateEmployeeByEmployeeId(Employee employee);
 
     // Query employees based on employee account
     List<Employee> selectByEmployeeId(Integer employeeId);

@@ -113,6 +113,7 @@ CREATE TABLE `course`  (
   `coach_id` int NULL DEFAULT NULL COMMENT 'Coach ID',
   `price` int NULL DEFAULT NULL COMMENT 'vnd',
   `course_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'based on time/sport',
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'waiting/accepted',
   `active` BOOLEAN NULL DEFAULT TRUE COMMENT "active or not",
   PRIMARY KEY (`course_id`) USING BTREE,
   FOREIGN KEY (`coach_id`) REFERENCES `employee`(`employee_id`) ON DELETE SET NULL ON UPDATE CASCADE
@@ -122,19 +123,19 @@ CREATE TABLE `course`  (
 -- ----------------------------
 -- Records of course
 -- ----------------------------
-INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`)
+INSERT INTO `course` (`course_name`, `course_begin`, `course_time`, `coach_id`, `price`, `course_type`, `status`)
 VALUES
-('yoga_3m', '2021-01-01 15:00', '60m', 1, 600000, "yoga 3 months"),
-('gym_1m', '2021-01-02 10:20', '90m', 1, 200000, "gym 1 month"),
-('gym_3m', '2021-03-06 18:00', '90m', 2, 550000, "gym 3 months"),
-('gym_1m_PT', '2021-02-02 10:00', '45m', 4, 3000000, "gym 1 month with PT"),
-('yoga_1m', '2021-02-03 15:00', '60m', 3, 200000, "yoga 1 month"),
-('cardio_1m', '2021-02-03 15:00', '60m', 3, 150000, "cardio 1 month"),
-('gym_1d', '2021-03-01 17:30', '60m', 4, 10000, "gym 1 day"),
-('yoga_1d', '2021-02-22 09:00', '90m', 4, 12000,"yoga 1 day"),
-('cardio_1d', '2021-02-04 15:00', '60m', 2, 8000, "cardio 1 day"),
-('gym_1y_PT', '2021-03-08 15:00', '45m', 1, 20000000, "gym 1 year with PT"),
-('gym_1y', '2021-02-22 18:00', '60m', 2, 1500000, "gym 1 year");
+('yoga_3m', '2021-01-01 15:00', '60m', 1, 600000, "yoga 3 months", "accepted"),
+('gym_1m', '2021-01-02 10:20', '90m', 1, 200000, "gym 1 month", "accepted"),
+('gym_3m', '2021-03-06 18:00', '90m', 2, 550000, "gym 3 months", "accepted"),
+('gym_1m_PT', '2021-02-02 10:00', '45m', 4, 3000000, "gym 1 month with PT", "accepted"),
+('yoga_1m', '2021-02-03 15:00', '60m', 3, 200000, "yoga 1 month", "accepted"),
+('cardio_1m', '2021-02-03 15:00', '60m', 3, 150000, "cardio 1 month", "accepted"),
+('gym_1d', '2021-03-01 17:30', '60m', 4, 10000, "gym 1 day", "accepted"),
+('yoga_1d', '2021-02-22 09:00', '90m', 4, 12000,"yoga 1 day", "accepted"),
+('cardio_1d', '2021-02-04 15:00', '60m', 2, 8000, "cardio 1 day", "accepted"),
+('gym_1y_PT', '2021-03-08 15:00', '45m', 1, 20000000, "gym 1 year with PT", "accepted"),
+('gym_1y', '2021-02-22 18:00', '60m', 2, 1500000, "gym 1 year", "accepted");
 
 
 -- ----------------------------

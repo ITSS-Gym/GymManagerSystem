@@ -31,6 +31,14 @@ public class CourseService {
         return courseMapper.selectByCourseId(courseId);
     }
 
+    public List<Course> selectByEmployeeId(Integer employeeId) {
+        return courseMapper.selectByEmployeeId(employeeId);
+    }
+
+    public  Boolean acceptCourseByCourseId(Integer courseId) {
+        return courseMapper.acceptCourseByCourseId(courseId);
+    }
+
     public Boolean deleteOrderByCourseId(Integer courseId) {
         return courseMapper.deleteOrderByCourseId(courseId);
     }

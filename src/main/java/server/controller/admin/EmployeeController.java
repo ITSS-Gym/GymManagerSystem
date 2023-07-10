@@ -74,7 +74,7 @@ public class EmployeeController {
     @RequestMapping("/updateEmployee")
     public String updateEmployee(Employee employee, @ModelAttribute("isCoach") boolean isCoach) {
         employee.setCoach(isCoach);
-        employeeService.updateMemberByEmployeeId(employee);
+        employeeService.updateEmployeeByEmployeeId(employee);
         return "redirect:selEmployee";
     }
 

@@ -38,7 +38,7 @@
 
                             <tbody>
                             <div th:each="course:${courseList}">
-                                <tr th:if="${not courseOrderIdList.contains(course.courseId)}">
+                                <tr th:if='${not courseOrderIdList.contains(course.courseId) and course.status.equals("accepted")}'>
                                     <td th:text="${course.courseId}">ID</td>
                                     <td th:text="${course.courseName}">Name</td>
                                     <td th:text="${course.courseBegin}">Time</td>

@@ -14,7 +14,13 @@ public class Course {
 
     private String courseType;
 
+    private String status;
+
     private boolean active;
+
+    public Course() {
+
+    }
 
     public Course(Integer courseId, String courseName, String courseBegin, String courseTime, Integer coachId, String coachName, Integer price, String courseType) {
         this.courseId = courseId;
@@ -25,6 +31,20 @@ public class Course {
         this.coachName = coachName;
         this.price = price;
         this.courseType = courseType;
+        this.status = "waiting";
+        this.active = true;
+    }
+
+    public Course(Integer courseId, String courseName, String courseBegin, String courseTime, Integer coachId, String coachName, Integer price, String courseType, String status) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseBegin = courseBegin;
+        this.courseTime = courseTime;
+        this.coachId = coachId;
+        this.coachName = coachName;
+        this.price = price;
+        this.courseType = courseType;
+        this.status = status;
         this.active = true;
     }
 
@@ -92,6 +112,14 @@ public class Course {
         this.courseType = courseType;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public boolean isActive() {
         return active;
     }
@@ -111,6 +139,7 @@ public class Course {
                 ", coachName='" + coachName + '\'' +
                 ", price=" + price +
                 ", courseType='" + courseType + '\'' +
+                ", status='" + status + '\'' +
                 ", active=" + active +
                 '}';
     }
