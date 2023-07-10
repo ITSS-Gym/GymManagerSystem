@@ -18,7 +18,7 @@
                 return false;
             }
             if (loginForm.memberPassword.value == '') {
-                alert("Passwword cannot be left blank!");
+                alert("Password cannot be left blank!");
                 loginForm.memberPassword.focus();
                 return false;
             }
@@ -54,13 +54,19 @@
                                                placeholder="Password"/>
                                         <label for="inputPassword">Password</label>
                                     </div>
-                                    
+                                    <p><b>Login as a:</b></p>
                                     <!-- Input for remember account! -->
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" id="inputRememberPassword" type="checkbox"
-                                               value=""/>
-                                        <label class="form-check-label" for="inputRememberPassword">Remember me</label>
-
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="loginType" value="member" id="flexRadioDefault1" checked>
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Member
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="loginType" value="coach" id="flexRadioDefault2">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Coach
+                                        </label>
                                     </div>
                                     
                                     <!-- Input for go to Admin Login page -->

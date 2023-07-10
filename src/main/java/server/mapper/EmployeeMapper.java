@@ -24,6 +24,8 @@ public interface EmployeeMapper {
 
     List<Employee> selectByEmployeeAccount(String employeeAccount);
 
+    Employee selectByEmployeeAccountAndPassword(String employeeAccount, String employeePassword);
+
     // Query the number of employees
     Integer selectTotalCount();
 

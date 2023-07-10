@@ -54,6 +54,13 @@
         WHERE employee_account = #{employeeAccount}
     </select>
 
+    <select id="selectByEmployeeAccountAndPassword" parameterType="java.lang.String" resultType="employee">
+        SELECT *
+        FROM employee
+        WHERE employee_account = #{employeeAccount}
+        AND employee_password = #{employeePassword}
+    </select>
+
     <select id="selectTotalCount" resultType="java.lang.Integer">
         SELECT count(*)
         FROM employee
