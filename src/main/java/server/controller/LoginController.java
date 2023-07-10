@@ -1,7 +1,9 @@
 package server.controller;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import server.model.Admin;
+import server.model.Employee;
 import server.model.Member;
 import server.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,25 +31,51 @@ public class LoginController {
     @Autowired
     private OrderRecordService orderRecordService;
 
-    // Home-page, jump to administrator login page
+    // Home-page, jump to login page
     @RequestMapping("/")
     public String toUserLogin(Model model) {
         String msg = (String) model.asMap().get("msg");
         model.addAttribute("msg", msg);
-        return "userLogin";
+        return "login";
     }
 
-    // Jump to member login page
-    @RequestMapping("/toAdminLogin")
-    public String toAdminLogin(Model model) {
-        String msg = (String) model.asMap().get("msg");
-        model.addAttribute("msg", msg);
-        return "adminLogin";
+    @RequestMapping("/login")
+    public String login(@ModelAttribute("account") String account,
+                        @ModelAttribute("password") String password,
+                        @ModelAttribute("loginType") String loginType,
+                        RedirectAttributes redirectAttributes) {
+        switch (loginType) {
+            case "admin":
+                Admin admin = new Admin();
+                admin.setAdminAccount(account);
+                admin.setAdminPassword(password);
+                redirectAttributes.addFlashAttribute("admin", admin);
+                return "redirect:/adminMain";
+
+            case "member":
+                Member member = new Member();
+                member.setMemberAccount(account);
+                member.setMemberPassword(password);
+                redirectAttributes.addFlashAttribute("member", member);
+                return "redirect:/userMain";
+
+            case "employee":
+                Employee employee = new Employee();
+                employee.setEmployeeAccount(account);
+                employee.setEmployeePassword(password);
+                redirectAttributes.addFlashAttribute("employee", employee);
+                return "redirect:/employeeMain";
+
+            default:
+                return "redirect:/";
+        }
     }
+
 
     // admin login 
     @RequestMapping("/adminMain")
-    public String adminMain(Admin admin, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+    public String adminMain(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        Admin admin = (Admin) model.asMap().get("admin");
         Admin admin1 = adminService.adminLogin(admin);
         if (admin1 != null) {
             session.setAttribute("admin", admin1);
@@ -109,13 +137,14 @@ public class LoginController {
         }
         else {
             redirectAttributes.addFlashAttribute("msg", "The account or password you entered is wrong, please re-enter");
-            return "redirect:/toAdminLogin";
+            return "redirect:/";
         }
     }
 
     // User Login
     @RequestMapping("/userMain")
-    public String userMain(Member member, Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+    public String userMain(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        Member member = (Member) model.asMap().get("member");
         Member member1 = memberService.userLogin(member);
         if (memberService.userLogin(member) != null) {
             model.addAttribute("member", member1);
@@ -133,7 +162,27 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/toUserRegistration")
+    @RequestMapping("/employeeMain")
+    public String employeeMain(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+        Employee employee = (Employee) model.asMap().get("employee");
+        Employee employee1 = employeeService.employeeLogin(employee);
+        if (employeeService.employeeLogin(employee) != null) {
+            model.addAttribute("employee", employee1);
+            session.setAttribute("user", employee1);
+
+        }
+        if (session.getAttribute("user") != null) {
+           Employee employee_login = (Employee) session.getAttribute("user");
+            model.addAttribute("employee", employee_login);
+            return "employeeMain";
+        }
+        else {
+            redirectAttributes.addFlashAttribute("msg", "The account or password you entered is wrong, please re-enter!");
+            return "redirect:/";
+        }
+    }
+
+    @RequestMapping("/register")
     public String toUserRegistration() {
         return "userRegistration";
     }
@@ -179,7 +228,7 @@ public class LoginController {
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "userLogin";
+        return "redirect:/";
     }
 
 }

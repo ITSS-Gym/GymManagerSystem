@@ -37,6 +37,10 @@ public class EmployeeService {
         return employeeMapper.selectByEmployeeAccount(employeeAccount);
     }
 
+    public Employee employeeLogin(Employee employee) {
+        return employeeMapper.selectByEmployeeAccountAndPassword(employee);
+    }
+
     public Integer selectTotalCount() {
         return employeeMapper.selectTotalCount();
     }
