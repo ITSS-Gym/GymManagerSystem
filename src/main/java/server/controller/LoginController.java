@@ -167,11 +167,11 @@ public class LoginController {
         Employee employee1 = employeeService.employeeLogin(employee);
         if (employeeService.employeeLogin(employee) != null) {
             model.addAttribute("employee", employee1);
-            session.setAttribute("user", employee1);
+            session.setAttribute("employee", employee1);
 
         }
-        if (session.getAttribute("user") != null) {
-           Employee employee_login = (Employee) session.getAttribute("user");
+        if (session.getAttribute("employee") != null) {
+            Employee employee_login = (Employee) session.getAttribute("employee");
             model.addAttribute("employee", employee_login);
             return "employee/employeeMain";
         }

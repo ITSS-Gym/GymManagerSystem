@@ -41,6 +41,16 @@ public class EmployeeCourseController {
         return "employee/selectCourse";
     }
 
+    @RequestMapping("/myRequestedCourse")
+    public String myRequestedCourse(Model model, HttpSession session) {
+        Employee employee = (Employee) session.getAttribute("employee");
+        model.addAttribute("employee", employee);
+        Integer employeeId = employee.getEmployeeId();
+        List<Course> courseList = courseService.selectByEmployeeId(employeeId);
+        model.addAttribute("courseList", courseList);
+        return "employee/selectRequestedCourse";
+    }
+
     @RequestMapping("/toSuggestCourse")
     public String toSuggestCourse() {
         return "employee/suggestCourse";
