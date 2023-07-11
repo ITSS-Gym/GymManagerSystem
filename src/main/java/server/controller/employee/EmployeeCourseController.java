@@ -51,12 +51,12 @@ public class EmployeeCourseController {
         return "employee/selectRequestedCourse";
     }
 
-    @RequestMapping("/toSuggestCourse")
+    @RequestMapping("/toRequestCourse")
     public String toSuggestCourse() {
-        return "employee/suggestCourse";
+        return "employee/requestCourse";
     }
 
-    @RequestMapping("/suggestCourse")
+    @RequestMapping("/requestCourse")
     public String suggestCourse(Course course, Model model, HttpSession session) {
         Employee employee = (Employee) session.getAttribute("employee");
         Integer employeeId = employee.getEmployeeId();
@@ -64,6 +64,29 @@ public class EmployeeCourseController {
         course.setStatus("waiting");
         courseService.insertCourse(course);
         return "redirect:myCourse";
+    }
+
+    @RequestMapping("/toUpdateRequestedCourse")
+    public String toUpdateCourse(Integer courseId, Model model) {
+        Course course = courseService.selectByCourseId(courseId);
+        model.addAttribute("course", course);
+        return "employee/updateRequestedCourse";
+    }
+
+    @RequestMapping("/updateRequestedCourse")
+    public String updateRequestedCourse(Course course, HttpSession session) {
+        Employee employee = (Employee) session.getAttribute("employee");
+        Integer employeeId = employee.getEmployeeId();
+        course.setCoachId(employeeId);
+        courseService.updateCourseByCourseId(course);
+        return "redirect:myRequestedCourse";
+    }
+
+    // Delete requested course
+    @RequestMapping("/delCourse")
+    public String deleteCourse(Integer courseId) {
+        courseService.deleteCourseByCourseId(courseId);
+        return "redirect:myRequestedCourse";
     }
 
     // See list of student registered the course

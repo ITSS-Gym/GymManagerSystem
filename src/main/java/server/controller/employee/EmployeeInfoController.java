@@ -38,6 +38,7 @@ public class EmployeeInfoController {
         Employee employee1 = (Employee) session.getAttribute("employee");
         Integer employeeId = employee1.getEmployeeId();
         employee.setEmployeeId(employeeId);
+        employee.setCoach(true);
         employeeService.updateEmployeeByEmployeeId(employee);
         return "employee/employeeInformation";
     }
