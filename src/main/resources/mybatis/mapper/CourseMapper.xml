@@ -54,6 +54,7 @@
         FROM course
         INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course.coach_id = #{employeeId}
+        AND course.active = true
     </select>
 
     <update id="acceptCourseByCourseId" parameterType="java.lang.Integer">

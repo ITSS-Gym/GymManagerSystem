@@ -52,18 +52,21 @@ public class EmployeeCourseController {
     }
 
     @RequestMapping("/toRequestCourse")
-    public String toSuggestCourse() {
+    public String toRequestCourse() {
         return "employee/requestCourse";
     }
 
     @RequestMapping("/requestCourse")
-    public String suggestCourse(Course course, Model model, HttpSession session) {
+    public String requestCourse(Course course, Model model, HttpSession session) {
         Employee employee = (Employee) session.getAttribute("employee");
         Integer employeeId = employee.getEmployeeId();
         course.setCoachId(employeeId);
         course.setStatus("waiting");
         courseService.insertCourse(course);
-        return "redirect:myCourse";
+
+        List<Course> courseList = courseService.selectByEmployeeId(employeeId);
+        model.addAttribute("courseList", courseList);
+        return "employee/selectRequestedCourse";
     }
 
     @RequestMapping("/toUpdateRequestedCourse")
