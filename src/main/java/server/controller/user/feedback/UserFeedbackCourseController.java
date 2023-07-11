@@ -36,7 +36,6 @@ public class UserFeedbackCourseController {
     @RequestMapping("/toAddFeedbackCourse")
     public String toAddCourse(Model model) {
         List<Course> courseList = CourseService.findAll();
-        System.out.println(courseList.get(0));
         model.addAttribute("courseList", courseList);
         return "user/addFeedbackCourse";
     }
