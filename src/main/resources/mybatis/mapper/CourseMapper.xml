@@ -5,7 +5,8 @@
 <mapper namespace="server.mapper.CourseMapper">
 
     <select id="findAll" resultType="course">
-        SELECT course_id, course_name, course_begin, course_time, coach_id, employee_name, price, course_type, status
+        SELECT course_id, course_name, course_begin, course_time, coach_id,
+                employee_name AS coach_name, price, course_type, status, course.active
         FROM course
         INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course.active = true;
@@ -40,14 +41,16 @@
     </update>
 
     <select id="selectByCourseId" parameterType="java.lang.Integer" resultType="course">
-        SELECT course_id, course_name, course_begin, course_time, coach_id, employee_name, price, course_type, status
+        SELECT course_id, course_name, course_begin, course_time, coach_id,
+            employee_name AS coach_name, price, course_type, status, course.active
         FROM course
         INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course_id = #{courseId}
     </select>
 
     <select id="selectByEmployeeId" parameterType="java.lang.Integer" resultType="course">
-        SELECT course_id, course_name, course_begin, course_time, coach_id, employee_name, price, course_type, status
+        SELECT course_id, course_name, course_begin, course_time, coach_id,
+            employee_name AS coach_name, price, course_type, status, course.active
         FROM course
         INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course.coach_id = #{employeeId}

@@ -64,7 +64,7 @@ public class LoginController {
                 employee.setEmployeeAccount(account);
                 employee.setEmployeePassword(password);
                 redirectAttributes.addFlashAttribute("employee", employee);
-                return "redirect:/employeeMain";
+                return "redirect:/staff";
 
             default:
                 return "redirect:/";
@@ -161,8 +161,8 @@ public class LoginController {
         }
     }
 
-    @RequestMapping("/employeeMain")
-    public String employeeMain(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+    @RequestMapping("/staff")
+    public String staff(Model model, HttpSession session, RedirectAttributes redirectAttributes) {
         Employee employee = (Employee) model.asMap().get("employee");
         Employee employee1 = employeeService.employeeLogin(employee);
         if (employeeService.employeeLogin(employee) != null) {

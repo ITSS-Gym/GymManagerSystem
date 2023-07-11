@@ -48,6 +48,19 @@ public class Course {
         this.active = true;
     }
 
+    public Course(Integer courseId, String courseName, String courseBegin, String courseTime, Integer coachId, String coachName, Integer price, String courseType, String status, boolean active) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseBegin = courseBegin;
+        this.courseTime = courseTime;
+        this.coachId = coachId;
+        this.coachName = coachName;
+        this.price = price;
+        this.courseType = courseType;
+        this.status = status;
+        this.active = active;
+    }
+
     public Integer getCourseId() {
         return courseId;
     }
