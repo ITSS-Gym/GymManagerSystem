@@ -101,6 +101,14 @@ public class MemberControllerTest {
     }
 
     @Test
+    void testToUpdateMember() throws Exception {
+        mockMvc.perform(get("/member/toUpdateMember"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("admin/updateMember"))
+                .andExpect(model().attributeExists("memberList"));
+    }
+
+    @Test
     void testAddMemberSuccess() {
         // given
         Member member = new Member();
@@ -206,13 +214,5 @@ public class MemberControllerTest {
         Map<String, Object> queryResult = jdbcTemplate
                 .queryForMap("SELECT * FROM member WHERE member_account = '202009867'");
         assertThat(queryResult.get("active")).isEqualTo(false);
-    }
-
-    @Test
-    void testToUpdateMember() throws Exception {
-        mockMvc.perform(get("/member/toUpdateMember"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("admin/updateMember"))
-                .andExpect(model().attributeExists("memberList"));
     }
 }
