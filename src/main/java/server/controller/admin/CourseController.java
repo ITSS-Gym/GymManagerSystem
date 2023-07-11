@@ -60,6 +60,13 @@ public class CourseController {
         return "redirect:selCourse";
     }
 
+    @RequestMapping("/selRequestedCourse")
+    public String selectRequestedCourse(Model model) {
+        List<Course> courseList = courseService.findAll();
+        model.addAttribute("courseList", courseList);
+        return "admin/selectRequestedCourse";
+    }
+
     @RequestMapping("/acceptCourse")
     public String acceptCourse(Integer courseId) {
         courseService.acceptCourseByCourseId(courseId);
