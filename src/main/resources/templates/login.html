@@ -73,12 +73,10 @@
                                             Admin
                                         </label>
                                     </div>
-                                    
-                                    <!-- Input for go to Admin Login page -->
+
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                        <input type="submit" class="btn btn-success" value="Login">
                                         <a class="btn btn-primary" th:href="@{/register}">Sign Up</a>
-<!--                                        <a class="btn btn-primary" th:href="@{/toAdminLogin}">Go to Admin Login Page</a>-->
+                                        <input type="submit" class="btn btn-success" value="Login">
                                     </div>
                                 </form>
                                 <div th:text="${msg}" style="margin-top: 20px;text-align: center;color: red"></div>
