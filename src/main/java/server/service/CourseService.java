@@ -3,7 +3,7 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.mapper.CourseMapper;
-import server.pojo.Course;
+import server.model.Course;
 
 import java.util.List;
 
@@ -29,6 +29,14 @@ public class CourseService {
 
     public Course selectByCourseId(Integer courseId) {
         return courseMapper.selectByCourseId(courseId);
+    }
+
+    public List<Course> selectByEmployeeId(Integer employeeId) {
+        return courseMapper.selectByEmployeeId(employeeId);
+    }
+
+    public  Boolean acceptCourseByCourseId(Integer courseId) {
+        return courseMapper.acceptCourseByCourseId(courseId);
     }
 
     public Boolean deleteOrderByCourseId(Integer courseId) {

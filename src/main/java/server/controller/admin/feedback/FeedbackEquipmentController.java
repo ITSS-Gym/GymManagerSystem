@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import server.pojo.FeedbackEquipment;
+import server.model.Feedback;
 import server.service.EquipmentService;
 import server.service.FeedbackEquipmentService;
 
@@ -21,16 +21,16 @@ public class FeedbackEquipmentController {
 
     @RequestMapping("/selFeedbackEquipment")
     public String selectFeedbackEquipment(Model model) {
-        List<FeedbackEquipment> feedbackEquipmentList = feedbackEquipmentService.findAll();
+        List<Feedback> feedbackEquipmentList = feedbackEquipmentService.findAll();
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
-        return "selectFeedbackEquipment";
+        return "admin/selectFeedbackEquipment";
     }
 
     // Jump to the new Equipment page
     @RequestMapping("/toViewFeedbackEquipment")
     public String toViewFeedbackEquipment(Integer equipmentId, Model model) {
-        List<FeedbackEquipment> feedbackEquipmentList = feedbackEquipmentService.selectByEquipmentId(equipmentId);
+        List<Feedback> feedbackEquipmentList = feedbackEquipmentService.selectByEquipmentId(equipmentId);
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
-        return "selectFeedbackEquipment";
+        return "admin/selectFeedbackEquipment";
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="common-header">
 
     <meta charset="UTF-8"/>
@@ -22,7 +22,7 @@
 <!--Navigation Bar-->
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" th:fragment="common-navbar">
     <!-- Navbar Brand-->
-    <a class="navbar-brand ps-3" th:href="@{/adminLogin}">Gym Management System</a>
+    <a class="navbar-brand ps-3" th:href="@{/adminMain}">Gym Management System</a>
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 ms-auto me-0 me-md-3 my-2 my-md-0 me-lg-0" id="sidebarToggle" href="#!"><i
             class="fas fa-bars"></i></button>
@@ -58,20 +58,31 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-table-tennis"></i></div>
                     Equipment
                 </a>
-                <a class="nav-link" th:href="@{/course/selCourse}">
+
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-calendar-alt"></i></div>
                     Course
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
+                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" th:href="@{/course/selCourse}">Active Course</a>
+                        <a class="nav-link" th:href="@{/course/selRequestedCourse}">Requested Course</a>
+                    </nav>
+                </div>
+
                 <a class="nav-link" th:href="@{/room/selRoom}">
                     <div class="sb-nav-link-icon"><i class="fas fa-warehouse"></i></div>
                     Room
                 </a>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+
+
+                <a class="nav-link collapsed" href="#Feedback" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsFeedback" aria-expanded="false" aria-controls="collapseLayoutsFeedback">
                     <div class="sb-nav-link-icon"><i class="fas fa-comments"></i></div>
                     Feedback
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                <div class="collapse" id="collapseLayoutsFeedback" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" th:href="@{/feedback/selFeedbackEmployee}">Employee</a>
                         <a class="nav-link" th:href="@{/feedback/selFeedbackEquipment}">Equipment</a>

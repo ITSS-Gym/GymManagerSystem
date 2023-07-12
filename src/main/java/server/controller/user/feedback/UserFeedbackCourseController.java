@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import server.pojo.Course;
-import server.pojo.FeedbackCourse;
-import server.pojo.Member;
+import server.model.Course;
+import server.model.FeedbackCourse;
+import server.model.Feedback;
+import server.model.Member;
 import server.service.CourseService;
 import server.service.FeedbackCourseService;
 
@@ -27,23 +28,23 @@ public class UserFeedbackCourseController {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         String memberAccount = member.getMemberAccount();
-        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.selectByMemberAccount(memberAccount);
+        List<Feedback> feedbackCourseList = feedbackCourseService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
-        return "userFeedbackCourse";
+        return "user/userFeedbackCourse";
     }
 
     @RequestMapping("/toAddFeedbackCourse")
     public String toAddCourse(Model model) {
         List<Course> courseList = CourseService.findAll();
         model.addAttribute("courseList", courseList);
-        return "addFeedbackCourse";
+        return "user/addFeedbackCourse";
     }
 
     @RequestMapping("/addFeedbackCourse")
     public String addFeedbackCourse(FeedbackCourse feedbackCourse, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         feedbackCourse.setMemberAccount(member.getMemberAccount());
-        feedbackCourseService.insertFeedbackCourse(feedbackCourse);
+        feedbackCourseService.insertFeedback(feedbackCourse);
         return "redirect:userFeedbackCourse";
     }
 
@@ -56,9 +57,9 @@ public class UserFeedbackCourseController {
 
     @RequestMapping("/toUpdateFeedbackCourse")
     public String toUpdateFeedbackCourse(Integer feedbackId, Model model) {
-        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.selectByFeedbackId(feedbackId);
+        List<Feedback> feedbackCourseList = feedbackCourseService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
-        return "updateFeedbackCourse";
+        return "user/updateFeedbackCourse";
     }
     @RequestMapping("/updateFeedbackCourse")
     public String updateFeedbackCourse(FeedbackCourse feedbackCourse) {
@@ -68,10 +69,10 @@ public class UserFeedbackCourseController {
 
     @RequestMapping("/userOtherFeedbackCourse")
     public String toSelectOtherFeedbackCourse(Integer courseId, Model model) {
-        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.selectByCourseId(courseId);
+        List<Feedback> feedbackCourseList = feedbackCourseService.selectByCourseId(courseId);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
         model.addAttribute("courseId", courseId);
-        return "userOtherFeedbackCourse";
+        return "user/userOtherFeedbackCourse";
     }
 
 }

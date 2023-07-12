@@ -7,13 +7,20 @@
     <select id="findAll" resultType="equipment">
         SELECT *
         FROM equipment
+        WHERE active = true
     </select>
 
-    <delete id="deleteByEquipmentId" parameterType="java.lang.Integer">
-        DELETE
-        FROM equipment
+    <update id="deleteByEquipmentId" parameterType="java.lang.Integer">
+        UPDATE equipment
+        SET active = false
         WHERE equipment_id = #{equipmentId}
-    </delete>
+    </update>
+
+    <update id="enableByEquipmentId" parameterType="java.lang.Integer">
+        UPDATE equipment
+        SET active = true
+        WHERE equipment_id = #{equipmentId}
+    </update>
 
     <insert id="insertEquipment" parameterType="equipment">
         INSERT INTO equipment (equipment_name, equipment_status, equipment_message, room_id)
@@ -38,6 +45,7 @@
     <select id="selectTotalCount" resultType="java.lang.Integer">
         SELECT count(*)
         FROM equipment
+        WHERE active = true
     </select>
 
 </mapper>

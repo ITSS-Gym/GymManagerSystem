@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.pojo.Course;
+import server.model.Course;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -22,6 +22,10 @@ public interface CourseMapper {
 
     // Query the class schedule by id
     Course selectByCourseId(Integer courseId);
+
+    List<Course> selectByEmployeeId(Integer employeeId);
+
+    Boolean acceptCourseByCourseId(Integer courseId);
 
     // Delete reserved courses according to id
     Boolean deleteOrderByCourseId(Integer courseId);

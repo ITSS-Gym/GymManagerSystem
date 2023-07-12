@@ -3,41 +3,49 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.mapper.FeedbackRoomMapper;
-import server.pojo.FeedbackRoom;
+import server.model.FeedbackRoom;
+import server.model.Feedback;
+import server.service.feedback.FeedbackService;
 
 import java.util.List;
 
 @Service
-public class FeedbackRoomService {
+public class FeedbackRoomService implements FeedbackService {
 
     @Autowired
     private FeedbackRoomMapper feedbackMapper;
 
-    public List<FeedbackRoom> findAll() {
+    @Override
+    public List<Feedback> findAll() {
         return feedbackMapper.findAll();
     }
 
-    public Boolean deleteByFeedbackId(Integer equipmentId) {
-        return feedbackMapper.deleteByFeedbackId(equipmentId);
+    @Override
+    public Boolean deleteByFeedbackId(Integer feedbackId) {
+        return feedbackMapper.deleteByFeedbackId(feedbackId);
     }
 
-    public Boolean insertFeedbackRoom(FeedbackRoom feedbackRoom) {
-        return feedbackMapper.insertFeedbackRoom(feedbackRoom);
+    @Override
+    public Boolean insertFeedback(Feedback feedback) {
+        return feedbackMapper.insertFeedbackRoom(feedback);
     }
 
-    public Boolean updateByFeedbackId(FeedbackRoom feedbackRoom) {
-        return feedbackMapper.updateByFeedbackId(feedbackRoom);
+    @Override
+    public Boolean updateByFeedbackId(Feedback feedback) {
+        return feedbackMapper.updateByFeedbackId(feedback);
     }
 
-    public List<FeedbackRoom> selectByFeedbackId(Integer feedbackId) {
+    @Override
+    public List<Feedback> selectByFeedbackId(Integer feedbackId) {
         return feedbackMapper.selectByFeedbackId(feedbackId);
     }
 
-    public List<FeedbackRoom> selectByMemberAccount(String memberAccount) {
+    @Override
+    public List<Feedback> selectByMemberAccount(String memberAccount) {
         return feedbackMapper.selectByMemberAccount(memberAccount);
     }
 
-    public List<FeedbackRoom> selectByRoomId(Integer RoomAccount) {
+    public List<Feedback> selectByRoomId(Integer RoomAccount) {
         return feedbackMapper.selectByRoomId(RoomAccount);
     }
 }

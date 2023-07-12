@@ -1,10 +1,10 @@
 package server.controller.admin.feedback;
 
-import server.pojo.FeedbackEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import server.model.Feedback;
 import server.service.EmployeeService;
 import server.service.FeedbackEmployeeService;
 
@@ -22,16 +22,16 @@ public class FeedbackEmployeeController {
 
     @RequestMapping("/selFeedbackEmployee")
     public String selectFeedbackEmployee(Model model) {
-        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.findAll();
+        List<Feedback> feedbackEmployeeList = feedbackEmployeeService.findAll();
         model.addAttribute("feedbackEmployeeList", feedbackEmployeeList);
-        return "selectFeedbackEmployee";
+        return "admin/selectFeedbackEmployee";
     }
 
     // Jump to the new course page
     @RequestMapping("/toViewFeedbackEmployee")
     public String toViewFeedbackEmployee(Integer employeeId, Model model) {
-        List<FeedbackEmployee> feedbackEmployeeList = feedbackEmployeeService.selectByEmployeeId(employeeId);
+        List<Feedback> feedbackEmployeeList = feedbackEmployeeService.selectByEmployeeId(employeeId);
         model.addAttribute("feedbackEmployeeList", feedbackEmployeeList);
-        return "selectFeedbackEmployee";
+        return "admin/selectFeedbackEmployee";
     }
 }

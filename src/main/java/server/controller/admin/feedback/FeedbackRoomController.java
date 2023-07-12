@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import server.pojo.FeedbackRoom;
+import server.model.Feedback;
 import server.service.RoomService;
 import server.service.FeedbackRoomService;
 
@@ -21,16 +21,16 @@ public class FeedbackRoomController {
 
     @RequestMapping("/selFeedbackRoom")
     public String selectFeedbackRoom(Model model) {
-        List<FeedbackRoom> feedbackRoomList = feedbackRoomService.findAll();
+        List<Feedback> feedbackRoomList = feedbackRoomService.findAll();
         model.addAttribute("feedbackRoomList", feedbackRoomList);
-        return "selectFeedbackRoom";
+        return "admin/selectFeedbackRoom";
     }
 
     // Jump to the new Room page
     @RequestMapping("/toViewFeedbackRoom")
     public String toViewFeedbackRoom(Integer roomId, Model model) {
-        List<FeedbackRoom> feedbackRoomList = feedbackRoomService.selectByRoomId(roomId);
+        List<Feedback> feedbackRoomList = feedbackRoomService.selectByRoomId(roomId);
         model.addAttribute("feedbackRoomList", feedbackRoomList);
-        return "selectFeedbackRoom";
+        return "admin/selectFeedbackRoom";
     }
 }

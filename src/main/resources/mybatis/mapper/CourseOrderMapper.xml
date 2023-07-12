@@ -6,7 +6,7 @@
 
     <select id="findAll" resultType="courseOrder">
         SELECT course_order_id, course_order.course_id, course_name, coach_id, employee_name,
-               course_order.member_account, member_name, course_begin, status
+               course_order.member_account, member_name, course_begin, course_order.status
         FROM course_order
         INNER JOIN course ON course_order.course_id = course.course_id
         INNER JOIN member ON course_order.member_account = member.member_account
@@ -20,7 +20,7 @@
 
     <select id="selectCourseOrderByMemberAccount" parameterType="java.lang.String" resultType="courseOrder">
         SELECT course_order_id, course_order.course_id, course_name, coach_id, employee_name,
-               course_order.member_account, member_name, course_begin, status
+               course_order.member_account, member_name, course_begin, course_order.status
         FROM course_order
         INNER JOIN course ON course_order.course_id = course.course_id
         INNER JOIN member ON course_order.member_account = member.member_account
@@ -37,7 +37,7 @@
 
     <select id="selectMemberByCourseIdAndMemberAccount" parameterType="map" resultType="courseOrder">
         SELECT course_order_id, course_order.course_id, course_name, coach_id, employee_name,
-               course_order.member_account, member_name, course_begin, status
+               course_order.member_account, member_name, course_begin, course_order.status
         FROM course_order
         INNER JOIN course ON course_order.course_id = course.course_id
         INNER JOIN member ON course_order.member_account = member.member_account
@@ -48,7 +48,7 @@
 
     <select id="selectMemberOrderList" parameterType="java.lang.Integer" resultType="courseOrder">
         SELECT course_order_id, course_order.course_id, course_name, coach_id, employee_name,
-               course_order.member_account, member_name, course_begin, status
+               course_order.member_account, member_name, course_begin, course_order.status
         FROM course_order
         INNER JOIN course ON course_order.course_id = course.course_id
         INNER JOIN member ON course_order.member_account = member.member_account

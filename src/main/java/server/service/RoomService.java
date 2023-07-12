@@ -3,7 +3,7 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.mapper.RoomMapper;
-import server.pojo.Room;
+import server.model.Room;
 
 import java.util.List;
 

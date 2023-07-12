@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.pojo.Employee;
+import server.model.Employee;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,10 +17,14 @@ public interface EmployeeMapper {
     Boolean insertEmployee(Employee employee);
 
     // Modify member information according to employee account
-    Boolean updateMemberByEmployeeId(Employee employee);
+    Boolean updateEmployeeByEmployeeId(Employee employee);
 
     // Query employees based on employee account
     List<Employee> selectByEmployeeId(Integer employeeId);
+
+    List<Employee> selectByEmployeeAccount(String employeeAccount);
+
+    Employee selectByEmployeeAccountAndPassword(Employee employee);
 
     // Query the number of employees
     Integer selectTotalCount();

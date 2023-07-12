@@ -1,6 +1,6 @@
 package server.mapper;
 
-import server.pojo.FeedbackCourse;
+import server.model.Feedback;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -8,17 +8,17 @@ import java.util.List;
 @Mapper
 public interface FeedbackCourseMapper {
 
-    List<FeedbackCourse> findAll();
+    List<Feedback> findAll();
 
     Boolean deleteByFeedbackId(Integer feedbackId);
 
-    Boolean insertFeedbackCourse(FeedbackCourse feedbackCourse);
+    Boolean insertFeedbackCourse(Feedback feedback);
 
-    Boolean updateByFeedbackId(FeedbackCourse feedbackCourse);
+    Boolean updateByFeedbackId(Feedback feedback);
 
-    List<FeedbackCourse> selectByFeedbackId(Integer feedbackId);
+    List<Feedback> selectByFeedbackId(Integer feedbackId);
 
-    List<FeedbackCourse> selectByMemberAccount(String memberAccount);
+    List<Feedback> selectByMemberAccount(String memberAccount);
 
-    List<FeedbackCourse> selectByCourseId(Integer courseId);
+    List<Feedback> selectByCourseId(Integer courseId);
 }

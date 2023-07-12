@@ -4,9 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import server.pojo.Equipment;
-import server.pojo.FeedbackEquipment;
-import server.pojo.Member;
+import server.model.Equipment;
+import server.model.FeedbackEquipment;
+import server.model.Feedback;
+import server.model.Member;
 import server.service.EquipmentService;
 import server.service.FeedbackEquipmentService;
 
@@ -27,23 +28,23 @@ public class UserFeedbackEquipmentController {
         Member member = (Member) session.getAttribute("user");
         model.addAttribute("member", member);
         String memberAccount = member.getMemberAccount();
-        List<FeedbackEquipment> feedbackEquipmentList = feedbackEquipmentService.selectByMemberAccount(memberAccount);
+        List<Feedback> feedbackEquipmentList = feedbackEquipmentService.selectByMemberAccount(memberAccount);
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
-        return "userFeedbackEquipment";
+        return "user/userFeedbackEquipment";
     }
 
     @RequestMapping("/toAddFeedbackEquipment")
     public String toAddEquipment(Model model) {
         List<Equipment> equipmentList = EquipmentService.findAll();
         model.addAttribute("equipmentList", equipmentList);
-        return "addFeedbackEquipment";
+        return "user/addFeedbackEquipment";
     }
 
     @RequestMapping("/addFeedbackEquipment")
     public String addFeedbackEquipment(FeedbackEquipment feedbackEquipment, HttpSession session) {
         Member member = (Member) session.getAttribute("user");
         feedbackEquipment.setMemberAccount(member.getMemberAccount());
-        feedbackEquipmentService.insertFeedbackEquipment(feedbackEquipment);
+        feedbackEquipmentService.insertFeedback(feedbackEquipment);
         return "redirect:userFeedbackEquipment";
     }
 
@@ -56,9 +57,9 @@ public class UserFeedbackEquipmentController {
 
     @RequestMapping("/toUpdateFeedbackEquipment")
     public String toUpdateFeedbackEquipment(Integer feedbackId, Model model) {
-        List<FeedbackEquipment> feedbackEquipmentList = feedbackEquipmentService.selectByFeedbackId(feedbackId);
+        List<Feedback> feedbackEquipmentList = feedbackEquipmentService.selectByFeedbackId(feedbackId);
         model.addAttribute("feedbackEquipmentList", feedbackEquipmentList);
-        return "updateFeedbackEquipment";
+        return "user/updateFeedbackEquipment";
     }
     @RequestMapping("/updateFeedbackEquipment")
     public String updateFeedbackEquipment(FeedbackEquipment feedbackEquipment) {

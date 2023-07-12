@@ -3,7 +3,7 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.mapper.EmployeeMapper;
-import server.pojo.Employee;
+import server.model.Employee;
 
 import java.util.List;
 
@@ -25,12 +25,20 @@ public class EmployeeService {
         return employeeMapper.insertEmployee(employee);
     }
 
-    public Boolean updateMemberByEmployeeId(Employee employee) {
-        return employeeMapper.updateMemberByEmployeeId(employee);
+    public Boolean updateEmployeeByEmployeeId(Employee employee) {
+        return employeeMapper.updateEmployeeByEmployeeId(employee);
     }
 
     public List<Employee> selectByEmployeeId(Integer employeeId) {
         return employeeMapper.selectByEmployeeId(employeeId);
+    }
+
+    public List<Employee> selectByEmployeeAccount(String employeeAccount) {
+        return employeeMapper.selectByEmployeeAccount(employeeAccount);
+    }
+
+    public Employee employeeLogin(Employee employee) {
+        return employeeMapper.selectByEmployeeAccountAndPassword(employee);
     }
 
     public Integer selectTotalCount() {

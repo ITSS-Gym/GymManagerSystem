@@ -3,41 +3,49 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.mapper.FeedbackEmployeeMapper;
-import server.pojo.FeedbackEmployee;
+import server.model.FeedbackEmployee;
+import server.model.Feedback;
+import server.service.feedback.FeedbackService;
 
 import java.util.List;
 
 @Service
-public class FeedbackEmployeeService {
+public class FeedbackEmployeeService implements FeedbackService {
 
     @Autowired
     private FeedbackEmployeeMapper feedbackMapper;
 
-    public List<FeedbackEmployee> findAll() {
+    @Override
+    public List<Feedback> findAll() {
         return feedbackMapper.findAll();
     }
 
-    public Boolean deleteByFeedbackId(Integer equipmentId) {
-        return feedbackMapper.deleteByFeedbackId(equipmentId);
+    @Override
+    public Boolean deleteByFeedbackId(Integer feedbackId) {
+        return feedbackMapper.deleteByFeedbackId(feedbackId);
     }
 
-    public Boolean insertFeedbackEmployee(FeedbackEmployee feedbackEmployee) {
-        return feedbackMapper.insertFeedbackEmployee(feedbackEmployee);
+    @Override
+    public Boolean insertFeedback(Feedback feedback) {
+        return feedbackMapper.insertFeedbackEmployee(feedback);
     }
 
-    public Boolean updateByFeedbackId(FeedbackEmployee feedbackEmployee) {
-        return feedbackMapper.updateByFeedbackId(feedbackEmployee);
+    @Override
+    public Boolean updateByFeedbackId(Feedback feedback) {
+        return feedbackMapper.updateByFeedbackId(feedback);
     }
 
-    public List<FeedbackEmployee> selectByFeedbackId(Integer feedbackId) {
+    @Override
+    public List<Feedback> selectByFeedbackId(Integer feedbackId) {
         return feedbackMapper.selectByFeedbackId(feedbackId);
     }
 
-    public List<FeedbackEmployee> selectByMemberAccount(String memberAccount) {
+    @Override
+    public List<Feedback> selectByMemberAccount(String memberAccount) {
         return feedbackMapper.selectByMemberAccount(memberAccount);
     }
 
-    public List<FeedbackEmployee> selectByEmployeeId(Integer employeeId) {
+    public List<Feedback> selectByEmployeeId(Integer employeeId) {
         return feedbackMapper.selectByEmployeeId(employeeId);
     }
 }

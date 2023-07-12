@@ -22,7 +22,7 @@
                 #{employeeAge}, #{entryTime}, #{staff}, #{employeeMessage})
     </insert>
 
-    <update id="updateMemberByEmployeeId" parameterType="employee">
+    <update id="updateEmployeeByEmployeeId" parameterType="employee">
         UPDATE employee
         SET employee_id = #{employeeId},
             employee_name    = #{employeeName},

@@ -23,7 +23,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.ui.Model;
 
-import server.pojo.Member;
+import server.model.Member;
 import server.service.MemberService;
 
 @SpringBootTest
@@ -46,21 +46,23 @@ public class MemberControllerTest {
 
     @BeforeEach
     public void setup() {
-        String createTableSql = "CREATE TABLE IF NOT EXISTS member (" +
+        String createTableSql = "CREATE TABLE member (" +
                 "member_account varchar(255) NOT NULL UNIQUE COMMENT 'Member Account'," +
                 "member_password varchar(255) NULL DEFAULT '123456' COMMENT 'Member Password'," +
                 "member_name varchar(255) NULL DEFAULT NULL COMMENT 'Member Name'," +
                 "member_gender varchar(255) NULL DEFAULT '' COMMENT 'Member Gender'," +
                 "member_age int NULL DEFAULT NULL COMMENT 'Age'," +
-                "member_height int NULL DEFAULT NULL COMMENT 'Height'," +
-                "member_weight int NULL DEFAULT NULL COMMENT 'weight'," +
+                "member_height int NULL DEFAULT NULL COMMENT 'Height in cm'," +
+                "member_weight int NULL DEFAULT NULL COMMENT 'weight in kg'," +
                 "member_phone varchar(10) NULL DEFAULT NULL COMMENT 'phone'," +
+                "active BOOLEAN NULL DEFAULT TRUE COMMENT 'active or not'," +
                 "PRIMARY KEY (member_account)" +
                 ")";
 
         jdbcTemplate.execute(createTableSql);
 
-        String insertRecordsSql = "INSERT INTO member VALUES " +
+        String insertRecordsSql = "INSERT INTO member (member_account, member_password, member_name, member_gender, member_age, member_height, member_weight, member_phone) VALUES "
+                +
                 "('202009867', '123456', 'Nguyễn', 'female', 24, 182, 60, '0515548482')," +
                 "('202100788', '123456', 'Thái', 'male', 31, 178, 60, '0131554873')," +
                 "('202132539', '123456', 'Bình', 'male', 31, 178, 60, '0154875489')," +
@@ -87,15 +89,7 @@ public class MemberControllerTest {
     void testSelectMember() throws Exception {
         mockMvc.perform(get("/member/selMember"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("selectMember"))
-                .andExpect(model().attributeExists("memberList"));
-    }
-
-    @Test
-    void testSelectByCardId() throws Exception {
-        mockMvc.perform(get("/member/selByCard"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("selectByMemberAccount"))
+                .andExpect(view().name("admin/selectMember"))
                 .andExpect(model().attributeExists("memberList"));
     }
 
@@ -103,21 +97,14 @@ public class MemberControllerTest {
     void testToAddMember() throws Exception {
         mockMvc.perform(get("/member/toAddMember"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("addMember"));
-    }
-
-    @Test
-    void testToSelectByCardId() throws Exception {
-        mockMvc.perform(get("/member/toSelByCard"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("selectByMemberAccount"));
+                .andExpect(view().name("admin/addMember"));
     }
 
     @Test
     void testToUpdateMember() throws Exception {
         mockMvc.perform(get("/member/toUpdateMember"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("updateMember"))
+                .andExpect(view().name("admin/updateMember"))
                 .andExpect(model().attributeExists("memberList"));
     }
 
@@ -150,6 +137,7 @@ public class MemberControllerTest {
         assertThat(queryResult.get("member_height")).isEqualTo(180);
         assertThat(queryResult.get("member_weight")).isEqualTo(80);
         assertThat(queryResult.get("member_phone")).isEqualTo("0123456789");
+        assertThat(queryResult.get("active")).isEqualTo(true);
     }
 
     @Test
@@ -215,5 +203,16 @@ public class MemberControllerTest {
 
         // then
         assertThat(exception).isInstanceOf(DuplicateKeyException.class);
+    }
+
+    @Test
+    void testDeleteMember() throws Exception {
+        mockMvc.perform(get("/member/delMember?memberAccount=202009867"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:selMember"));
+
+        Map<String, Object> queryResult = jdbcTemplate
+                .queryForMap("SELECT * FROM member WHERE member_account = '202009867'");
+        assertThat(queryResult.get("active")).isEqualTo(false);
     }
 }

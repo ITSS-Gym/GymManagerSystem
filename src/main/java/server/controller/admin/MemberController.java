@@ -1,6 +1,6 @@
 package server.controller.admin;
 
-import server.pojo.Member;
+import server.model.Member;
 import server.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,29 +24,19 @@ public class MemberController {
     public String selectMember(Model model) {
         List<Member> memberList = memberService.findAll();
         model.addAttribute("memberList", memberList);
-        return "selectMember";
+        return "admin/selectMember";
     }
 
     // Jump to the new member page
     @RequestMapping("/toAddMember")
     public String toAddMember() {
-        return "addMember";
+        return "admin/addMember";
     }
 
     // Add new member
     @RequestMapping("/addMember")
     public String addMember(Member member) {
-        // Member account randomly generated
-        Random random = new Random();
-        StringBuilder thisYear = new StringBuilder(new SimpleDateFormat("yyyy").format(new Date()));
-        for (int i = 0; i < 5; i++) {
-            thisYear.append(random.nextInt(10));
-        }
-        Integer account = Integer.parseInt(thisYear.toString());
-
-//        member.setMemberAccount(account);
         memberService.insertMember(member);
-
         return "redirect:selMember";
 
     }
@@ -63,7 +53,7 @@ public class MemberController {
     public String toUpdateMember(String memberAccount, Model model) {
         List<Member> memberList = memberService.selectByMemberAccount(memberAccount);
         model.addAttribute("memberList", memberList);
-        return "updateMember";
+        return "admin/updateMember";
     }
 
     // Modify member information
@@ -71,26 +61,6 @@ public class MemberController {
     public String updateMember(Member member) {
         memberService.updateMemberByMemberAccount(member);
         return "redirect:selMember";
-    }
-
-
-    // Modify member information
-    @RequestMapping("/toSelByCard")
-    public String toSelectByCardId() {
-        return "selectByMemberAccount";
-    }
-
-    // Query by membership card number
-    @RequestMapping("/selByCard")
-    public String selectByCardId(Model model, String memberAccount) {
-        List<Member> memberList = memberService.selectByMemberAccount(memberAccount);
-        if (memberList != null) {
-            model.addAttribute("memberList", memberList);
-        } else {
-            String message = "Membership card number does not exist！";
-            model.addAttribute("noMessage", message);
-        }
-        return "selectByMemberAccount";
     }
 
 }

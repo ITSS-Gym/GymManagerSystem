@@ -3,7 +3,7 @@ package server.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import server.mapper.CourseOrderMapper;
-import server.pojo.CourseOrder;
+import server.model.CourseOrder;
 
 import java.util.List;
 

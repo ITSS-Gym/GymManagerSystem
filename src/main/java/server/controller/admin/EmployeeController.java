@@ -1,6 +1,7 @@
 package server.controller.admin;
 
-import server.pojo.Employee;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import server.model.Employee;
 import server.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,29 +24,34 @@ public class EmployeeController {
     public String selectEmployee(Model model) {
         List<Employee> employeeList = employeeService.findAll();
         model.addAttribute("employeeList", employeeList);
-        return "selectEmployee";
+        return "admin/selectEmployee";
     }
 
     // Jump to the new employee page
     @RequestMapping("/toAddEmployee")
     public String toAddEmployee() {
-        return "addEmployee";
+        return "admin/addEmployee";
     }
 
     // New employee
     @RequestMapping("/addEmployee")
-    public String addEmployee(Employee employee) {
+    public String addEmployee(Employee employee, @ModelAttribute("isCoach") boolean isCoach, Model model) {
+        List<Employee> employeeList = employeeService.selectByEmployeeAccount(employee.getEmployeeAccount());
+        if (employeeList.isEmpty()) {
+            employee.setCoach(isCoach);
 
-        //get current date
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String nowDay = simpleDateFormat.format(date);
+            //get current date
+            Date date = new Date();
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String nowDay = simpleDateFormat.format(date);
+            employee.setEntryTime(nowDay);
 
-        employee.setEntryTime(nowDay);
+            employeeService.insertEmployee(employee);
 
-        employeeService.insertEmployee(employee);
-
-        return "redirect:selEmployee";
+            return "redirect:selEmployee";
+        }
+        model.addAttribute("msg", "Duplicate Employee Account!");
+        return "admin/addEmployee";
 
     }
 
@@ -61,13 +67,14 @@ public class EmployeeController {
     public String toUpdateEmployee(Integer employeeId, Model model) {
         List<Employee> employeeList = employeeService.selectByEmployeeId(employeeId);
         model.addAttribute("employeeList", employeeList);
-        return "updateEmployee";
+        return "admin/updateEmployee";
     }
 
     //Modify employee information
     @RequestMapping("/updateEmployee")
-    public String updateEmployee(Employee employee) {
-        employeeService.updateMemberByEmployeeId(employee);
+    public String updateEmployee(Employee employee, @ModelAttribute("isCoach") boolean isCoach) {
+        employee.setCoach(isCoach);
+        employeeService.updateEmployeeByEmployeeId(employee);
         return "redirect:selEmployee";
     }
 

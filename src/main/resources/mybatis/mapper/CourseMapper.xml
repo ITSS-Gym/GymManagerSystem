@@ -5,20 +5,28 @@
 <mapper namespace="server.mapper.CourseMapper">
 
     <select id="findAll" resultType="course">
-        SELECT course_id, course_name, course_begin, course_time, coach_id, employee_name, price, course_type
+        SELECT course_id, course_name, course_begin, course_time, coach_id,
+                employee_name AS coach_name, price, course_type, status, course.active
         FROM course
         INNER JOIN employee ON course.coach_id = employee.employee_id
+        WHERE course.active = true;
     </select>
 
-    <delete id="deleteCourseByCourseId" parameterType="java.lang.Integer">
-        DELETE
-        FROM course
+    <update id="deleteCourseByCourseId" parameterType="java.lang.Integer">
+        UPDATE course
+        SET active = false
         WHERE course_id = #{courseId}
-    </delete>
+    </update>
+
+    <update id="enableCourseByCourseId" parameterType="java.lang.Integer">
+        UPDATE course
+        SET active = true
+        WHERE course_id = #{courseId}
+    </update>
 
     <insert id="insertCourse" parameterType="course">
-        INSERT INTO course (course_name, course_begin, course_time, coach_id, price, course_type)
-        VALUES (#{courseName}, #{courseBegin}, #{courseTime}, #{coachId}, #{price}, #{courseType})
+        INSERT INTO course (course_name, course_begin, course_time, coach_id, price, course_type, status)
+        VALUES (#{courseName}, #{courseBegin}, #{courseTime}, #{coachId}, #{price}, #{courseType}, #{status})
     </insert>
 
     <update id="updateCourseByCourseId" parameterType="course">
@@ -33,11 +41,27 @@
     </update>
 
     <select id="selectByCourseId" parameterType="java.lang.Integer" resultType="course">
-        SELECT course_id, course_name, course_begin, course_time, coach_id, employee_name, price, course_type
+        SELECT course_id, course_name, course_begin, course_time, coach_id,
+            employee_name AS coach_name, price, course_type, status, course.active
         FROM course
         INNER JOIN employee ON course.coach_id = employee.employee_id
         WHERE course_id = #{courseId}
     </select>
+
+    <select id="selectByEmployeeId" parameterType="java.lang.Integer" resultType="course">
+        SELECT course_id, course_name, course_begin, course_time, coach_id,
+            employee_name AS coach_name, price, course_type, status, course.active
+        FROM course
+        INNER JOIN employee ON course.coach_id = employee.employee_id
+        WHERE course.coach_id = #{employeeId}
+        AND course.active = true
+    </select>
+
+    <update id="acceptCourseByCourseId" parameterType="java.lang.Integer">
+        UPDATE course
+        SET status = "accepted"
+        WHERE course_id = #{courseId}
+    </update>
 
     <delete id="deleteOrderByCourseId" parameterType="java.lang.Integer">
         DELETE

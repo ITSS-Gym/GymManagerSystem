@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import server.pojo.FeedbackCourse;
+import server.model.Feedback;
 import server.service.CourseService;
 import server.service.FeedbackCourseService;
 
@@ -21,16 +21,16 @@ public class FeedbackCourseController {
 
     @RequestMapping("/selFeedbackCourse")
     public String selectFeedbackCourse(Model model) {
-        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.findAll();
+        List<Feedback> feedbackCourseList = feedbackCourseService.findAll();
         model.addAttribute("feedbackCourseList", feedbackCourseList);
-        return "selectFeedbackCourse";
+        return "admin/selectFeedbackCourse";
     }
 
     // Jump to the new course page
     @RequestMapping("/toViewFeedbackCourse")
     public String toViewFeedbackCourse(Integer courseId, Model model) {
-        List<FeedbackCourse> feedbackCourseList = feedbackCourseService.selectByCourseId(courseId);
+        List<Feedback> feedbackCourseList = feedbackCourseService.selectByCourseId(courseId);
         model.addAttribute("feedbackCourseList", feedbackCourseList);
-        return "selectFeedbackCourse";
+        return "admin/selectFeedbackCourse";
     }
 }

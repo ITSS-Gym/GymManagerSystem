@@ -10,13 +10,20 @@
         FROM feedback_employee
         INNER JOIN employee ON feedback_employee.employee_id = employee.employee_id
         INNER JOIN member ON feedback_employee.member_account = member.member_account
+        WHERE feedback_employee.active = true
     </select>
 
-    <delete id="deleteByFeedbackId" parameterType="java.lang.Integer">
-        DELETE
-        FROM feedback_employee
+    <update id="deleteByFeedbackId" parameterType="java.lang.Integer">
+        UPDATE feedback_employee
+        SET active = false
         WHERE feedback_id = #{feedbackId}
-    </delete>
+    </update>
+
+    <update id="enableByFeedbackId" parameterType="java.lang.Integer">
+        UPDATE feedback_employee
+        SET active = true
+        WHERE feedback_id = #{feedbackId}
+    </update>
 
     <insert id="insertFeedbackEmployee" parameterType="feedbackEmployee">
         INSERT INTO feedback_employee (member_account, employee_id, content)
@@ -44,7 +51,7 @@
         FROM feedback_employee
         INNER JOIN employee ON feedback_employee.employee_id = employee.employee_id
         INNER JOIN member ON feedback_employee.member_account = member.member_account
-        WHERE feedback_employee.member_account = #{memberAccount}
+        WHERE feedback_employee.member_account = #{memberAccount} AND feedback_employee.active = true
     </select>
 
     <select id="selectByEmployeeId" parameterType="java.lang.Integer" resultType="feedbackEmployee">
@@ -53,7 +60,7 @@
         FROM feedback_employee
         INNER JOIN member ON feedback_employee.member_account = member.member_account
         INNER JOIN employee ON feedback_employee.employee_id = employee.employee_id
-        WHERE feedback_employee.employee_id = #{employeeId};
+        WHERE feedback_employee.employee_id = #{employeeId} AND feedback_employee.active = true;
     </select>
 
 </mapper>

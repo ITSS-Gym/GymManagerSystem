@@ -1,6 +1,6 @@
 package server.controller.admin;
 
-import server.pojo.Room;
+import server.model.Room;
 import server.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ public class RoomController {
     public String selectRoom(Model model) {
         List<Room> roomList = roomService.findAll();
         model.addAttribute("roomList", roomList);
-        return "selectRoom";
+        return "admin/selectRoom";
     }
 
     @RequestMapping("/delRoom")
@@ -33,7 +33,7 @@ public class RoomController {
     public String toUpdateRoom(Integer roomId, Model model) {
         List<Room> roomList = roomService.selectByRoomId(roomId);
         model.addAttribute("roomList", roomList);
-        return "updateRoom";
+        return "admin/updateRoom";
     }
 
     // Modify room
@@ -46,7 +46,7 @@ public class RoomController {
     // Jump to the new room page
     @RequestMapping("/toAddRoom")
     public String toAddRoom() {
-        return "addRoom";
+        return "admin/addRoom";
     }
 
     // Add new room
