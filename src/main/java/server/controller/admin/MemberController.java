@@ -41,11 +41,8 @@ public class MemberController {
             memberService.insertMember(member);
             return "redirect:selMember";
         }
-        else {
-            model.addAttribute("msg", "Duplicate account! Please change your Account!");
-            return "admin/addMember";
-        }
-
+        model.addAttribute("msg", "Duplicate account! Please change account!");
+        return "admin/addMember";
     }
 
     // delete member
