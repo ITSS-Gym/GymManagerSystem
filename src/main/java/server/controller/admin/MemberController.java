@@ -35,10 +35,14 @@ public class MemberController {
 
     // Add new member
     @RequestMapping("/addMember")
-    public String addMember(Member member) {
-        memberService.insertMember(member);
-        return "redirect:selMember";
-
+    public String addMember(Member member, Model model) {
+        List<Member> memberList = memberService.selectByMemberAccount(member.getMemberAccount());
+        if (memberList.isEmpty()) {
+            memberService.insertMember(member);
+            return "redirect:selMember";
+        }
+        model.addAttribute("msg", "Duplicate account! Please change account!");
+        return "admin/addMember";
     }
 
     // delete member
