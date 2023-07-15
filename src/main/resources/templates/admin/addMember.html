@@ -19,6 +19,8 @@
                     <li class="breadcrumb-item active">Add Member</li>
                 </ol>
 
+                <div th:text="${msg}" style="margin-top: 20px;text-align: center;color: red"></div>
+
                 <div class="card mb-4">
                     <form th:action="@{/member/addMember}" method="post" name="addForm"
                           onsubmit="return beforeSubmit(this)">

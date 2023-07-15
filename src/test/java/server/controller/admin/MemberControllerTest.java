@@ -122,7 +122,7 @@ public class MemberControllerTest {
         member.setMemberPhone("0123456789");
 
         // when
-        String result = underTest.addMember(member);
+        String result = underTest.addMember(member, model);
 
         // then
         assertThat(result).isEqualTo("redirect:selMember");
@@ -154,7 +154,7 @@ public class MemberControllerTest {
 
         // when
         Throwable exception = assertThrows(DataIntegrityViolationException.class, () -> {
-            underTest.addMember(member);
+            underTest.addMember(member, model);
         });
 
         // then
@@ -176,7 +176,7 @@ public class MemberControllerTest {
 
         // when
         Throwable exception = assertThrows(DataIntegrityViolationException.class, () -> {
-            underTest.addMember(member);
+            underTest.addMember(member, model);
         });
 
         // then
@@ -198,7 +198,7 @@ public class MemberControllerTest {
 
         // when
         Throwable exception = assertThrows(DuplicateKeyException.class, () -> {
-            underTest.addMember(member);
+            underTest.addMember(member, model);
         });
 
         // then
